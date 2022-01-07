@@ -7,10 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Page Update="TeacherLogin.xaml">
+    <Page Update="LoginWindow.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Classes\" />
   </ItemGroup>
 
 </Project>

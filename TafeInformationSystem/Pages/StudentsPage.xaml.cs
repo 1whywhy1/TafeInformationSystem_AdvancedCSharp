@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TafeInformationSystem
+namespace TafeInformationSystem.Pages
 {
     /// <summary>
-    /// Interaction logic for TeacherLogin.xaml
+    /// Interaction logic for StudentsPage.xaml
     /// </summary>
-    public partial class TeacherLogin : Window
+    public partial class StudentsPage : Page
     {
-        public TeacherLogin()
+        public StudentsPage()
         {
             InitializeComponent();
         }

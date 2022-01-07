@@ -13,5 +13,14 @@ namespace TafeInformationSystem
     /// </summary>
     public partial class App : Application
     {
+        //This might not be needed
+
+        //public App()
+        //{ }
+        //private void Application_Startup(object sender, StartupEventArgs e)
+        //{
+        //    // TODO: Parse commandline arguments and other startup work 
+        //    new TeacherLogin().Show();
+        //}
     }
 }

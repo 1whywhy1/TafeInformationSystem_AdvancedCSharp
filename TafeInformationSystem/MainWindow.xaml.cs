@@ -10,8 +10,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TafeInformationSystem.Pages;
 
 namespace TafeInformationSystem
 {
@@ -23,6 +23,27 @@ namespace TafeInformationSystem
         public MainWindow()
         {
             InitializeComponent();
+           
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new TeacherLandingPage());
+        }
+
+        private void PersonalPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new PersonalPage());
+        }
+
+        private void TeachersButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new TeacherLandingPage());
+        }
+
+        private void CoursesButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new FindCoursesPage());
         }
     }
 }

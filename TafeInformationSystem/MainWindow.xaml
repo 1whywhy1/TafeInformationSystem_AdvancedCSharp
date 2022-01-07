@@ -4,51 +4,66 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TafeInformationSystem"
-        mc:Ignorable="d" FontSize="18" FontFamily="Korolev" Foreground="#D1D2D4"
-        Title="TafeInformationSystem" Height="450" Width="800">
-    <Grid Background="#FF282827">
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1024">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
+        
+        <Frame x:Name="_mainFrame" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3"
+               NavigationUIVisibility="Hidden"
+               Background="#FF1C0027" 
+               MinHeight="600" MinWidth="800" Margin="20,3,20,0"/>
+        <StackPanel Grid.Column="1" Grid.Row="1"
+                    Orientation="Vertical"
+                    MinWidth="150">
+            <Image Source="/Images/tafeLogo.png"
+                   Margin="0,0,10,10"/>
+            <Button x:Name="personalPageButton" Content="Personal Info" 
+                Margin="0,5,10,10" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="PersonalPageButton_Click"  
+                />
+            <Button x:Name="studentsButton" Content="Students" 
+                Margin="0,5,10,10" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"  
+                />
+            <Button x:Name="teachersButton" Content="Teachers" 
+                Margin="0,5,10,10" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="TeachersButton_Click"  
+                />
+            <Button x:Name="coursesButton" Content="Courses"   
+                Margin="0,5,10,10" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="CoursesButton_Click"  
+                />
+            <Button x:Name="unitsButton" Content="Units"   
+                Margin="0,5,10,10" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"  
+                />
 
-        <TextBlock Grid.Column="2" Grid.Row="1" FontSize="20" 
-                   Text="Tafe Information System" Grid.ColumnSpan ="3"
-                   Margin="0,0,0,10"/>
-
-        <TextBlock Grid.Column="2" Grid.Row="2" FontWeight="Bold"
-                   Text="First Name" 
-                   Margin="0,0,10,0"/>
-        <TextBox x:Name="firstNameText"  Grid.Column="3" Grid.Row="2"
-                 Width="150"/>
-        <Button x:Name="submitButton" Content="Press Me" Grid.Column="3"
-                Grid.Row="3"/>
-        <ComboBox x:Name="myComboBox" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,0,0,278"  >
-            <DataTemplate>
-            <TextBlock Text="Hello" />
-            </DataTemplate>
-         </ComboBox>
-        <!--<Image />
-        <MediaElement/>-->
-        <StackPanel  Grid.Column ="4" Grid.Row="1" Grid.RowSpan="6"
-                    Orientation="Horizontal">
-            
         </StackPanel>
+
+        <Button x:Name="logoutButton" Content="Logout" 
+                Grid.Column="1" Grid.Row="3"  
+                Margin="0,5,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"  
+                Click="LogoutButton_Click"
+                />
     </Grid>
 </Window>
