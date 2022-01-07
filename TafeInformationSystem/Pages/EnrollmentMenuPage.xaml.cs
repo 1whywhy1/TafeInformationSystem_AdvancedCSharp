@@ -16,13 +16,23 @@ using System.Windows.Shapes;
 namespace TafeInformationSystem.Pages
 {
     /// <summary>
-    /// Interaction logic for TeacherLandingPage.xaml
+    /// Interaction logic for EnrollmentMenuPage.xaml
     /// </summary>
-    public partial class TeacherLandingPage : Page
+    public partial class EnrollmentMenuPage : Page
     {
-        public TeacherLandingPage()
+        public EnrollmentMenuPage()
         {
             InitializeComponent();
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NewButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

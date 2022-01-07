@@ -28,7 +28,7 @@ namespace TafeInformationSystem
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new TeacherLandingPage());
+            _mainFrame.Navigate(new LoginWindow());
         }
 
         private void PersonalPageButton_Click(object sender, RoutedEventArgs e)
@@ -38,7 +38,7 @@ namespace TafeInformationSystem
 
         private void TeachersButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new TeacherLandingPage());
+            _mainFrame.Navigate(new TeacherMenuPage());
         }
 
         private void CoursesButton_Click(object sender, RoutedEventArgs e)
@@ -48,12 +48,17 @@ namespace TafeInformationSystem
 
         private void StudentsButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new StudentsPage());
+            _mainFrame.Navigate(new StudentMenuPage());
         }
 
         private void UnitsButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new UnitsPage());
+            _mainFrame.Navigate(new UnitsMenuPage());
+        }
+
+        private void EnrollmentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new EnrollmentMenuPage());
         }
     }
 }

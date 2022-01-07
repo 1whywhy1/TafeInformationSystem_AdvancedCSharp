@@ -13,6 +13,9 @@
     <Compile Update="Pages\CoursesPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\EnrollmentMenuPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\PersonalPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,10 +25,16 @@
     <Compile Update="Pages\PersonPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\StudentMenuPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\StudentsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\TeacherLandingPage.xaml.cs">
+    <Compile Update="Pages\TeacherMenuPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\UnitsMenuPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -34,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\CoursesPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\EnrollmentMenuPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\PersonalPage.xaml">
@@ -48,10 +60,16 @@
     <Page Update="Pages\PersonPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\StudentMenuPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\StudentsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\TeacherLandingPage.xaml">
+    <Page Update="Pages\TeacherMenuPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\UnitsMenuPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
