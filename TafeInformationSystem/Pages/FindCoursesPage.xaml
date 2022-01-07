@@ -33,31 +33,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1" Grid.Column="1"
-                    Text="Course Name"/>
-        <TextBlock Grid.Row="1" Grid.Column="2"
-                    Text="Course ID"/>
-        <TextBox x:Name="courseNameText"
-                    Grid.Row="2" Grid.Column="1"
-                    MinWidth="200" Margin="0,5,10,10"/>
-        <TextBox x:Name="idText"
-                    Grid.Row="2" Grid.Column="2"
-                    MinWidth="200" Margin="0,5,10,10"/>
-        <TextBlock Grid.Row="3" Grid.Column="1"
-                    Text="Course Duration"/>
-        <TextBlock Grid.Row="3" Grid.Column="2"
-                    Text="Start Date"/>
-        <TextBox x:Name="courseDurationText"
-                    Grid.Row="4" Grid.Column="1"
-                    MinWidth="50" Margin="0,5,10,10"/>
-        <DatePicker x:Name="courseStartDateText"
-                    Grid.Row="4" Grid.Column="2"
-                    MinWidth="100" Margin="0,5,10,10"/>
-        <TextBlock Grid.Row="5" Grid.Column="1"
-                    Text="Description"/>
-        <TextBox x:Name="descriptionText" 
-                 Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"
-                 MinWidth="300" MinHeight="80" Margin="0,5,10,10"/>
+ 
         <TextBlock Grid.Row="7" Grid.Column="1"
                     Text="Search by"/>
         <TextBlock Grid.Row="7" Grid.Column="2"
@@ -102,36 +78,26 @@
         </ListView>
         <StackPanel Grid.Row="1" Grid.Column="4"
                     Grid.RowSpan="14" Orientation="Vertical">
-            <Button x:Name="newButton" Content="Add Course" 
+            <Button x:Name="searchButton" Content="Search" 
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"     
                 />
-
            
-            <Button x:Name="updateButton" Content="Update"              
-                Margin="5,5,10,0" MinHeight="50"
-                BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
-                />
             <Button x:Name="clearButton" Content="Clear"              
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
                 />
-            <Button x:Name="searchNameButton" Content="Search" 
-                Margin="5,60,10,0" MinHeight="50"
+
+            <Button x:Name="updateButton" Content="Open Selected"              
+                Margin="5,55,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"     
-                />
-            <Button x:Name="deleteButton" Content="Delete"              
-                Margin="5,30,10,0" MinHeight="50"
-                BorderThickness="1" BorderBrush="#FF818185"
-                FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8"                     
-                />
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                />     
           
-            <Button x:Name="changePassButton" Content="Back"              
-                Margin="5,25,10,0" MinHeight="50"
+            <Button x:Name="menuButton" Content="Menu"              
+                Margin="5,300,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
 

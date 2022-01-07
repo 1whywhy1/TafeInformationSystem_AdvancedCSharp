@@ -51,6 +51,7 @@
              <Setter Property="Foreground" Value="#FFE7E7E8"/>
             <Setter Property="Background" Value="#FF373737"/>
             <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="MinHeight" Value="22"/>
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="Foreground" Value="Black"/>

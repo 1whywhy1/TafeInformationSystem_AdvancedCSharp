@@ -43,7 +43,17 @@ namespace TafeInformationSystem
 
         private void CoursesButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new FindCoursesPage());
+            _mainFrame.Navigate(new CourseMenuPage(_mainFrame));
+        }
+
+        private void StudentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new StudentsPage());
+        }
+
+        private void UnitsButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new UnitsPage());
         }
     }
 }

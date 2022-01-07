@@ -8,67 +8,89 @@
       d:DesignHeight="600" d:DesignWidth="800"
       FontFamily="Korolev" FontSize="14"
       Title="CoursesPage">
-    <TabControl>
-        <TabItem Header="Find a Course"
-                 MinHeight="30" MinWidth="100">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="10" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="10" />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="1" Grid.Column="1"
-                        Text="Course Name"/>
-                <TextBlock Grid.Row="1" Grid.Column="3"
-                        Text="Course ID"/>
-                <TextBox x:Name="courseNameText"
-                        Grid.Row="2" Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        MinWidth="200" Margin="0,5,10,10"/>
-                <TextBox x:Name="idText"
-                        Grid.Row="2" Grid.Column="3"
-                        MinWidth="200" Margin="0,5,5,10"/>
-                <TextBlock Grid.Row="3" Grid.Column="1"
-                        Text="Duration (in weeks)"/>
-                <TextBlock Grid.Row="3" Grid.Column="2"
-                        Text="Point Value"/>
-                <TextBox x:Name="durationText" 
-                        Grid.Row="4" Grid.Column="1"
-                        MinWidth="200" Margin="0,5,10,10"/>
-                <TextBox x:Name="pointValueText" 
-                        Grid.Row="4" Grid.Column="2"
-                        MinWidth="200" Margin="0,5,10,10"/>
-                <TextBlock Grid.Row="5" Grid.Column="1"
-                        Text="Description"/>
-                <TextBox x:Name="descriptionText"
-                        Grid.Row="6" Grid.Column="1"
-                        Grid.ColumnSpan="3"
-                        MinWidth="200" MinHeight="400"
-                        Margin="0,5,10,10"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+       <TextBlock Grid.Row="1" Grid.Column="1"
+                    Text="Course Name"/>
+        <TextBlock Grid.Row="1" Grid.Column="2"
+                    Text="Course ID"/>
+        <TextBox x:Name="courseNameText"
+                    Grid.Row="2" Grid.Column="1"
+                    MinWidth="200" Margin="0,5,10,10"/>
+        <TextBox x:Name="idText"
+                    Grid.Row="2" Grid.Column="2"
+                    MinWidth="200" Margin="0,5,10,10"/>
+        <TextBlock Grid.Row="3" Grid.Column="1"
+                    Text="Course Duration"/>
+        <TextBlock Grid.Row="3" Grid.Column="2"
+                    Text="Start Date"/>
+        <TextBox x:Name="courseDurationText"
+                    Grid.Row="4" Grid.Column="1"
+                    MinWidth="50" Margin="0,5,10,10"/>
+        <DatePicker x:Name="courseStartDateText"
+                    Grid.Row="4" Grid.Column="2"
+                    MinWidth="100" Margin="0,5,10,10"/>
+        <TextBlock Grid.Row="5" Grid.Column="1"
+                    Text="Description"/>
+        <TextBox x:Name="descriptionText" 
+                 Grid.Row="6" Grid.Column="1" 
+                 VerticalAlignment="Stretch"
+                 Grid.RowSpan="2" Grid.ColumnSpan="2"
+                 MinWidth="300" MinHeight="80" Margin="0,5,10,10"/>
+        <StackPanel Grid.Row="1" Grid.Column="3"
+                    Grid.RowSpan="14" Orientation="Vertical">
+            <Button x:Name="newButton" Content="Add Course" 
+                Margin="5,5,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"     
+                />           
+            <Button x:Name="editButton" Content="Edit"              
+                Margin="5,5,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                />
+            <Button x:Name="saveButton" Content="Save/Update"              
+                Margin="5,5,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                />
+            <Button x:Name="clearButton" Content="Clear"              
+                Margin="5,50,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                />
 
-            </Grid>
+            <Button x:Name="deleteButton" Content="Delete"              
+                Margin="5,115,10,0" MinHeight="50"
+                BorderThickness="1" BorderBrush="#FF818185"
+                FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8"                     
+                />
 
-        </TabItem>
-        <TabItem Header="Add New Course"
-                 MinHeight="30" MinWidth="100">
-   
-        </TabItem>
-        <TabItem Header="Add Units"
-                 MinHeight="30" MinWidth="100">
-        </TabItem>
-    </TabControl>
+            <Button x:Name="menuButton" Content="Menu"              
+                Margin="5,90,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                />
+        </StackPanel>
+
+    </Grid>
+
 </Page>

@@ -13,34 +13,36 @@ namespace TafeInformationSystem.Enums
             ID,
             FirstName,
             LastName,
-            NotPaid
+            NotPaid,
+            FullTime,
+            PartTime
         }
         enum TeacherSearchBy
         {
             ID,
             FirstName,
             LastName,
-            Location,
+            Location
         }
         enum CourseSearchBy
         {
             ID,
             Name,
             Location,
-            NoLocation,
-            Teacher
+            Teacher,
+            NoLocation
         }
         enum UnitSearchBy
         {
             ID,
             Name,
-            NotAllocated,
-            AllForCourse
+            AllForCourse,
+            NotAllocated            
         }
         enum EnrolmentSearchBy
         {
             ID,
-            StudentID,
+            StudentID
         }
     }
 }

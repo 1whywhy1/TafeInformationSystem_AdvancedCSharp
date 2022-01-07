@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Pages\CourseMenuPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\CoursesPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -14,6 +17,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\PersonPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\StudentsPage.xaml.cs">
@@ -24,6 +30,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Pages\CourseMenuPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\CoursesPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -34,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\PersonPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\StudentsPage.xaml">
