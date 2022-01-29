@@ -44,10 +44,10 @@
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="NewButton_Click"     
                 />
 
-            <Button x:Name="assignUnitsButton" Content="Assign to a Course"              
+            <Button x:Name="assignCourseButton" Content="Assign to a Course"              
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AssignCourseButton_Click"    
                 />
         </StackPanel>
     </Grid>

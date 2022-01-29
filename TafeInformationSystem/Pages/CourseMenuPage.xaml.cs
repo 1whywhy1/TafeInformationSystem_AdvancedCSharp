@@ -20,28 +20,37 @@ namespace TafeInformationSystem.Pages
     /// </summary>
     public partial class CourseMenuPage : Page
     {
-        Frame mainFrame;
+        Frame _mainFrame;
+
         public CourseMenuPage()
         {
             InitializeComponent();
         }
-
         public CourseMenuPage(Frame mainFrame)
         {
             InitializeComponent();
-            this.mainFrame = mainFrame;
+            _mainFrame = mainFrame;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            if (mainFrame != null)
-                mainFrame.Navigate(new FindCoursesPage());
+            if (_mainFrame != null)
+            {
+                _mainFrame.Navigate(new FindCoursesPage(_mainFrame));
+            }
         }
 
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
-            if (mainFrame != null)
-                mainFrame.Navigate(new CoursesPage());
+            if (_mainFrame != null)
+            {
+                _mainFrame.Navigate(new CoursesPage(_mainFrame));
+            }
+        }
+
+        private void AssignUnitsButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

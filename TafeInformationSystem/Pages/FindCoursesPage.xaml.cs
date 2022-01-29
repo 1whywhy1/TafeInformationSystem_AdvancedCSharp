@@ -20,9 +20,36 @@ namespace TafeInformationSystem.Pages
     /// </summary>
     public partial class FindCoursesPage : Page
     {
+        private Frame _mainFrame;
+
         public FindCoursesPage()
         {
             InitializeComponent();
+        }
+        public FindCoursesPage(Frame mainFrame)
+        {
+            InitializeComponent();
+            _mainFrame = mainFrame;
+        }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.GoBack();
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

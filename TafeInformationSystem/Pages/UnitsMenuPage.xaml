@@ -42,14 +42,7 @@
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="NewButton_Click"     
-                />
-
-            <Button x:Name="assignUnitsButton" Content="Assign Units"              
-                Margin="5,5,10,0" MinHeight="50"
-                BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
-                />
+                />         
         </StackPanel>
-
     </Grid>
 </Page>

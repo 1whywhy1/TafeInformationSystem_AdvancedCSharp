@@ -24,5 +24,24 @@ namespace TafeInformationSystem.Pages
         {
             InitializeComponent();
         }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChangePassButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

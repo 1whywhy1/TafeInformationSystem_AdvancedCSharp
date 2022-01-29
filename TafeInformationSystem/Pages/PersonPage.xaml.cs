@@ -20,9 +20,42 @@ namespace TafeInformationSystem.Pages
     /// </summary>
     public partial class PersonPage : Page
     {
+        private Frame _mainFrame;
+
         public PersonPage()
         {
             InitializeComponent();
+        }
+
+        public PersonPage(Frame mainFrame)
+        {
+            InitializeComponent();
+            _mainFrame = mainFrame;
+        }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.GoBack();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

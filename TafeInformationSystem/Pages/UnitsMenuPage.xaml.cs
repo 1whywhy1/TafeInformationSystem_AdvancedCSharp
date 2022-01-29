@@ -21,6 +21,7 @@ namespace TafeInformationSystem.Pages
     public partial class UnitsMenuPage : Page
     {
         private Frame _mainFrame;
+
         public UnitsMenuPage()
         {
             InitializeComponent();
@@ -34,12 +35,12 @@ namespace TafeInformationSystem.Pages
 
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new UnitsPage());
+            _mainFrame.Navigate(new UnitsPage(_mainFrame));
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-
+            _mainFrame.Navigate(new FindUnitsPage(_mainFrame));
         }
     }
 }

@@ -80,7 +80,7 @@
                 x:Name="submitButton" Content="Login" 
                 Grid.ColumnSpan="2" Margin="10,5,10,20"
                 FontSize="16"
-                Background="#FF00A887" Foreground="#FFE7E7E8" MinHeight="50"
+                Background="#FF00A887" Foreground="#FFE7E7E8" MinHeight="50" Click="SubmitButton_Click"
                 />
                 
             </StackPanel>

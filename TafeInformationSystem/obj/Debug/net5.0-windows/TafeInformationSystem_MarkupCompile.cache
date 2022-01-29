@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\App.xaml
-13-572888073
+21-1100528397
 
-161735011782
+26-885704073
 193-1891726104
-LoginWindow.xaml;MainWindow.xaml;Pages\CourseMenuPage.xaml;Pages\CoursesPage.xaml;Pages\EnrollmentMenuPage.xaml;Pages\FindCoursesPage.xaml;Pages\PersonalPage.xaml;Pages\PersonPage.xaml;Pages\StudentMenuPage.xaml;Pages\StudentsPage.xaml;Pages\TeacherMenuPage.xaml;Pages\UnitsMenuPage.xaml;Pages\UnitsPage.xaml;
+LoginWindow.xaml;MainWindow.xaml;Pages\CourseMenuPage.xaml;Pages\CoursesPage.xaml;Pages\CourseUnitPage.xaml;Pages\EnrollmentMenuPage.xaml;Pages\FindCoursesPage.xaml;Pages\FindLocationsPage.xaml;Pages\FindTeachersPage.xaml;Pages\FindUnitsPage.xaml;Pages\LocationPage.xaml;Pages\LocationsMenuPage.xaml;Pages\PersonalPage.xaml;Pages\PersonPage.xaml;Pages\StudentEnrollmentPage.xaml;Pages\StudentMenuPage.xaml;Pages\StudentsPage.xaml;Pages\TeacherCoursePage.xaml;Pages\TeacherMenuPage.xaml;Pages\UnitsMenuPage.xaml;Pages\UnitsPage.xaml;
 
 False
 

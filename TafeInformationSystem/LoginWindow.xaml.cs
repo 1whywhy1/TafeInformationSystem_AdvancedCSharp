@@ -25,9 +25,11 @@ namespace TafeInformationSystem
             InitializeComponent();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow mainWidow = new();
+            mainWidow.Show();
+            Close();
         }
     }
 }

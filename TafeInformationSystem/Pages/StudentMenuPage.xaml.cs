@@ -35,12 +35,17 @@ namespace TafeInformationSystem.Pages
 
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new PersonPage());
+            _mainFrame.Navigate(new PersonPage(_mainFrame));
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new StudentsPage());
+            _mainFrame.Navigate(new StudentsPage(_mainFrame));
+        }
+
+        private void ManageEnrollmentsButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

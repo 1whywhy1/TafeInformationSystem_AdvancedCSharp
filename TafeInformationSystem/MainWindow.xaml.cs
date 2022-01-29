@@ -20,15 +20,32 @@ namespace TafeInformationSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static MainWindow mainWindow_instance = null;
+
+        #region Constructors
         public MainWindow()
         {
             InitializeComponent();
            
         }
+        #endregion
 
+        #region Singleton
+        public static MainWindow getInstance()
+        {
+            if (mainWindow_instance == null)
+                mainWindow_instance = new MainWindow();
+
+            return mainWindow_instance;
+        }
+        #endregion
+
+        #region Navigation Buttons
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new LoginWindow());
+            LoginWindow lw = new LoginWindow();
+            lw.Show();
+            this.Close();
         }
 
         private void PersonalPageButton_Click(object sender, RoutedEventArgs e)
@@ -38,7 +55,7 @@ namespace TafeInformationSystem
 
         private void TeachersButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new TeacherMenuPage());
+            _mainFrame.Navigate(new TeacherMenuPage(_mainFrame));
         }
 
         private void CoursesButton_Click(object sender, RoutedEventArgs e)
@@ -48,17 +65,26 @@ namespace TafeInformationSystem
 
         private void StudentsButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new StudentMenuPage());
+            _mainFrame.Navigate(new StudentMenuPage(_mainFrame));
         }
 
         private void UnitsButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new UnitsMenuPage());
+            _mainFrame.Navigate(new UnitsMenuPage(_mainFrame));
         }
 
         private void EnrollmentsButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new EnrollmentMenuPage());
+            _mainFrame.Navigate(new EnrollmentMenuPage(_mainFrame));
         }
+
+        private void locationsButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new LocationsMenuPage(_mainFrame));
+        }
+
+        #endregion
+
+
     }
 }

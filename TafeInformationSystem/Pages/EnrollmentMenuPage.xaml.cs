@@ -20,10 +20,19 @@ namespace TafeInformationSystem.Pages
     /// </summary>
     public partial class EnrollmentMenuPage : Page
     {
+        private Frame _mainFrame;
+
         public EnrollmentMenuPage()
         {
             InitializeComponent();
         }
+        public EnrollmentMenuPage(Frame mainFrame)
+        {
+            InitializeComponent();
+            _mainFrame = mainFrame;
+        }
+
+       
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {

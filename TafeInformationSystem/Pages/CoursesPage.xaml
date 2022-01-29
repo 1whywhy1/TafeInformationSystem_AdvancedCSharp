@@ -60,37 +60,34 @@
             <Button x:Name="newButton" Content="Add Course" 
                     Margin="5,5,10,0" MinHeight="50"
                     BorderThickness="0"
-                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"     
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="NewButton_Click"     
                     />           
             <Button x:Name="editButton" Content="Edit"              
                     Margin="5,5,10,0" MinHeight="50"
                     BorderThickness="0"
-                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="EditButton_Click"    
                     />
             <Button x:Name="saveButton" Content="Save/Update"              
                     Margin="5,5,10,0" MinHeight="50"
                     BorderThickness="0"
-                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SaveButton_Click"    
                     />
             <Button x:Name="clearButton" Content="Clear"              
                 Margin="5,50,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="ClearButton_Click"    
                 />
 
             <Button x:Name="deleteButton" Content="Delete"              
                     Margin="5,115,10,0" MinHeight="50"
                     BorderThickness="1" BorderBrush="#FF818185"
-                    FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8"                     
+                    FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8" Click="DeleteButton_Click"                     
                     />
-
             <Button x:Name="menuButton" Content="Menu"              
                     Margin="5,90,10,0" MinHeight="50"
                     BorderThickness="0"
-                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="MenuButton_Click"    
                     />
         </StackPanel>
-
     </Grid>
-
 </Page>

@@ -24,23 +24,28 @@ namespace TafeInformationSystem.Pages
 
         public TeacherMenuPage()
         {
-            InitializeComponent();
+            InitializeComponent();          
         }
-
         public TeacherMenuPage(Frame mainFrame)
         {
             InitializeComponent();
             _mainFrame = mainFrame;
         }
 
+
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new PersonPage());
+            _mainFrame.Navigate(new PersonPage(_mainFrame));
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-           // _mainFrame.Navigate(new TeachersPage());
+           _mainFrame.Navigate(new FindTeacherPage(_mainFrame));
+        }
+
+        private void AssignCourseButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
