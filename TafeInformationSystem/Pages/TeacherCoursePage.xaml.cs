@@ -20,9 +20,31 @@ namespace TafeInformationSystem.Pages
     /// </summary>
     public partial class TeacherCoursePage : Page
     {
+        Frame _mainFrame;
+
         public TeacherCoursePage()
         {
             InitializeComponent();
+        }
+        public TeacherCoursePage(Frame mainFrame)
+        {
+            InitializeComponent();
+            _mainFrame = mainFrame;
+        }
+
+        private void AssignButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeassignButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.GoBack();
         }
     }
 }

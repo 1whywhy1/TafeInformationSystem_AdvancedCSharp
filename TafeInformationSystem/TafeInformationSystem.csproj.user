@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Pages\CourseLocationPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\CourseMenuPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -17,6 +20,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\EnrollmentMenuPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\EnrolmentPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\FindEnrolmentPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\FindLocationsPage.xaml.cs">
@@ -43,6 +52,12 @@
     <Compile Update="Pages\PersonPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\SemesterMenuPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\SemesterPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\StudentEnrollmentPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,8 +76,14 @@
     <Compile Update="Pages\UnitsMenuPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\UpdateSemesterPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Pages\CourseLocationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\CourseMenuPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -73,6 +94,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\EnrollmentMenuPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\EnrolmentPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\FindEnrolmentPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\FindLocationsPage.xaml">
@@ -102,6 +129,12 @@
     <Page Update="Pages\PersonPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\SemesterMenuPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\SemesterPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\StudentEnrollmentPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -118,6 +151,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\UnitsMenuPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\UpdateSemesterPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

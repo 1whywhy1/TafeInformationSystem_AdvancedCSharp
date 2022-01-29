@@ -50,7 +50,12 @@ namespace TafeInformationSystem.Pages
 
         private void AssignUnitsButton_Click(object sender, RoutedEventArgs e)
         {
+            _mainFrame.Navigate(new CourseUnitPage(_mainFrame));
+        }
 
+        private void AssignLocationsButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new CourseLocationPage(_mainFrame));
         }
     }
 }

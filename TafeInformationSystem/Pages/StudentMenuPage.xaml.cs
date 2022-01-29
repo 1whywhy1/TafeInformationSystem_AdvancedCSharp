@@ -45,7 +45,7 @@ namespace TafeInformationSystem.Pages
 
         private void ManageEnrollmentsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            _mainFrame.Navigate(new FindEnrolmentPage(_mainFrame));
         }
     }
 }

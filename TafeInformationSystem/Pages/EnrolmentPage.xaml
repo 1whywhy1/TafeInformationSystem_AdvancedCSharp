@@ -1,0 +1,115 @@
+﻿<Page x:Class="TafeInformationSystem.Pages.EnrolmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TafeInformationSystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="EnrolmentPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1" Grid.Column="1"
+                   Text="First Name"/>
+        <TextBlock Grid.Row="1" Grid.Column="2"
+                   Text="Last Name"/>
+        <TextBlock Grid.Row="1" Grid.Column="3"
+                   Text="TAFE ID"/>
+        <TextBox x:Name="firstNameText"
+                Grid.Row="2" Grid.Column="1"
+                MinWidth="200
+                 " Margin="0,5,10,10"/>
+        <TextBox x:Name="lastNameText"
+                Grid.Row="2" Grid.Column="2"
+                MinWidth="200" Margin="0,5,10,10"/>
+        <TextBox x:Name="idText"
+                Grid.Row="2" Grid.Column="3"
+                MinWidth="200" Margin="0,5,5,10"/>
+        <TextBlock Grid.Row="3" Grid.Column="1"
+                   Text="Enrolment ID"/>
+        <TextBlock Grid.Row="3" Grid.Column="3"
+                   Text="Payment ID"/>
+        <TextBox Name="enrolmentText" 
+                    Grid.Row="4" Grid.Column="1"
+                    Margin="0,5,10,10" BorderThickness="0"
+                    />
+        <TextBox Grid.Row="4" Grid.Column="3"
+                  Margin="0,5,10,10">
+        </TextBox>
+        <TextBlock Grid.Row="5" Grid.Column="1"
+                   Text="Course ID"/>
+        <TextBlock Grid.Row="5" Grid.Column="2"
+                   Text="Semester ID"/>
+
+        <TextBox x:Name="homePhoneText"
+                Grid.Row="6" Grid.Column="1"
+                MinWidth="200
+                 " Margin="0,5,10,10"/>
+        <TextBox x:Name="semesterIDText"
+                Grid.Row="6" Grid.Column="2"
+                MinWidth="200" Margin="0,5,10,10"/>
+        <TextBlock Grid.Row="7" Grid.Column="1"
+                   Text="Course Name"/>
+        <TextBox x:Name="courseNameText"
+                Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3"
+                MinWidth="200" Margin="0,5,10,10"/>
+        <TextBlock Grid.Row="9" Grid.Column="1"
+                   Text="Location Name"/>
+        <TextBox x:Name="locationNameText"
+                Grid.Row="10" Grid.Column="1"
+                MinWidth="200" Margin="0,5,10,10"/>
+        <TextBlock Grid.Row="9" Grid.Column="3"
+                   Text="Status"/>
+        <ComboBox x:Name="statText"
+                Grid.Row="10" Grid.Column="3"
+                MinWidth="200" Margin="0,5,10,10"/>
+        <StackPanel Grid.Row="1" Grid.Column="4"
+                    Grid.RowSpan="14" Orientation="Vertical">
+            <Button x:Name="updateStatusButton" Content="Update Status" 
+                    Margin="5,5,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="UpdateStatusButton_Click"     
+                    />
+            <Button x:Name="saveButton" Content="Save/Update" 
+                    Margin="5,5,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SaveButton_Click"            
+                    />
+           
+
+            <Button x:Name="menuButton" Content="Back"              
+                    Margin="5,90,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="MenuButton_Click"    
+                    />
+        </StackPanel>
+    </Grid>
+</Page>

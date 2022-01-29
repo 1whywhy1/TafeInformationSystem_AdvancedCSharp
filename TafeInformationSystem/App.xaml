@@ -77,6 +77,13 @@
             <Setter Property="Background" Value="#FF373737"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
         </Style>
+        
+        <Style TargetType="ListViewItem">
+            <Setter Property="Foreground" Value="#FFE7E7E8"/>
+            <Setter Property="Background" Value="#FF373737"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+       
         <Style TargetType="GridViewColumnHeader">
             
             <Setter Property="Background" Value="#FF252526"/>

@@ -40,12 +40,12 @@ namespace TafeInformationSystem.Pages
 
         private void SearchNameButton_Click(object sender, RoutedEventArgs e)
         {
-
+     
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-
+            studentsListView.Items.Clear();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)

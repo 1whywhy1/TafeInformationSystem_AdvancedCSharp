@@ -38,7 +38,7 @@
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SearchButton_Click"     
                 />
-            <Button x:Name="newButton" Content="Add Course" 
+            <Button x:Name="newButton" Content="Add New Course" 
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="NewButton_Click"     
@@ -48,7 +48,12 @@
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AssignUnitsButton_Click"    
-                />         
+                />
+            <Button x:Name="assignLocationsButton" Content="Assign Course to Location"              
+                Margin="5,5,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AssignLocationsButton_Click"    
+                />
         </StackPanel>
 
     </Grid>

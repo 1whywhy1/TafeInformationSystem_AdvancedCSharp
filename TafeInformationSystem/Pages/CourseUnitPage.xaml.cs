@@ -20,32 +20,29 @@ namespace TafeInformationSystem.Pages
     /// </summary>
     public partial class CourseUnitPage : Page
     {
+        Frame _mainFrame;
+
         public CourseUnitPage()
         {
             InitializeComponent();
         }
-
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        public CourseUnitPage(Frame mainFrame)
         {
-
+            InitializeComponent();
+            _mainFrame = mainFrame;
         }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+      
         private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.GoBack();
+        }
+
+        private void DeassignButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AssignButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

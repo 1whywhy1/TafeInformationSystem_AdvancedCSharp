@@ -83,8 +83,13 @@ namespace TafeInformationSystem
             _mainFrame.Navigate(new LocationsMenuPage(_mainFrame));
         }
 
-        #endregion
 
+        private void SemestersButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new SemesterMenuPage(_mainFrame));
+        }
+
+        #endregion
 
     }
 }

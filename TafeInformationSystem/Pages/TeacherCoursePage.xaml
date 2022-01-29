@@ -9,6 +9,87 @@
       Title="TeacherCoursePage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1" Grid.Column="1"
+                   Margin="0,15,0,20"
+                   Grid.ColumnSpan="3" 
+                   FontSize="20" 
+                   Text="Assign Course Location"/>
+        <TextBlock Grid.Row="2" Grid.Column="2"
+                   Margin="0,5,10,10"
+                   Text="Teacher"/>
+
+        <TextBox x:Name="teacherText"
+                Grid.Row="3" Grid.Column="2"
+                MinWidth="200" Margin="0,5,10,10"/>
+        <TextBlock Grid.Row="2" Grid.Column="1"
+                   Margin="0,5,5,10" HorizontalAlignment="Right"
+                   Text="Assign"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="4"
+                   Margin="0,5,10,10"
+                   Text="Refer by"
+                   />
+        <TextBlock Grid.Row="5" Grid.Column="1"
+                   Margin="0,5,5,10" HorizontalAlignment="Right"
+                   Text="To"
+                   />
+        <TextBlock Grid.Row="5" Grid.Column="2"
+                   Margin="0,5,10,10"
+                   Text="Course"
+                   />
+        <ComboBox Grid.Row="3" Grid.Column="4"    
+                  Margin="0,5,10,10" MinWidth="200">
+            <ComboBoxItem>Name</ComboBoxItem>
+            <ComboBoxItem>ID</ComboBoxItem>
+        </ComboBox>
+        <TextBox x:Name="courseText"
+                Grid.Row="6" Grid.Column="2"
+                Grid.ColumnSpan="2"
+                MinWidth="200" Margin="0,5,10,10"/>
+        <StackPanel Grid.Row="1" Grid.Column="5"
+                    Grid.RowSpan="14" Orientation="Vertical">
+            <Button x:Name="assignButton" Content="Assign" 
+                    Margin="5,85,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AssignButton_Click"     
+                    />
+            <Button x:Name="unassignButton" Content="Unassign" 
+                    Margin="5,75,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8" Click="DeassignButton_Click"     
+                    />
+            <Button x:Name="menuButton" Content="Back"              
+                    Margin="5,90,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="MenuButton_Click"    
+                    />
+        </StackPanel>
     </Grid>
 </Page>

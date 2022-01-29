@@ -36,12 +36,18 @@ namespace TafeInformationSystem.Pages
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (_mainFrame != null)
+            {
+                _mainFrame.Navigate(new FindEnrolmentPage(_mainFrame));
+            }
         }
 
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (_mainFrame != null)
+            {
+                _mainFrame.Navigate(new StudentEnrollmentPage(_mainFrame));
+            }
         }
     }
 }
