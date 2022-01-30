@@ -189,7 +189,7 @@ namespace TafeInformationSystem.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TafeInformationSystem;component/pages/personpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TafeInformationSystem;V1.0.0.0;component/pages/personpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\PersonPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

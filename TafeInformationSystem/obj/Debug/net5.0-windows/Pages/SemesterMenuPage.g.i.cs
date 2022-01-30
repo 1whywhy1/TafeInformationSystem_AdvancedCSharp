@@ -69,7 +69,7 @@ namespace TafeInformationSystem.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TafeInformationSystem;component/pages/semestermenupage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TafeInformationSystem;V1.0.0.0;component/pages/semestermenupage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\SemesterMenuPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

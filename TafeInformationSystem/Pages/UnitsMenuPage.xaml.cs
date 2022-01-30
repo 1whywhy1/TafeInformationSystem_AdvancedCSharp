@@ -35,7 +35,7 @@ namespace TafeInformationSystem.Pages
 
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new UnitsPage(_mainFrame));
+            _mainFrame.Navigate(new UnitsPage(_mainFrame, Enums.EntityPageType.Add));
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)

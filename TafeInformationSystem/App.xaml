@@ -37,13 +37,13 @@
         </Style>
         <Style TargetType="local:MainWindow">
             <Setter Property="Background" Value="#FF252526"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Korolev"/>
             <Setter Property="Foreground" Value="#FFE7E7E8"/>
         </Style>
         <Style TargetType="Page">
             <Setter Property="Background" Value="#FF252526"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Korolev"/>
             <Setter Property="Foreground" Value="#FFE7E7E8"/>
         </Style>
@@ -62,7 +62,7 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Background" Value="#FF373737"/>
             <Setter Property="BorderThickness" Value="0"/>
-        </Style>
+        </Style>    
         <Style TargetType="TabItem">
             <Setter Property="Foreground" Value="#FFE7E7E8"/>
             <Setter Property="Background" Value="#FF252526"/>
@@ -87,6 +87,23 @@
         <Style TargetType="GridViewColumnHeader">
             
             <Setter Property="Background" Value="#FF252526"/>
+            <Setter Property="Foreground" Value="#FFE7E7E8"/>
+        </Style>
+
+        <Style TargetType="DataGrid">
+
+            <Setter Property="Background" Value="#FF373737"/>
+            <Setter Property="Foreground" Value="#FFE7E7E8"/>
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+
+            <Setter Property="Background" Value="#FF252526"/>
+            <Setter Property="Foreground" Value="#FFE7E7E8"/>
+        </Style>
+
+        <Style TargetType="DataGridRow">
+
+            <Setter Property="Background" Value="#FF373737"/>
             <Setter Property="Foreground" Value="#FFE7E7E8"/>
         </Style>
 

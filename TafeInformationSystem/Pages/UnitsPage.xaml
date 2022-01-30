@@ -35,14 +35,15 @@
         <TextBox x:Name="unitNameText"
                     Grid.Row="2" Grid.Column="1"
                     MinWidth="200" Margin="0,5,10,10"/>
-        <TextBox x:Name="idText"
+        <TextBox x:Name="unitIdText"
                     Grid.Row="2" Grid.Column="2"
-                    MinWidth="200" Margin="0,5,10,10"/>
+                    MinWidth="200" Margin="0,5,10,10"
+                    IsEnabled="False"/>
         <TextBlock Grid.Row="3" Grid.Column="1"
                     Text="Point Value"/>
         <TextBlock Grid.Row="3" Grid.Column="2"
                     Text="Price"/>
-        <TextBox x:Name="pointValueText"
+        <TextBox x:Name="unitPointValueText"
                     Grid.Row="4" Grid.Column="1"
                     MinWidth="50" Margin="0,5,10,10"/>
         <TextBox x:Name="unitPriceText"
@@ -50,7 +51,7 @@
                     MinWidth="100" Margin="0,5,10,10"/>
         <TextBlock Grid.Row="5" Grid.Column="1"
                     Text="Description"/>
-        <TextBox x:Name="descriptionText" 
+        <TextBox x:Name="unitDescriptionText" 
                  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"
                  MinWidth="300" MinHeight="100" Margin="0,5,10,10"
                  VerticalAlignment="Stretch"/>        

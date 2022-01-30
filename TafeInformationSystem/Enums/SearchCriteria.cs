@@ -8,7 +8,7 @@ namespace TafeInformationSystem.Enums
 {
     class SearchCriteria
     {
-        enum StudentSearchBy
+        public enum StudentSearchBy
         {
             ID,
             FirstName,
@@ -32,7 +32,7 @@ namespace TafeInformationSystem.Enums
             Teacher,
             NoLocation
         }
-        enum UnitSearchBy
+        public enum UnitSearchBy
         {
             ID,
             Name,

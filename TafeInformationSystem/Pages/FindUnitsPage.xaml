@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TafeInformationSystem.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="FindUnitsPage">
 
     <Grid>
@@ -23,6 +23,8 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
@@ -37,34 +39,26 @@
                 Unit ID
             </ComboBoxItem>
             <ComboBoxItem>
-                Name
+                Unit Name
             </ComboBoxItem>
             <ComboBoxItem>
-                Course
+                Course ID
             </ComboBoxItem>
             <ComboBoxItem>
-                Not Allocated
+                Not Allowcated
             </ComboBoxItem>
+
         </ComboBox>
         <TextBox x:Name="searchCriteriaText"
                     Grid.Row="2" Grid.Column="2"
                     MinWidth="200" Margin="0,5,10,10"/>
         <TextBlock Grid.Row="3" Grid.Column="1"
                     Text="Units"/>
-        <ListView  x:Name="unitsListView"
-                    Grid.Row="4" Grid.Column="1"
-                    Grid.ColumnSpan="2"
-                    MinWidth="300" MinHeight="170"
-                    Margin="0,5,10,10" ScrollViewer.CanContentScroll="True">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Unit ID" Width="80" DisplayMemberBinding="{Binding unitID}" />
-                    <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding unitName}" />
-                    <GridViewColumn Header="Point Value" Width="30" DisplayMemberBinding="{Binding unitPointValue}" />
-                    <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Price}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid x:Name="unitsDataGrid" Grid.Row="5" Grid.Column="1"
+                    Grid.ColumnSpan="2">
+            
+        </DataGrid>
+        
         <StackPanel Grid.Row="1" Grid.Column="3"
                     Grid.RowSpan="14" Orientation="Vertical">
             <Button x:Name="searchButton" Content="Search"              
@@ -72,10 +66,10 @@
                     BorderThickness="0"
                     FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SearchButton_Click"    
                     />
-            <Button x:Name="updateButton" Content="Open Selected"              
+            <Button x:Name="openButton" Content="Open Selected"              
                     Margin="5,5,10,0" MinHeight="50"
                     BorderThickness="0"
-                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="UpdateButton_Click"    
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="OpenButton_Click"    
                     />
             <Button x:Name="clearButton" Content="Clear"              
                 Margin="5,30,10,0" MinHeight="50"
