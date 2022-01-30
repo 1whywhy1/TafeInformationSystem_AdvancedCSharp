@@ -44,7 +44,7 @@ namespace TafeInformationSystem.Pages
                     newButton.Visibility = Visibility.Visible;
                     editButton.Visibility = Visibility.Hidden;
                     updateButton.Visibility = Visibility.Hidden;
-                    deleteButton.Visibility = Visibility.Visible;
+                    deleteButton.Visibility = Visibility.Hidden;
                     break;
                 case Enums.EntityPageType.Edit:
                     newButton.Visibility = Visibility.Hidden;

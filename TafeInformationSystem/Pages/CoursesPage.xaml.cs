@@ -22,6 +22,8 @@ namespace TafeInformationSystem.Pages
     {
         private Frame _mainFrame;
 
+
+        #region Constructors
         public CoursesPage()
         {
             InitializeComponent();
@@ -32,6 +34,31 @@ namespace TafeInformationSystem.Pages
             InitializeComponent();
             _mainFrame = mainFrame;
         }
+
+        public CoursesPage(Frame mainFrame, TafeInformationSystem.Enums.EntityPageType entityPageType)
+        {
+            InitializeComponent();
+            _mainFrame = mainFrame;
+
+            switch (entityPageType)
+            {
+                case Enums.EntityPageType.Add:
+                    newButton.Visibility = Visibility.Visible;
+                    editButton.Visibility = Visibility.Hidden;
+                    updateButton.Visibility = Visibility.Hidden;
+                    deleteButton.Visibility = Visibility.Hidden;
+                    break;
+                case Enums.EntityPageType.Edit:
+                    newButton.Visibility = Visibility.Hidden;
+                    editButton.Visibility = Visibility.Visible;
+                    updateButton.Visibility = Visibility.Hidden;
+                    deleteButton.Visibility = Visibility.Hidden;
+                    break;
+                default:
+                    break;
+            }
+        }
+        #endregion
 
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {

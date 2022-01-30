@@ -227,7 +227,6 @@ namespace TafeInformationSystem.Classes
                         break;
                 }
 
-                clsDatabase.ExecSP($"EXEC spUpdate_unit  @UnitID = {UnitID}, @Name = '{Name}', @Description = '{Description}', @PointValue = {PointValue}, @Price = {Price};");
             }
             catch (Exception ex)
             {

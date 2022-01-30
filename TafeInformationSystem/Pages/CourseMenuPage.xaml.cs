@@ -44,7 +44,7 @@ namespace TafeInformationSystem.Pages
         {
             if (_mainFrame != null)
             {
-                _mainFrame.Navigate(new CoursesPage(_mainFrame));
+                _mainFrame.Navigate(new CoursesPage(_mainFrame, Enums.EntityPageType.Add)) ;
             }
         }
 
