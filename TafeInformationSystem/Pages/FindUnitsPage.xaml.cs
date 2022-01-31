@@ -22,24 +22,33 @@ namespace TafeInformationSystem.Pages
     /// </summary>
     public partial class FindUnitsPage : Page
     {
+        #region Variables
         private Frame _mainFrame;
 
+        #endregion
+
+        #region Constructors 
         public FindUnitsPage()
         {
             InitializeComponent();
         }
+  
 
         public FindUnitsPage(Frame mainFrame)
         {
             InitializeComponent();
             _mainFrame = mainFrame;
         }
+        #endregion
 
+        #region Buttons
+        // Navigates to prev page
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             _mainFrame.NavigationService.GoBack();
         }
 
+        // Depending on SearchBy creates unit object and sends call to retrieve information
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             DataTable dt;
@@ -60,6 +69,7 @@ namespace TafeInformationSystem.Pages
                     dt = unit.SearchDataTable(Enums.SearchCriteria.UnitSearchBy.AllForCourse);
                     break;
                 case 3:
+                    searchCriteriaText.Text = "";
                     unit = new ClsUnit(searchCriteriaText.Text, Enums.SearchCriteria.UnitSearchBy.NotAllocated);
                     dt = unit.SearchDataTable(Enums.SearchCriteria.UnitSearchBy.NotAllocated);
                     break;
@@ -75,23 +85,32 @@ namespace TafeInformationSystem.Pages
             }
             else
             {
+                // Populate DataGrid from SQL
                 unitsDataGrid.ItemsSource = dt.DefaultView;
             }
         }
 
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        private void ClearButton_Click(object sender, RoutedEventArgs e) 
         {
+            searchCriteriaText.Text = "";
             unitsDataGrid.ItemsSource = null;
         }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+      
+        // Opens selected row to be able to edit
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                DataRowView row = (DataRowView)unitsDataGrid.SelectedItem;
 
+                ClsUnit unit = new ClsUnit(row.Row[0].ToString(), row.Row[1].ToString(),
+                row.Row[2].ToString(), row.Row[3].ToString(), row.Row[4].ToString());
+                _mainFrame.Navigate(new UnitsPage(_mainFrame, Enums.EntityPageType.Edit, row));
+            }
+            catch (NullReferenceException nex){ }
+            catch (Exception ex){}
         }
+        #endregion
+
     }
 }

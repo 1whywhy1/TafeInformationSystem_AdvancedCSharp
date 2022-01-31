@@ -10,7 +10,7 @@ namespace TafeInformationSystem.Interfaces
     {
         void Search();
         void Add();
-        void Delete();
+        int Delete();
         void Update();
 
     }

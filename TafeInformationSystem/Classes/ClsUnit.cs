@@ -42,7 +42,6 @@ namespace TafeInformationSystem.Classes
                 default:
                     break;
             }
-
         }
 
         public ClsUnit(string name, string description, string pointValue, string price)
@@ -156,19 +155,35 @@ namespace TafeInformationSystem.Classes
             }
         }
 
-        public void Delete()
+        public int Delete()
         {
-            throw new NotImplementedException();
+            try
+            {
+                int rowsAffected = clsDatabase.ExecSP($"EXEC spDeleteUnitID_unit @UnitID = {UnitID};");
+                return rowsAffected;
+            } catch (Exception ex)
+            {
+                throw ex;
+            }
+           
         }
 
         public DataTable SearchDataTable(SearchCriteria.UnitSearchBy unitSearchBy)
-        {
-            
-
+        {        
             switch (unitSearchBy)
             {
                 case SearchCriteria.UnitSearchBy.ID:
-                    return clsDatabase.ExecSPDataTable($"EXEC spSearchID_unit @UnitID = {UnitID};");
+                    DataTable dt = clsDatabase.ExecSPDataTable($"EXEC spSearchID_unit @UnitID = {UnitID};");
+                    if (dt != null)
+                    {
+                        UnitID = dt.Rows[0]["UnitID"].ToString();
+                        Name = dt.Rows[0]["Name"].ToString();
+                        Description = dt.Rows[0]["Description"].ToString();
+                        PointValue = dt.Rows[0]["PointValue"].ToString();
+                        Price = dt.Rows[0]["Price"].ToString();
+
+                    }
+                    return dt;
                     break;
                 case SearchCriteria.UnitSearchBy.Name:
                     return clsDatabase.ExecSPDataTable($"EXEC spSearchName_unit @Name = {Name};");
@@ -184,6 +199,7 @@ namespace TafeInformationSystem.Classes
                     break;
             }
         }
+
         //not sure if I get the datatable from the interaction
         public void Search(SearchCriteria.UnitSearchBy searchCriteria)
         {            

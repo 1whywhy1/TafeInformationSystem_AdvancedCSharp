@@ -85,19 +85,20 @@ namespace DLLDatabase
             }
         }
 
-        public static void ExecSP (string query)
+        public static int ExecSP (string query)
         {
             try
             {
                 ConnectToDatabase();
 
                 objCommand = new SqlCommand(query, objConnection);
-                objCommand.ExecuteNonQuery();
+                return objCommand.ExecuteNonQuery();
 
             }
             catch (SqlException ex)
             {
                 AssessSqlError(ex);
+                return ex.Number;
             }
             finally
             {
@@ -261,7 +262,7 @@ namespace DLLDatabase
 
         #endregion
 
-        #region
+        #region Error handling
         public static void AssessSqlError(SqlException ex)
         {
             if (ex.Number == 2627)
@@ -281,6 +282,11 @@ namespace DLLDatabase
                 {
                     throw new ArgumentNullException("The course does not exist");
                 }
+                if (ex.Message.Contains("UnitCourse"))
+                {
+                    throw new ArgumentNullException("Delete reference between Unit and Course first!");
+                }
+
             }
             else
             {
