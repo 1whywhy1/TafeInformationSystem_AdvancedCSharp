@@ -8,7 +8,7 @@ namespace TafeInformationSystem.Enums
 {
     class SearchCriteria
     {
-        public enum StudentSearchBy
+        internal enum StudentSearchBy
         {
             ID,
             FirstName,
@@ -17,14 +17,14 @@ namespace TafeInformationSystem.Enums
             FullTime,
             PartTime
         }
-        enum TeacherSearchBy
+        internal enum TeacherSearchBy
         {
             ID,
             FirstName,
             LastName,
             Location
         }
-        enum CourseSearchBy
+        internal enum CourseSearchBy
         {
             ID,
             Name,
@@ -32,14 +32,14 @@ namespace TafeInformationSystem.Enums
             Teacher,
             NoLocation
         }
-        public enum UnitSearchBy
+        internal enum UnitSearchBy
         {
             ID,
             Name,
             AllForCourse,
             NotAllocated            
         }
-        enum EnrolmentSearchBy
+        internal enum EnrolmentSearchBy
         {
             ID,
             StudentID

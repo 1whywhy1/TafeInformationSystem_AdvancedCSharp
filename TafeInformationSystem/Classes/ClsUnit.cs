@@ -23,6 +23,7 @@ namespace TafeInformationSystem.Classes
         #region Constructors
         public ClsUnit() { }
 
+        // Contructor to define Search criteria
         public ClsUnit(string value, SearchCriteria.UnitSearchBy unitSearchBy)
         {
             switch (unitSearchBy)
@@ -168,7 +169,7 @@ namespace TafeInformationSystem.Classes
 
         }
 
-        public DataTable SearchDataTable(SearchCriteria.UnitSearchBy unitSearchBy)
+        public DataTable Search(SearchCriteria.UnitSearchBy unitSearchBy)
         {
             DataTable dt = new DataTable();
             switch (unitSearchBy)
@@ -203,60 +204,56 @@ namespace TafeInformationSystem.Classes
             return dt;
         }
 
-        //not sure if I get the datatable from the interaction
-        public void Search(SearchCriteria.UnitSearchBy searchCriteria)
-        {            
-            try
-            {
-                DataTable dt;
+        ////not sure if I get the datatable from the interaction
+        //public void Search(SearchCriteria.UnitSearchBy searchCriteria)
+        //{            
+        //    try
+        //    {
+        //        DataTable dt;
 
-                switch (searchCriteria)
-                {
-                    case SearchCriteria.UnitSearchBy.ID:
-                        dt = clsDatabase.ExecSPDataTable($"EXEC spSelectID_unit @UnitID = {UnitID};");
-                        if (dt != null)
-                        {
-                            UnitID = dt.Rows[0]["UnitID"].ToString();
-                            Name = dt.Rows[0]["Name"].ToString();
-                            Description = dt.Rows[0]["Description"].ToString();
-                            PointValue = dt.Rows[0]["PointValue"].ToString();
-                            Price = dt.Rows[0]["Price"].ToString();
+        //        switch (searchCriteria)
+        //        {
+        //            case SearchCriteria.UnitSearchBy.ID:
+        //                dt = clsDatabase.ExecSPDataTable($"EXEC spSelectID_unit @UnitID = {UnitID};");
+        //                if (dt != null)
+        //                {
+        //                    UnitID = dt.Rows[0]["UnitID"].ToString();
+        //                    Name = dt.Rows[0]["Name"].ToString();
+        //                    Description = dt.Rows[0]["Description"].ToString();
+        //                    PointValue = dt.Rows[0]["PointValue"].ToString();
+        //                    Price = dt.Rows[0]["Price"].ToString();
                          
-                        }
+        //                }
 
-                        break;
-                    case SearchCriteria.UnitSearchBy.Name:
-                        dt = clsDatabase.ExecSPDataTable($"EXEC spSelectName_unit @Name = {Name};");
-                        if (dt != null)
-                        {
-                            UnitID = dt.Rows[0]["UnitID"].ToString();
-                            Name = dt.Rows[0]["Name"].ToString();
-                            Description = dt.Rows[0]["Description"].ToString();
-                            PointValue = dt.Rows[0]["PointValue"].ToString();
-                            Price = dt.Rows[0]["Price"].ToString();
-                        }
+        //                break;
+        //            case SearchCriteria.UnitSearchBy.Name:
+        //                dt = clsDatabase.ExecSPDataTable($"EXEC spSelectName_unit @Name = {Name};");
+        //                if (dt != null)
+        //                {
+        //                    UnitID = dt.Rows[0]["UnitID"].ToString();
+        //                    Name = dt.Rows[0]["Name"].ToString();
+        //                    Description = dt.Rows[0]["Description"].ToString();
+        //                    PointValue = dt.Rows[0]["PointValue"].ToString();
+        //                    Price = dt.Rows[0]["Price"].ToString();
+        //                }
 
-                        break;
-                    case SearchCriteria.UnitSearchBy.AllForCourse:
+        //                break;
+        //            case SearchCriteria.UnitSearchBy.AllForCourse:
 
-                        break;
-                    case SearchCriteria.UnitSearchBy.NotAllocated:
-                        break;
-                    default:
-                        break;
-                }
+        //                break;
+        //            case SearchCriteria.UnitSearchBy.NotAllocated:
+        //                break;
+        //            default:
+        //                break;
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
 
-        public void Search()
-        {
-            throw new NotImplementedException();
-        }
 
         public void Update()
         {

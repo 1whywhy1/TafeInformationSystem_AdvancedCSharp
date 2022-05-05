@@ -58,20 +58,20 @@ namespace TafeInformationSystem.Pages
             {
                 case 0:
                     unit = new ClsUnit(searchCriteriaText.Text, Enums.SearchCriteria.UnitSearchBy.ID);
-                    dt = unit.SearchDataTable(Enums.SearchCriteria.UnitSearchBy.ID);
+                    dt = unit.Search(Enums.SearchCriteria.UnitSearchBy.ID);
                     break;
                 case 1:
                     unit = new ClsUnit(searchCriteriaText.Text, Enums.SearchCriteria.UnitSearchBy.Name);
-                    dt = unit.SearchDataTable(Enums.SearchCriteria.UnitSearchBy.Name);
+                    dt = unit.Search(Enums.SearchCriteria.UnitSearchBy.Name);
                     break;
                 case 2:
                     unit = new ClsUnit(searchCriteriaText.Text, Enums.SearchCriteria.UnitSearchBy.AllForCourse);
-                    dt = unit.SearchDataTable(Enums.SearchCriteria.UnitSearchBy.AllForCourse);
+                    dt = unit.Search(Enums.SearchCriteria.UnitSearchBy.AllForCourse);
                     break;
                 case 3:
                     searchCriteriaText.Text = "";
                     unit = new ClsUnit(searchCriteriaText.Text, Enums.SearchCriteria.UnitSearchBy.NotAllocated);
-                    dt = unit.SearchDataTable(Enums.SearchCriteria.UnitSearchBy.NotAllocated);
+                    dt = unit.Search(Enums.SearchCriteria.UnitSearchBy.NotAllocated);
                     break;
 
                 default:

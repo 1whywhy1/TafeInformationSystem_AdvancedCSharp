@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TafeInformationSystem.Classes;
 
 namespace TafeInformationSystem.Pages
 {
@@ -21,7 +23,7 @@ namespace TafeInformationSystem.Pages
     public partial class CoursesPage : Page
     {
         private Frame _mainFrame;
-
+        Control[] txtBoxes = new Control[3];
 
         #region Constructors
         public CoursesPage()
@@ -40,24 +42,29 @@ namespace TafeInformationSystem.Pages
             InitializeComponent();
             _mainFrame = mainFrame;
 
-            switch (entityPageType)
-            {
-                case Enums.EntityPageType.Add:
-                    newButton.Visibility = Visibility.Visible;
-                    editButton.Visibility = Visibility.Hidden;
-                    updateButton.Visibility = Visibility.Hidden;
-                    deleteButton.Visibility = Visibility.Hidden;
-                    break;
-                case Enums.EntityPageType.Edit:
-                    newButton.Visibility = Visibility.Hidden;
-                    editButton.Visibility = Visibility.Visible;
-                    updateButton.Visibility = Visibility.Hidden;
-                    deleteButton.Visibility = Visibility.Hidden;
-                    break;
-                default:
-                    break;
-            }
+            SetUp(entityPageType);
+          
         }
+
+
+        // MAke this alike Units Page with SetUp maybe and assign the right values to the boxes
+
+        public CoursesPage(Frame mainFrame, TafeInformationSystem.Enums.EntityPageType entityPageType, DataRowView courseRow)
+        {
+
+            InitializeComponent();
+            _mainFrame = mainFrame;
+
+            SetUp(entityPageType);
+
+            ClsUtils.SetActiveControls(txtBoxes, false);
+
+            courseNameText.Text = courseRow.Row[0].ToString();
+            idText.Text = courseRow.Row[1].ToString();
+            descriptionText.Text = courseRow.Row[2].ToString();
+
+        }
+
         #endregion
 
         private void NewButton_Click(object sender, RoutedEventArgs e)
@@ -88,6 +95,30 @@ namespace TafeInformationSystem.Pages
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             _mainFrame.NavigationService.GoBack();
+        }
+
+        private void SetUp(TafeInformationSystem.Enums.EntityPageType entityPageType)
+        {
+            switch (entityPageType)
+            {
+                case Enums.EntityPageType.Add:
+                    newButton.Visibility = Visibility.Visible;
+                    editButton.Visibility = Visibility.Hidden;
+                    updateButton.Visibility = Visibility.Hidden;
+                    deleteButton.Visibility = Visibility.Hidden;
+                    break;
+                case Enums.EntityPageType.Edit:
+                    newButton.Visibility = Visibility.Hidden;
+                    editButton.Visibility = Visibility.Visible;
+                    updateButton.Visibility = Visibility.Hidden;
+                    deleteButton.Visibility = Visibility.Hidden;
+                    break;
+                default:
+                    break;
+            }
+            txtBoxes[0] = courseNameText;
+            txtBoxes[1] = idText;
+            txtBoxes[2] = descriptionText;
         }
     }
 }

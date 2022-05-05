@@ -325,7 +325,7 @@ VALUES (@Name,
 END
 GO
 
--- Update Semester record by SemesterID
+-- Update Course record by CourseID
 CREATE PROCEDURE spUpdate_course
 	@CourseID			INT,
 	@Name				VARCHAR(40),
@@ -339,7 +339,7 @@ WHERE CourseID = @CourseID
 END
 GO
 
--- Search Delete Semester by ID
+-- Search Delete Course by ID
 CREATE PROCEDURE spDeleteCourseID_course
 	@CourseID			INT	
 AS
@@ -349,7 +349,7 @@ BEGIN
 END
 GO
 
--- Return All available Semesters' IDs
+-- Return All available Course' IDs
 CREATE PROCEDURE spSelectAllCourseIdName_course
 AS
 BEGIN
@@ -360,12 +360,41 @@ BEGIN
 END
 GO
 
+-- Retrieve a Course by ID
+CREATE PROCEDURE spSelectCourseByID_course
+	@CourseID			INT	
+AS
+BEGIN
+	SELECT	CourseID,
+			[Name],
+			[Description]
+	FROM Course
+	WHERE CourseID = @CourseID
+	RETURN
+END
+GO
+
+-- Retrieve a Course by Name
+CREATE PROCEDURE spSelectCourseByName_course
+	@Name			NVARCHAR	
+AS
+BEGIN
+	SELECT	CourseID,
+			[Name],
+			[Description]
+	FROM Course
+	WHERE [Name] LIKE '%' + @Name + '%'
+	RETURN
+END
+GO
+
 --Retrieve all Courses not allowcated to a College
 CREATE PROCEDURE spSelectAllCourseNoCollege_course
 AS
 BEGIN
 SELECT	Course.CourseID,
 		[Name]
+		[Description]
 FROM	Course
 LEFT OUTER JOIN CourseCollegeSemester
 ON Course.CourseID = CourseCollegeSemester.CourseID 
