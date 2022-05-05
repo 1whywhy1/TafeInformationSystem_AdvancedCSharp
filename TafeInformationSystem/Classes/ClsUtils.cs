@@ -16,5 +16,21 @@ namespace TafeInformationSystem.Classes
                 ctrl.IsEnabled = isEnabled;
             }
         }
+
+        public static void SetControlsVisible(Control[] controls)
+        {
+            foreach (Control ctrl in controls)
+            {
+                ctrl.Visibility = System.Windows.Visibility.Visible;
+            }
+        }
+
+        public static void SetControlsHidden(Control[] controls)
+        {
+            foreach (Control ctrl in controls)
+            {
+                ctrl.Visibility = System.Windows.Visibility.Hidden;
+            }
+        }
     }
 }

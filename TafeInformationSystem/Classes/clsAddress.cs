@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TafeInformationSystem.Classes
 {
-    class clsAddress
+    class ClsAddress
     {
     }
 }

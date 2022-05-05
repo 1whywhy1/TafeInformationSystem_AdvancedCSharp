@@ -18,7 +18,7 @@ namespace DLLDatabase
         {
             //String machineName = Environment.MachineName;
             String serverName = Environment.MachineName + "\\THEGREATTEST";
-            string connectionString = "server=" + serverName + ";database = TafeInformationSystem;trusted_Connection=yes";
+            string connectionString = "server=" + serverName + ";database = TafeInformationSystem_IvanKaryakin;trusted_Connection=yes";
             try
             {
                 objConnection = new SqlConnection(connectionString);//connecting to the database server
@@ -111,7 +111,7 @@ namespace DLLDatabase
             try
             {
                 ConnectToDatabase();
-              
+
                 using SqlDataAdapter objDataAdapter = new SqlDataAdapter(query, objConnection);//using sqldataadapter constructor
                 DataTable objDataTable = new DataTable();//default constructor of datatable class
                 objDataAdapter.Fill(objDataTable);
@@ -177,7 +177,6 @@ namespace DLLDatabase
 
         #endregion
 
-
         #region ExecuteQuery
         public static SqlDataReader ExecuteQuery(string strSql)
         {
@@ -200,6 +199,7 @@ namespace DLLDatabase
                 return null;
             }
         }
+
         #endregion
 
         #region ExecuteNonQuery
@@ -292,7 +292,7 @@ namespace DLLDatabase
             {
                 throw new ArgumentNullException(ex.Message);
             }
-        }
+        } 
 
         #endregion
     }

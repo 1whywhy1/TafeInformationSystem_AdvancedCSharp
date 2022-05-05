@@ -112,5 +112,13 @@ namespace TafeInformationSystem.Pages
         }
         #endregion
 
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                SearchButton_Click(sender, e);
+            }
+        }
+
     }
 }

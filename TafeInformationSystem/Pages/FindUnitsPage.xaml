@@ -51,11 +51,12 @@
         </ComboBox>
         <TextBox x:Name="searchCriteriaText"
                     Grid.Row="2" Grid.Column="2"
-                    MinWidth="200" Margin="0,5,10,10"/>
+                    MinWidth="200" Margin="0,5,10,10"
+                    KeyDown="OnKeyDownHandler"/>
         <TextBlock Grid.Row="3" Grid.Column="1"
                     Text="Units"/>
         <DataGrid x:Name="unitsDataGrid" Grid.Row="5" Grid.Column="1"
-                    Grid.ColumnSpan="2">
+                    Grid.ColumnSpan="2" IsReadOnly="True">
             
         </DataGrid>
         

@@ -21,7 +21,7 @@ namespace TafeInformationSystem.Classes
         #endregion
 
         #region Constructors
-        public ClsUnit(){}
+        public ClsUnit() { }
 
         public ClsUnit(string value, SearchCriteria.UnitSearchBy unitSearchBy)
         {
@@ -37,7 +37,7 @@ namespace TafeInformationSystem.Classes
                     UnitID = value;
                     break;
                 case SearchCriteria.UnitSearchBy.NotAllocated:
-                    
+
                     break;
                 default:
                     break;
@@ -120,7 +120,7 @@ namespace TafeInformationSystem.Classes
                 _pointValue = Convert.ToInt32(value);
             }
         }
-                
+
         public string Price
         {
             get
@@ -144,7 +144,7 @@ namespace TafeInformationSystem.Classes
                 //int id = clsDatabase.InsertUnit(Name, Description, PointValue.ToString(), Price.ToString());
                 int id = clsDatabase.ExecInsertSP($"EXEC spInsert_unit  @Name = '{Name}', @Description = '{Description}', @PointValue = {PointValue}, @Price = {Price};");
 
-                if(id>0)
+                if (id > 0)
                 {
                     UnitID = id.ToString();
                 }
@@ -165,39 +165,42 @@ namespace TafeInformationSystem.Classes
             {
                 throw ex;
             }
-           
+
         }
 
         public DataTable SearchDataTable(SearchCriteria.UnitSearchBy unitSearchBy)
-        {        
+        {
+            DataTable dt = new DataTable();
             switch (unitSearchBy)
             {
                 case SearchCriteria.UnitSearchBy.ID:
-                    DataTable dt = clsDatabase.ExecSPDataTable($"EXEC spSearchID_unit @UnitID = {UnitID};");
-                    if (dt != null)
-                    {
-                        UnitID = dt.Rows[0]["UnitID"].ToString();
-                        Name = dt.Rows[0]["Name"].ToString();
-                        Description = dt.Rows[0]["Description"].ToString();
-                        PointValue = dt.Rows[0]["PointValue"].ToString();
-                        Price = dt.Rows[0]["Price"].ToString();
-
-                    }
-                    return dt;
+                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectID_unit @UnitID = {UnitID};");
                     break;
                 case SearchCriteria.UnitSearchBy.Name:
-                    return clsDatabase.ExecSPDataTable($"EXEC spSearchName_unit @Name = {Name};");
+                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectName_unit @Name = {Name};");
                     break;
                 case SearchCriteria.UnitSearchBy.AllForCourse:
-                    return clsDatabase.ExecSPDataTable($"EXEC spSearchAllForCourse_unit @CourseID = {UnitID};");
+                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllForCourse_unit @CourseID = {UnitID};");
                     break;
                 case SearchCriteria.UnitSearchBy.NotAllocated:
-                    return clsDatabase.ExecSPDataTable($"EXEC spSearchAllNotAllowcated_unit;");
+                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllNotAllowcated_unit;");
                     break;
                 default:
                     return null;
                     break;
             }
+
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                UnitID = dt.Rows[0]["UnitID"].ToString();
+                Name = dt.Rows[0]["Name"].ToString();
+                Description = dt.Rows[0]["Description"].ToString();
+                PointValue = dt.Rows[0]["PointValue"].ToString();
+                Price = dt.Rows[0]["Price"].ToString();
+
+            }
+            return dt;
         }
 
         //not sure if I get the datatable from the interaction
@@ -210,7 +213,7 @@ namespace TafeInformationSystem.Classes
                 switch (searchCriteria)
                 {
                     case SearchCriteria.UnitSearchBy.ID:
-                        dt = clsDatabase.ExecSPDataTable($"EXEC spSearchID_unit @UnitID = {UnitID};");
+                        dt = clsDatabase.ExecSPDataTable($"EXEC spSelectID_unit @UnitID = {UnitID};");
                         if (dt != null)
                         {
                             UnitID = dt.Rows[0]["UnitID"].ToString();
@@ -223,7 +226,7 @@ namespace TafeInformationSystem.Classes
 
                         break;
                     case SearchCriteria.UnitSearchBy.Name:
-                        dt = clsDatabase.ExecSPDataTable($"EXEC spSearchName_unit @Name = {Name};");
+                        dt = clsDatabase.ExecSPDataTable($"EXEC spSelectName_unit @Name = {Name};");
                         if (dt != null)
                         {
                             UnitID = dt.Rows[0]["UnitID"].ToString();

@@ -84,7 +84,7 @@
                 BorderThickness="1" BorderBrush="#FF818185"
                 FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8" Click="DeleteButton_Click"                     
                 />
-            <Button x:Name="menuButton" Content="To Menu"              
+            <Button x:Name="menuButton" Content="Back"              
                 Margin="5,25,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="MenuButton_Click"    

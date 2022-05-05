@@ -3,7 +3,6 @@ C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSyst
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\bin\Debug\net5.0-windows\TafeInformationSystem.runtimeconfig.json
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\bin\Debug\net5.0-windows\TafeInformationSystem.runtimeconfig.dev.json
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\bin\Debug\net5.0-windows\TafeInformationSystem.dll
-C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\bin\Debug\net5.0-windows\ref\TafeInformationSystem.dll
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\bin\Debug\net5.0-windows\TafeInformationSystem.pdb
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\TafeInformationSystem.csproj.AssemblyReference.cache
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\App.g.cs
@@ -81,3 +80,4 @@ C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSyst
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\TafeInformationSystem.csproj.CopyComplete
+C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\refint\TafeInformationSystem.dll
