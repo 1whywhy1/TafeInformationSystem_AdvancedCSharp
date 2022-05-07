@@ -12,6 +12,7 @@ IF EXISTS ( SELECT name
 				FROM master.dbo.sysdatabases
 				WHERE name = N'TafeInformationSystem_IvanKaryakin'
 		  )
+ALTER DATABASE TafeInformationSystem_IvanKaryakin SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 DROP DATABASE TafeInformationSystem_IvanKaryakin;
 GO
 
@@ -142,12 +143,13 @@ CREATE TABLE UnitCourse (
 GO
 
 CREATE TABLE PaymentSystem (
-	PaymentID				INT,
+	PaymentID				INT IDENTITY,
 	CreationDate			DATETIME NOT NULL,
 	PaymentReceived			MONEY NOT NULL,
 	CONSTRAINT PK_Payment PRIMARY KEY(PaymentID)
 );
 GO
+
 
 CREATE TABLE Gender (
 	GenderID				INT IDENTITY,
@@ -306,6 +308,8 @@ ON Enrolment (StudentID);
 -- Create constraints for Payment table
 ALTER TABLE PaymentSystem ADD CONSTRAINT DF_PaymentCreationDate DEFAULT (getdate()) FOR CreationDate
 GO
+ALTER TABLE PaymentSystem ADD CONSTRAINT DF_PaymentReceived DEFAULT (0.00) FOR PaymentReceived
+GO
 
 
 -- ===========================================================================
@@ -340,32 +344,46 @@ INSERT INTO Semester VALUES ('2023-1', CONVERT(datetime,'2023-01-28'), CONVERT(d
 INSERT INTO Semester VALUES ('2023-2', CONVERT(datetime,'2023-07-28'), CONVERT(datetime,'2023-11-28'));
 GO
 
-
-INSERT INTO TeacherAddress VALUES ('street', '25',  2021, 'Sydney', 'NSW');
-INSERT INTO TeacherAddress VALUES ('street2', '12', 2021, 'Sydney', 'NSW');
+--- Insert into Teacher
+INSERT INTO TeacherAddress VALUES ('Raj street', '25',  2021, 'Sydney', 'NSW');
+INSERT INTO TeacherAddress VALUES ('Chris street2', '12', 2021, 'Sydney', 'NSW');
+INSERT INTO TeacherAddress VALUES ('Simone Street','7',2017,'Sydney', 'NSW');
 
 INSERT INTO Teacher VALUES ('Raj', 'Batra', CONVERT(datetime,'1960-01-28'), 'raj@batra.com', 0492234123, 1111111111, 2, 1); 
 INSERT INTO Teacher VALUES ('Chris', 'Medec', CONVERT(datetime,'1989-03-28'), 'chris@medec.com', 0491231223, 2222222222, 2, 2); 
+INSERT INTO Teacher VALUES ('Simone', 'Jones', CONVERT(datetime,'1972-05-12'), 'simone@jones.com', 0497764464, 3333333333, 1, 3); 
 GO
 
-
-INSERT INTO StudentAddress VALUES ('Studentstreet', '25',  2021, 'Sydney', 'NSW');
-INSERT INTO StudentAddress VALUES ('Studentstreet2', '12', 2021, 'Sydney', 'NSW');
-INSERT INTO StudentAddress VALUES ('Studentstreet3', '1', 2021, 'Sydney', 'NSW');
+-- Insert into Student
+INSERT INTO StudentAddress VALUES ('Ivan street', '25',  2021, 'Sydney', 'NSW');
+INSERT INTO StudentAddress VALUES ('Jake street', '12', 2021, 'Sydney', 'NSW');
+INSERT INTO StudentAddress VALUES ('Carla street', '1', 2021, 'Sydney', 'NSW');
 
 INSERT INTO Student VALUES ('Ivan', 'K', CONVERT(datetime,'1988-01-21'), 'emia@gmail.com', 0492234123, 1111111111, 2, 1); 
 INSERT INTO Student VALUES ('Jake', 'Strider', CONVERT(datetime,'2000-08-13'), 'hwo@me.com', 0491231223, 2222222222, 2, 2); 
 INSERT INTO Student VALUES ('Carla', 'Mein', CONVERT(datetime,'2002-10-12'), 'Carla@me.com', 0491231223, 2222222222, 2, 2); 
 GO
 
+-- Insert into Payment
+INSERT INTO PaymentSystem VALUES (default, 256.00);
+INSERT INTO PaymentSystem VALUES (default, 1111.00);
+INSERT INTO PaymentSystem VALUES (default, 0.00);
 
+-- Insert into Enrolment
+INSERT INTO Enrolment VALUES (1,1,1,1);
+INSERT INTO Enrolment VALUES (2,2,2,1);
+INSERT INTO Enrolment VALUES (1,3,3,0);
+
+GO
+
+-- Insert into Course
 INSERT INTO Course VALUES ('Diploma of Advanced C#', 'A range of C#, java and SQL units');
 INSERT INTO Course VALUES ('Diploma of Java', 'Java Stuff');
 INSERT INTO Course VALUES ('Certificate III in Networking', 'Cert 3 Networking stuff');
 GO
 
 
-
+-- Insert into CCS
 INSERT INTO CourseCollegeSemester VALUES (1001, 101, 1);
 INSERT INTO CourseCollegeSemester VALUES (1001, 101, 2);
 INSERT INTO CourseCollegeSemester VALUES (1001, 102, 1);
@@ -374,6 +392,7 @@ INSERT INTO CourseCollegeSemester VALUES (1002, 102, 1);
 INSERT INTO CourseCollegeSemester VALUES (1002, 103, 1);
 GO
 
+-- Assign Teachers to Courses
 INSERT INTO TeacherCourse VALUES (1,1);
 INSERT INTO TeacherCourse VALUES (1,2);
 INSERT INTO TeacherCourse VALUES (2,3);
@@ -406,13 +425,13 @@ INSERT INTO UnitCourse VALUES(1002,1005);
 --DELETE FROM CourseCollegeSemester;
 --DELETE FROM Course;
 
-----------
+---------- WHY DONT YOU WRITE DESCRIPTOINS, IVAN?!?!?!?!
 WITH [AllCourseAssignments] AS
 (SELECT ccs.CCSID
 FROM CourseCollegeSemester as ccs
 WHERE ccs.CollegeID IN (SELECT CollegeID
 						FROM College
-						WHERE [Name] = 'TAFE Granville'))
+						WHERE [Name] LIKE '%'+ 'Granville' + '%'))
 SELECT  t.TeacherID,
 		t.FirstName,		
 		t.LastName,

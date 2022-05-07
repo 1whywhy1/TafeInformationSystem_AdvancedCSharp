@@ -147,10 +147,7 @@ namespace TafeInformationSystem.Classes
                 case SearchCriteria.CourseSearchBy.Location:
                     dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllForCourse_unit @CourseID = {CourseID};");
                     break;
-                case SearchCriteria.CourseSearchBy.Teacher:
-                    
-                    // I need to populate SSID table to add a teacher
-
+                case SearchCriteria.CourseSearchBy.Teacher:   
                     dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllPastCourseForTeacher_course @TeacherID = {CourseID};");
                     break;
                 case SearchCriteria.CourseSearchBy.NoLocation:
@@ -166,7 +163,8 @@ namespace TafeInformationSystem.Classes
             {
                 CourseID = dt.Rows[0]["CourseID"].ToString();
                 Name = dt.Rows[0]["Name"].ToString();
-                Description = dt.Rows[0]["Description"].ToString();
+                if(courseSearchBy != SearchCriteria.CourseSearchBy.Teacher)
+                    Description = dt.Rows[0]["Description"].ToString();
             }
             return dt;
         }

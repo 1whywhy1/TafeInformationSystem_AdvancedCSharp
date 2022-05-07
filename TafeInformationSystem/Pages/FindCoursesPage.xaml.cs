@@ -70,10 +70,10 @@ namespace TafeInformationSystem.Pages
                 //    course = new ClsCourse(searchCriteriaText.Text, Enums.SearchCriteria.CourseSearchBy.Location);
                 //    dt = course.Search(Enums.SearchCriteria.CourseSearchBy.Location);
                 //    break;
-                //case 3:
-                //    course = new ClsCourse(searchCriteriaText.Text, Enums.SearchCriteria.CourseSearchBy.Teacher);
-                //    dt = course.Search(Enums.SearchCriteria.CourseSearchBy.Teacher);
-                //    break;
+                case 3:
+                    course = new ClsCourse(searchCriteriaText.Text, Enums.SearchCriteria.CourseSearchBy.Teacher);
+                    dt = course.Search(Enums.SearchCriteria.CourseSearchBy.Teacher);
+                    break;
                 case 4:
                     searchCriteriaText.Text = "";
                     course = new ClsCourse(searchCriteriaText.Text, Enums.SearchCriteria.CourseSearchBy.NoLocation);
