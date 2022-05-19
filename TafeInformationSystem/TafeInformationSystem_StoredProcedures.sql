@@ -393,7 +393,7 @@ CREATE PROCEDURE spSelectAllCourseNoCollege_course
 AS
 BEGIN
 SELECT	Course.CourseID,
-		[Name]
+		[Name],
 		[Description]
 FROM	Course
 LEFT OUTER JOIN CourseCollegeSemester

@@ -39,6 +39,8 @@ namespace TafeInformationSystem.Classes
                     CourseID = value;
                     break;
                 case SearchCriteria.CourseSearchBy.NoLocation:
+                    // if courseID = 0 then search no location, it does not require ID
+                    CourseID = "0";
                     break;
                 default:
                     break;
@@ -145,7 +147,7 @@ namespace TafeInformationSystem.Classes
                     dt = clsDatabase.ExecSPDataTable($"EXEC spSelectCourseByName_course @Name = {Name};");
                     break;
                 case SearchCriteria.CourseSearchBy.Location:
-                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllForCourse_unit @CourseID = {CourseID};");
+                    //dt = clsDatabase.ExecSPDataTable($"EXEC this shoould be All courses and locations and semesters for a teacher @CourseID = {CourseID};");
                     break;
                 case SearchCriteria.CourseSearchBy.Teacher:   
                     dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllPastCourseForTeacher_course @TeacherID = {CourseID};");

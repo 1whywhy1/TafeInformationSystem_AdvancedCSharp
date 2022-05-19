@@ -101,11 +101,15 @@ namespace TafeInformationSystem.Pages
         {
             try
             {
-                DataRowView row = (DataRowView)coursesListView.SelectedItem;
+                if (coursesListView.SelectedItem != null)
+                {
+                    DataRowView row = (DataRowView)coursesListView.SelectedItem;
 
-                ClsCourse course = new ClsCourse(row.Row[0].ToString(), row.Row[1].ToString(),
-                row.Row[2].ToString());
-                _mainFrame.Navigate(new CoursesPage(_mainFrame, Enums.EntityPageType.Edit, row));
+                    ClsCourse course = new ClsCourse(row.Row[0].ToString(), row.Row[1].ToString(),
+                    row.Row[2].ToString());
+                    _mainFrame.Navigate(new CoursesPage(_mainFrame, Enums.EntityPageType.Edit, row));
+                }
+               
             }
             catch (NullReferenceException nex) { }
             catch (Exception ex) { }
