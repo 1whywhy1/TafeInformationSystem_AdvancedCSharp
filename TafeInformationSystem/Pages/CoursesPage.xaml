@@ -37,6 +37,7 @@
                     MinWidth="200" Margin="0,5,10,10"/>
         <TextBox x:Name="idText"
                     Grid.Row="2" Grid.Column="2"
+                    IsEnabled="false"
                     MinWidth="200" Margin="0,5,10,10"/>      
        
         <TextBlock Grid.Row="5" Grid.Column="1"
@@ -61,7 +62,7 @@
             <Button x:Name="updateButton" Content="Save/Update"              
                     Margin="5,5,10,0" MinHeight="50"
                     BorderThickness="0"
-                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SaveButton_Click"    
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="UpdateButton_Click"    
                     />
             <Button x:Name="clearButton" Content="Clear"              
                 Margin="5,50,10,0" MinHeight="50"

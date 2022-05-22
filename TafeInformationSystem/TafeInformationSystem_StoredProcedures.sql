@@ -319,7 +319,7 @@ CREATE PROCEDURE spInsert_course
 	@Description		VARCHAR(240)
 AS
 BEGIN
-INSERT INTO Course
+INSERT INTO Course OUTPUT INSERTED.CourseID 
 VALUES (@Name,
 		@Description)
 END

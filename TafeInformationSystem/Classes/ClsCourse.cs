@@ -105,6 +105,9 @@ namespace TafeInformationSystem.Classes
             }
         }
 
+
+        #endregion
+
         public void Add()
         {
             try
@@ -126,7 +129,7 @@ namespace TafeInformationSystem.Classes
         {
             try
             {
-                int rowsAffected = clsDatabase.ExecSP($"EXEC spDeleteCourseID_course @UnitID = {CourseID};");
+                int rowsAffected = clsDatabase.ExecSP($"EXEC spDeleteCourseID_course @CourseID = {CourseID};");
                 return rowsAffected;
             }
             catch (Exception ex)
@@ -188,7 +191,6 @@ namespace TafeInformationSystem.Classes
             }
         }
 
-        #endregion
 
 
     }

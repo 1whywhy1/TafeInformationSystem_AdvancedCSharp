@@ -23,7 +23,7 @@ namespace TafeInformationSystem.Pages
     public partial class CoursesPage : Page
     {
         private Frame _mainFrame;
-        Control[] txtBoxes = new Control[3];
+        Control[] txtBoxes = new Control[2];
 
         #region Constructors
         public CoursesPage()
@@ -59,8 +59,8 @@ namespace TafeInformationSystem.Pages
 
             ClsUtils.SetActiveControls(txtBoxes, false);
 
-            courseNameText.Text = courseRow.Row[0].ToString();
-            idText.Text = courseRow.Row[1].ToString();
+            idText.Text = courseRow.Row[0].ToString();
+            courseNameText.Text = courseRow.Row[1].ToString();
             descriptionText.Text = courseRow.Row[2].ToString();
 
         }
@@ -69,27 +69,78 @@ namespace TafeInformationSystem.Pages
 
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                ClsCourse course = new ClsCourse(courseNameText.Text, descriptionText.Text);
+                course.Add();
+                idText.Text = course.CourseID;
+                MessageBox.Show("Course added!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
+            newButton.Visibility = Visibility.Hidden;
+            editButton.Visibility = Visibility.Hidden;
+            updateButton.Visibility = Visibility.Visible;
+            deleteButton.Visibility = Visibility.Visible;
 
+            ClsUtils.SetActiveControls(txtBoxes, true);
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                ClsCourse course = new ClsCourse(idText.Text, courseNameText.Text, descriptionText.Text);
+                course.Update();
+                MessageBox.Show("Course updated!");
 
+                newButton.Visibility = Visibility.Hidden;
+                editButton.Visibility = Visibility.Visible;
+                updateButton.Visibility = Visibility.Hidden;
+                deleteButton.Visibility = Visibility.Hidden;
+
+                ClsUtils.SetActiveControls(txtBoxes, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
+            courseNameText.Clear();
+            idText.Clear();
+            descriptionText.Clear();
 
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            ClsCourse course = new ClsCourse(idText.Text, Enums.SearchCriteria.CourseSearchBy.ID);
+            try
+            {
+                if (course.Delete() > 0)
+                {
+                    MessageBox.Show($"Course with ID {idText.Text} is deleted!");
+                    ClearButton_Click(sender, e); 
+                }
+                else
+                {
+                    MessageBox.Show("Course not found");
+                }
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
@@ -116,9 +167,10 @@ namespace TafeInformationSystem.Pages
                 default:
                     break;
             }
-            txtBoxes[0] = courseNameText;
-            txtBoxes[1] = idText;
-            txtBoxes[2] = descriptionText;
+            txtBoxes[0] = courseNameText;            
+            txtBoxes[1] = descriptionText;
         }
+
+  
     }
 }

@@ -118,7 +118,7 @@ namespace TafeInformationSystem.Pages
             {
                 SearchButton_Click(sender, e);
             }
-        }
+        }   
 
     }
 }
