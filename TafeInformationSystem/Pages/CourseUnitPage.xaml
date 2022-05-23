@@ -49,13 +49,13 @@
         <TextBlock Grid.Row="2" Grid.Column="4"
                    Margin="0,5,10,10"
                    Text="Unit 3 ID"/>
-        <TextBox x:Name="unit1Text"
+        <ComboBox x:Name="unit1Cmb"
                 Grid.Row="3" Grid.Column="2"
                 MinWidth="200" Margin="0,5,10,10"/>
-        <TextBox x:Name="unit2Text"
+        <ComboBox x:Name="unit2Cmb"
                 Grid.Row="3" Grid.Column="3"
                 MinWidth="200" Margin="0,5,5,10"/>
-        <TextBox x:Name="unit3Text" 
+        <ComboBox x:Name="unit3Cmb" 
                 Grid.Row="3" Grid.Column="4"
                 MinWidth="200" Margin="0,5,10,10"/>
 
@@ -80,7 +80,7 @@
             <ComboBoxItem>Name</ComboBoxItem>
             <ComboBoxItem>Course ID</ComboBoxItem>
         </ComboBox>
-        <TextBox x:Name="valueText"
+        <ComboBox x:Name="valueText"
                 Grid.Row="6" Grid.Column="2"
                 Grid.ColumnSpan="2"
                 MinWidth="200" Margin="0,5,10,10"/>

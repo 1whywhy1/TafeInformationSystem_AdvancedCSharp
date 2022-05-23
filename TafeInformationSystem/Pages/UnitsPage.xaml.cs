@@ -22,8 +22,11 @@ namespace TafeInformationSystem.Pages
     /// </summary>
     public partial class UnitsPage : Page
     {
+
         private Frame _mainFrame;
         Control[] txtBoxes = new Control[4];
+
+        #region Constructors
 
         public UnitsPage()
         {
@@ -56,6 +59,8 @@ namespace TafeInformationSystem.Pages
             unitPointValueText.Text = unitRow.Row[3].ToString();
             unitPriceText.Text = unitRow.Row[4].ToString();
         }
+
+        #endregion
 
         #region Buttons
         private void MenuButton_Click(object sender, RoutedEventArgs e)
@@ -133,6 +138,7 @@ namespace TafeInformationSystem.Pages
                 if (unit.Delete() > 0)
                 {
                     MessageBox.Show($"Unit with ID {unitIdText.Text} is deleted!");
+                    ClearButton_Click(sender, e); 
                 }
                 else
                 {

@@ -108,7 +108,7 @@ namespace TafeInformationSystem.Classes
 
         #endregion
 
-        public void Add()
+        public int Add()
         {
             try
             {             
@@ -118,6 +118,7 @@ namespace TafeInformationSystem.Classes
                 {
                     CourseID = id.ToString();
                 }
+                return id;
             }
             catch (Exception ex)
             {

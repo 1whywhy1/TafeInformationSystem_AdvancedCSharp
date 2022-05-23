@@ -138,7 +138,7 @@ namespace TafeInformationSystem.Classes
 
         #endregion
 
-        public void Add()
+        public int Add()
         {
             try
             {
@@ -147,8 +147,9 @@ namespace TafeInformationSystem.Classes
 
                 if (id > 0)
                 {
-                    UnitID = id.ToString();
+                    UnitID = id.ToString();                  
                 }
+                return id;
             }
             catch (Exception ex)
             {
@@ -171,6 +172,12 @@ namespace TafeInformationSystem.Classes
 
         public DataTable Search(SearchCriteria.UnitSearchBy unitSearchBy)
         {
+            // need to abstraact this method so I can use it everywhere
+            //UnitSearchBy.SearchBy criteria = UnitSearchBy.SearchBy.ID;
+            //switch (criteria)
+            //{ }
+
+
             DataTable dt = new DataTable();
             switch (unitSearchBy)
             {

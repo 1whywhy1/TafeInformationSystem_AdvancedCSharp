@@ -54,13 +54,13 @@
             <Setter Property="MinHeight" Value="22"/>
         </Style>
         <Style TargetType="ComboBox">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="#FF373737"/>
-            <Setter Property="BorderThickness" Value="0"/>          
+            <!--<Setter Property="Foreground" Value="DarkOliveGreen"/>
+            <Setter Property="Background" Value="#FF373737"/>-->
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
         <Style TargetType="ComboBoxItem">
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="#FF373737"/>
+            <!--<Setter Property="Background" Value="#FF373737"/>-->
             <Setter Property="BorderThickness" Value="0"/>
         </Style>    
         <Style TargetType="TabItem">

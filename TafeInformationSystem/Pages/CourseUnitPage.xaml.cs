@@ -46,5 +46,11 @@ namespace TafeInformationSystem.Pages
         {
 
         }
+
+        private void SetUp()
+        {
+
+            //unit1Cmb.
+        }
     }
 }
