@@ -515,7 +515,6 @@ GO
 
 -- Insert into Student
 CREATE PROCEDURE spInsert_student
-	@StudentID		INT,
 	@FirstName		NVARCHAR(20),
 	@LastName		NVARCHAR(40),
 	@DOB			DATE,
@@ -686,7 +685,6 @@ GO
 
 -- Insert into Teacher
 CREATE PROCEDURE spInsert_Teacher
-	@TeacherID		INT,
 	@FirstName		NVARCHAR(20),
 	@LastName		NVARCHAR(40),
 	@DOB			DATE,
