@@ -39,14 +39,9 @@ namespace TafeInformationSystem.Pages
             _mainFrame.NavigationService.GoBack();
         }
 
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-
             searchCriteriaText.Text = "";
             coursesListView.ItemsSource = null;
         }

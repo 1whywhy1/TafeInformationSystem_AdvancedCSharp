@@ -14,6 +14,8 @@ namespace TafeInformationSystem.Interfaces
 
         DataTable Search(SearchCriteria.UnitSearchBy unitSearchBy);
 
+        //DataTable Search(SearchCriteria searchCriteria);
+
         // MAKE THIS INT and return the ID through this
         int Add();
         int Delete();

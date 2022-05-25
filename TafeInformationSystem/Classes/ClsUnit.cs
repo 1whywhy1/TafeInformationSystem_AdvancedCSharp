@@ -177,38 +177,40 @@ namespace TafeInformationSystem.Classes
             //switch (criteria)
             //{ }
 
+           // if (unitSearchBy is UnitSearchBy)
+            //{
+                DataTable dt = new DataTable();
+                switch (unitSearchBy)
+                {
+                    case SearchCriteria.UnitSearchBy.ID:
+                        dt = clsDatabase.ExecSPDataTable($"EXEC spSelectID_unit @UnitID = {UnitID};");
+                        break;
+                    case SearchCriteria.UnitSearchBy.Name:
+                        dt = clsDatabase.ExecSPDataTable($"EXEC spSelectName_unit @Name = {Name};");
+                        break;
+                    case SearchCriteria.UnitSearchBy.AllForCourse:
+                        dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllForCourse_unit @CourseID = {UnitID};");
+                        break;
+                    case SearchCriteria.UnitSearchBy.NotAllocated:
+                        dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllNotAllowcated_unit;");
+                        break;
+                    default:
+                        return null;
+                        break;
+                }
 
-            DataTable dt = new DataTable();
-            switch (unitSearchBy)
-            {
-                case SearchCriteria.UnitSearchBy.ID:
-                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectID_unit @UnitID = {UnitID};");
-                    break;
-                case SearchCriteria.UnitSearchBy.Name:
-                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectName_unit @Name = {Name};");
-                    break;
-                case SearchCriteria.UnitSearchBy.AllForCourse:
-                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllForCourse_unit @CourseID = {UnitID};");
-                    break;
-                case SearchCriteria.UnitSearchBy.NotAllocated:
-                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllNotAllowcated_unit;");
-                    break;
-                default:
-                    return null;
-                    break;
-            }
 
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    UnitID = dt.Rows[0]["UnitID"].ToString();
+                    Name = dt.Rows[0]["Name"].ToString();
+                    Description = dt.Rows[0]["Description"].ToString();
+                    PointValue = dt.Rows[0]["PointValue"].ToString();
+                    Price = dt.Rows[0]["Price"].ToString();
 
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                UnitID = dt.Rows[0]["UnitID"].ToString();
-                Name = dt.Rows[0]["Name"].ToString();
-                Description = dt.Rows[0]["Description"].ToString();
-                PointValue = dt.Rows[0]["PointValue"].ToString();
-                Price = dt.Rows[0]["Price"].ToString();
-
-            }
-            return dt;
+                }
+                return dt;
+           // }
         }
 
         ////not sure if I get the datatable from the interaction
