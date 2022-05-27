@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using TafeInformationSystem.Classes;
+using TafeInformationSystem.Enums;
 
 namespace TafeInformationSystem.Pages
 {
@@ -23,15 +25,31 @@ namespace TafeInformationSystem.Pages
     {
 
         #region Variables
+        private string _id;
+        private ClsPerson _user;
+        private UserType _userType;
         private Control[] userInfoControls = new Control[11];
         private Control[] passwordChangeCtrls = new Control[4];
         #endregion
 
+
+        #region Constructors
         public PersonalPage()
         {
             InitializeComponent();
             SetUp();
         }
+
+        // To bring up the user profile
+        public PersonalPage(string id)
+        {
+            InitializeComponent();
+            _id = id;
+            MessageBox.Show(_id);
+            SetUp();
+        }
+
+        #endregion
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
@@ -91,6 +109,42 @@ namespace TafeInformationSystem.Pages
             userInfoControls[9] = stateCmb;
             userInfoControls[10] = postcodeTxt;
 
+            try
+            {
+                _userType = MainWindow.getInstance().UserType;
+                switch (_userType)
+                {
+                    case UserType.student:
+                        _user = new ClsStudent(_id);                       
+                        break;
+                    case UserType.teacher:
+                        _user = new ClsTeacher(_id);
+                        break;
+                    default:
+                        break;                       
+                }
+
+                idTxt.Text = _user.ID;
+                firstNameTxt.Text = _user.FName;
+                lastNameTxt.Text = _user.LName;
+                //dp1.SetValue(_user.Dob);
+                genderCmb.SelectedIndex = _user.Gender;
+                emailTxt.Text = _user.Email;
+                homePhoneTxt.Text = _user.Hphone;
+                mobilePhoneTxt.Text = _user.Mphone;
+                streetTxt.Text = _user.Address.StreetAddress;
+                suburbTxt.Text = _user.Address.Postcode;
+                //stateCmb.Text = _user.Address.;
+                postcodeTxt.Text = _user.Address.Postcode;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);    
+            }
+            finally
+            {
+
+            }
 
         }
    

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TafeInformationSystem.Enums;
 
 namespace TafeInformationSystem
 {
@@ -20,6 +21,7 @@ namespace TafeInformationSystem
     /// </summary>
     public partial class LoginWindow : Window
     {
+        public UserType _userType = UserType.student;
         public LoginWindow()
         {
             InitializeComponent();
@@ -27,9 +29,20 @@ namespace TafeInformationSystem
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWidow = new();
+            
+            MainWindow mainWidow = new(_userType);
             mainWidow.Show();
             Close();
+        }
+
+        private void StudentButton_Click(object sender, RoutedEventArgs e)
+        {
+            _userType = UserType.student;
+        }
+
+        private void TeacherButton_Click(object sender, RoutedEventArgs e)
+        {
+            _userType= UserType.teacher;
         }
     }
 }

@@ -12,9 +12,9 @@ namespace TafeInformationSystem.Interfaces
     {
         // might need to rewrite stuff so SearchBy enums are derriving from SearchCriteria and then make a generic SearchCriteria by ref and check inside which one it is.
 
-        DataTable Search(SearchCriteria.UnitSearchBy unitSearchBy);
+        //DataTable Search(SearchCriteria.UnitSearchBy unitSearchBy);
 
-        //DataTable Search(SearchCriteria searchCriteria);
+        //DataTable Search(ClsSearchBy searchBy);
 
         // MAKE THIS INT and return the ID through this
         int Add();

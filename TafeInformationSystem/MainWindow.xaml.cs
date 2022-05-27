@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TafeInformationSystem.Classes;
+using TafeInformationSystem.Enums;
 using TafeInformationSystem.Pages;
 
 namespace TafeInformationSystem
@@ -21,12 +23,28 @@ namespace TafeInformationSystem
     public partial class MainWindow : Window
     {
         private static MainWindow mainWindow_instance = null;
+        private UserType _userType;
+        private string _userID = "1";
 
         #region Constructors
         public MainWindow()
         {
             InitializeComponent();
            
+        }
+
+        public MainWindow(UserType userType)
+        {
+            InitializeComponent();
+            _userType = userType;
+
+        }
+
+        public MainWindow(string userID)
+        {
+            InitializeComponent();
+            _userID = userID;
+
         }
         #endregion
 
@@ -40,6 +58,10 @@ namespace TafeInformationSystem
         }
         #endregion
 
+        #region Properties
+        public UserType UserType { get { return _userType; } }
+        #endregion
+
         #region Navigation Buttons
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
@@ -50,7 +72,7 @@ namespace TafeInformationSystem
 
         private void PersonalPageButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new PersonalPage());
+            _mainFrame.Navigate(new PersonalPage(_userID));
         }
 
         private void TeachersButton_Click(object sender, RoutedEventArgs e)

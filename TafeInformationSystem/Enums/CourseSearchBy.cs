@@ -8,7 +8,7 @@ namespace TafeInformationSystem.Enums
 {
     internal class CourseSearchBy : SearchCriteria
     {
-        internal enum SearchBy
+        public enum SearchBy
         {
             ID,
             Name,

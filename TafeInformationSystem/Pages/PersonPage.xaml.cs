@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TafeInformationSystem.Enums;
 
 namespace TafeInformationSystem.Pages
 {
@@ -20,11 +21,16 @@ namespace TafeInformationSystem.Pages
     /// </summary>
     public partial class PersonPage : Page
     {
+        #region Fields
         private Frame _mainFrame;
+        private UserType _userType;
 
+        #endregion
+
+        #region Constructors
         public PersonPage()
         {
-            InitializeComponent();
+            InitializeComponent();          
         }
 
         public PersonPage(Frame mainFrame)
@@ -33,6 +39,16 @@ namespace TafeInformationSystem.Pages
             _mainFrame = mainFrame;
         }
 
+        public PersonPage(Frame mainFrame, UserType userType)
+        {
+            InitializeComponent();
+            _mainFrame = mainFrame;
+        }
+
+
+        #endregion
+
+        #region Buttons
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             _mainFrame.NavigationService.GoBack();
@@ -57,5 +73,7 @@ namespace TafeInformationSystem.Pages
         {
 
         }
+        #endregion
+
     }
 }

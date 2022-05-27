@@ -38,8 +38,8 @@
                  CornerRadius="4,4,4,4">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,10,10,5">
-                    <Button x:Name="studentButton" MinHeight ="30" MinWidth ="150" Margin="0,0,2.5,0" Content="Student" FontWeight="Normal" Foreground="#FFE7E7E8" BorderBrush="#FF373737" Background="#FF373737" />
-                    <Button x:Name="teacherButton" MinHeight ="30" MinWidth ="150" Margin="2.5,0,0,0" Content="Teacher" Background="#FF373737" Foreground="#FFE7E7E8" BorderBrush="#FF373737" />
+                    <Button x:Name="studentButton" MinHeight ="30" MinWidth ="150" Margin="0,0,2.5,0" Content="Student" FontWeight="Normal" Foreground="#FFE7E7E8" BorderBrush="#FF373737" Background="#FF373737" Click="StudentButton_Click" />
+                    <Button x:Name="teacherButton" MinHeight ="30" MinWidth ="150" Margin="2.5,0,0,0" Content="Teacher" Background="#FF373737" Foreground="#FFE7E7E8" BorderBrush="#FF373737" Click="TeacherButton_Click" />
                 </StackPanel>
                 <Border  Grid.Column="2" Grid.Row="3" BorderBrush="Silver"
                  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="10,5,10,5" MinHeight="50" 

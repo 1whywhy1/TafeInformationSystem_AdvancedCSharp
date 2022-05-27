@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TafeInformationSystem.Enums;
 
 namespace TafeInformationSystem.Pages
 {
@@ -32,10 +33,10 @@ namespace TafeInformationSystem.Pages
             _mainFrame = mainFrame;
         }
 
-
+        
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new PersonPage(_mainFrame));
+            _mainFrame.Navigate(new PersonPage(_mainFrame, UserType.teacher));
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)

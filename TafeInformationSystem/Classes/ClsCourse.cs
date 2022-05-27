@@ -175,10 +175,11 @@ namespace TafeInformationSystem.Classes
             return dt;
         }
 
-        public DataTable Search(SearchCriteria.UnitSearchBy unitSearchBy)
-        {
-            throw new NotImplementedException();
-        }
+        //public DataTable Search(ClsSearchBy searchBy)
+        //{
+
+
+        //}
 
         public void Update()
         {

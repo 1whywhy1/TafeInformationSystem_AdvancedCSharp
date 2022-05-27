@@ -10,12 +10,12 @@ using DLLDatabase;
 
 namespace TafeInformationSystem.Classes
 {
-    class ClsPerson : IInfoInteractable
+    abstract class ClsPerson : IInfoInteractable
     {
         #region Fields
         private int _id;
-        private string _fname;
-        private string _lname;
+        private string _fName;
+        private string _lName;
         private DateTime _dob;
         private ClsAddress _address;
         private string _email;
@@ -28,12 +28,17 @@ namespace TafeInformationSystem.Classes
         #region Constructors
         public ClsPerson() { }
 
+        public ClsPerson(int id)
+        {
+            _id = id;
+        }
+
         public ClsPerson(string fname, string lname, DateTime dob,
                         ClsAddress address, string email, 
                         string hphone, string mphone, int gender)
         {
-            _fname = fname;
-            _lname = lname;
+            _fName = fname;
+            _lName = lname;
             _dob = dob;
             _address = address;
             _email = email;
@@ -55,8 +60,9 @@ namespace TafeInformationSystem.Classes
                 _id = Convert.ToInt32(value);
             }
         }
-        public string Fname { get { return _fname; } set { _fname = value; } }
-        public string Lname { get { return _lname; } set { _lname = value; } }
+
+        public string FName { get { return _fName; } set { _fName = value; } }
+        public string LName { get { return _lName; } set { _lName = value; } }
         public DateTime Dob { get { return _dob; } set { _dob = value;} }
 
         public ClsAddress Address { get { return _address; } set { _address = value;} }
@@ -73,25 +79,11 @@ namespace TafeInformationSystem.Classes
         #endregion
 
         #region Functions
-        public virtual int Add()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract int Add();
+        public abstract int Delete();
+        public abstract void Update();
 
-        public virtual int Delete()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual DataTable Search(SearchCriteria.UnitSearchBy unitSearchBy)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void Update()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void RetrieveUser();
 
         #endregion
     }

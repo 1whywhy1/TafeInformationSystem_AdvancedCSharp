@@ -23,6 +23,18 @@ namespace TafeInformationSystem.Classes
         #region Constructors
         public ClsAddress() { }
 
+        public ClsAddress(int id, string streedAddress, 
+                        string apt, string postcode, 
+                        string city, string state) 
+        {
+            _id = id;
+            _streetAddress = streedAddress;
+            _apt = apt;
+            _postcode = postcode;
+            _city = city;
+            _state = state;
+        }
+
         #endregion
 
         #region Properties
