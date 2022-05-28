@@ -161,7 +161,6 @@ namespace TafeInformationSystem.Classes
                     break;
                 default:
                     return null;
-                    break;
             }
 
 

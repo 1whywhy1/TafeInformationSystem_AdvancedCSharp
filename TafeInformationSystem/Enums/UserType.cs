@@ -9,6 +9,7 @@ namespace TafeInformationSystem.Enums
     public enum UserType
     {
         student,
-        teacher
+        teacher,
+        DEFAULT
     }
 }

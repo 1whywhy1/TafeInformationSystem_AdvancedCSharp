@@ -22,30 +22,29 @@ namespace TafeInformationSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static MainWindow mainWindow_instance = null;
-        private UserType _userType;
+        #region Fields
+        private static MainWindow mainWindow_instance;
+        private UserType _userType = UserType.student;
         private string _userID = "1";
+        #endregion
+
+
 
         #region Constructors
         public MainWindow()
         {
             InitializeComponent();
-           
+
+            //MessageBox.Show(ClsUtils.HashPassword("123"));
         }
 
-        public MainWindow(UserType userType)
+        public MainWindow(UserType userType, string userID)
         {
             InitializeComponent();
             _userType = userType;
 
         }
 
-        public MainWindow(string userID)
-        {
-            InitializeComponent();
-            _userID = userID;
-
-        }
         #endregion
 
         #region Singleton
@@ -59,7 +58,8 @@ namespace TafeInformationSystem
         #endregion
 
         #region Properties
-        public UserType UserType { get { return _userType; } }
+        public UserType UserType { get { return _userType; } set { _userType = value; } }
+        public string UserID { get { return _userID; } set { _userID = value; } }
         #endregion
 
         #region Navigation Buttons
@@ -71,7 +71,7 @@ namespace TafeInformationSystem
         }
 
         private void PersonalPageButton_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             _mainFrame.Navigate(new PersonalPage(_userID));
         }
 

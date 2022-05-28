@@ -54,6 +54,7 @@ namespace TafeInformationSystem.Pages
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             TafeInformationSystem.Classes.ClsUtils.SetActiveControls(userInfoControls, true);
+
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -109,6 +110,9 @@ namespace TafeInformationSystem.Pages
             userInfoControls[9] = stateCmb;
             userInfoControls[10] = postcodeTxt;
 
+            // Set state combobox values
+            stateCmb.ItemsSource = Enum.GetValues(typeof(AustralianStates)).Cast<AustralianStates>();
+
             try
             {
                 _userType = MainWindow.getInstance().UserType;
@@ -127,7 +131,8 @@ namespace TafeInformationSystem.Pages
                 idTxt.Text = _user.ID;
                 firstNameTxt.Text = _user.FName;
                 lastNameTxt.Text = _user.LName;
-                //dp1.SetValue(_user.Dob);
+                dp1.DisplayDate = _user.Dob;
+                dp1.Text = _user.Dob.ToString();
                 genderCmb.SelectedIndex = _user.Gender;
                 emailTxt.Text = _user.Email;
                 homePhoneTxt.Text = _user.Hphone;

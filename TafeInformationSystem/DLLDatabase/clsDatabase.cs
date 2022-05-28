@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows;
+using TafeInformationSystem.Classes;
+using TafeInformationSystem.Enums;
 
 namespace DLLDatabase
 {
@@ -26,7 +29,7 @@ namespace DLLDatabase
                 return objConnection;
             }
             catch (SqlException ex)
-            {
+            {               
                 return null;
             }
         }
@@ -42,8 +45,6 @@ namespace DLLDatabase
                 string query = "INSERT INTO @TableAndColumns VALUES(@Name, @Price, @Date)";
 
                 objCommand = new SqlCommand(query, objConnection);
-
-
 
                 objCommand.Parameters.AddWithValue("@TableAndColumns", tableNameAndColumns);
                 objCommand.Parameters.AddWithValue("@Price", "$20");
@@ -62,6 +63,37 @@ namespace DLLDatabase
         #endregion
 
         #region Insert
+
+        // Checks Login and Password against stored in DB
+        public static bool Login(UserType userType, string userID, string password)
+        {
+            ConnectToDatabase();
+            string querie = null;
+            switch (userType)
+            {
+                case UserType.student:
+                    querie = "SELECT StudentID FROM StudentLogin WHERE StudentID = @userID AND Password = @password";
+
+                    break;
+                case UserType.teacher:
+                    querie = "SELECT TeacherID FROM TeacherLogin WHERE TeacherID = @userID AND Password = @password";
+
+                    break;
+                default:
+                    break;
+            }
+            objCommand = new SqlCommand(querie, objConnection);
+            objCommand.Parameters.AddWithValue("@userID", userID);
+            objCommand.Parameters.AddWithValue("@password", ClsUtils.HashPassword(password));
+
+            var result = objCommand.ExecuteScalar();
+            
+            return (result != null) ? true : false;
+        }
+
+        //public static SetPassword()
+
+        //redundant
         public static int InsertUnit(string name, string description, string pointValue, string price)
         {
             try

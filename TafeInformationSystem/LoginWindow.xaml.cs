@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLLDatabase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,10 +30,29 @@ namespace TafeInformationSystem
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            MainWindow mainWidow = new(_userType);
-            mainWidow.Show();
-            Close();
+            bool loginSuccess = false;
+
+            switch (_userType)
+            {
+                case UserType.student:
+                    loginSuccess = clsDatabase.Login(_userType, loginText.Text, passwordText.Password);
+                    break;
+                case UserType.teacher:
+                    loginSuccess = clsDatabase.Login(_userType, loginText.Text, passwordText.Password); 
+                    break;
+                default:
+                    break;
+            }
+
+            if (loginSuccess)
+            {
+                MainWindow mainWindow = MainWindow.getInstance();
+                mainWindow.UserType = _userType;
+                mainWindow.UserID = loginText.Text;
+                mainWindow.Show();
+                Close();
+            }
+
         }
 
         private void StudentButton_Click(object sender, RoutedEventArgs e)

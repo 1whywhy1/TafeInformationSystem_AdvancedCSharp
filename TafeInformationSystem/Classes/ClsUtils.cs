@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Security.Cryptography;
 
 namespace TafeInformationSystem.Classes
 {
@@ -31,6 +32,16 @@ namespace TafeInformationSystem.Classes
             {
                 ctrl.Visibility = System.Windows.Visibility.Hidden;
             }
+        }
+
+        public static string HashPassword(string password)
+        {
+            SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider();
+
+            byte[] password_bytes = Encoding.ASCII.GetBytes(password);
+            byte[] hash_bytes = sha1.ComputeHash(password_bytes);
+
+            return Convert.ToBase64String(hash_bytes);
         }
     }
 }

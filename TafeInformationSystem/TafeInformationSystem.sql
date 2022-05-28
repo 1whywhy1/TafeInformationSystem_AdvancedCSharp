@@ -50,6 +50,20 @@ CREATE TABLE Student (
 );
 GO
 
+CREATE TABLE TeacherLogin (
+	TeacherID			INT,
+	[Password]			NVARCHAR(80)
+	CONSTRAINT PK_TeacherLogin PRIMARY KEY (TeacherID)
+);
+GO
+
+CREATE TABLE StudentLogin (
+	StudentID			INT,
+	[Password]			NVARCHAR(80)
+	CONSTRAINT PK_StudentLogin PRIMARY KEY (StudentID)
+);
+GO
+
 CREATE TABLE Staff (
 	StaffID				INT IDENTITY,
 	FirstName			NVARCHAR(20) NOT NULL,
@@ -215,6 +229,20 @@ GO
 
 ALTER TABLE Student ADD CONSTRAINT DF_StudentGender DEFAULT 1 FOR GenderID;
 GO
+
+-- Create constraints for TeacherLogin table
+ALTER TABLE TeacherLogin ADD CONSTRAINT FK_TeacherID FOREIGN KEY
+(TeacherID) REFERENCES Teacher(TeacherID)
+GO
+ALTER TABLE TeacherLogin ADD CONSTRAINT DF_TeacherPassword 
+DEFAULT 'QL0AFWMIX8NRZTKeof9cXsvbvu8=' FOR [Password]
+
+-- Create constraints for StudentLogin table
+ALTER TABLE StudentLogin ADD CONSTRAINT FK_StudentID FOREIGN KEY
+(StudentID) REFERENCES Student(StudentID)
+GO
+ALTER TABLE StudentLogin ADD CONSTRAINT DF_StudentPassword 
+DEFAULT 'QL0AFWMIX8NRZTKeof9cXsvbvu8=' FOR [Password]
 
 -- Create constraints for Staff table
 ALTER TABLE Staff ADD CONSTRAINT FK_StaffAddressID FOREIGN KEY 
