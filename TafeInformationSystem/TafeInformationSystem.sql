@@ -118,7 +118,7 @@ CREATE TABLE CollegeAddress (
 	StreetAddress			NVARCHAR(50) NOT NULL,
 	Postcode				INT NOT NULL,
 	City					NVARCHAR(30) NOT NULL,
-	State					NVARCHAR(30) NOT NULL
+	[State]					NVARCHAR(30) NOT NULL
 	CONSTRAINT PK_CollegeAddress PRIMARY KEY(CollegeAddressID)
 );
 GO
