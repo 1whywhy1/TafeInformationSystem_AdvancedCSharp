@@ -17,12 +17,10 @@ C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSyst
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\ref\TafeInformationSystem.dll
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\TafeInformationSystem.pdb
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\TafeInformationSystem.genruntimeconfig.cache
-C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\App.baml
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\LoginWindow.g.cs
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\LoginWindow.baml
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\MainWindow.g.cs
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\MainWindow.baml
-C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\Pages\PersonalPage.g.cs
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\Pages\PersonalPage.baml
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\Pages\CoursesPage.g.cs

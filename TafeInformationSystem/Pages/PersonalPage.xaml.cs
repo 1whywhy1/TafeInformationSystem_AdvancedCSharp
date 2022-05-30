@@ -45,7 +45,6 @@ namespace TafeInformationSystem.Pages
         {
             InitializeComponent();
             _id = id;
-            MessageBox.Show(_id);
             SetUp();
         }
 
@@ -53,18 +52,24 @@ namespace TafeInformationSystem.Pages
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            TafeInformationSystem.Classes.ClsUtils.SetActiveControls(userInfoControls, true);
+            ClsUtils.SetActiveControls(userInfoControls, true);
+            saveButton.Visibility = Visibility.Visible;
 
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            TafeInformationSystem.Classes.ClsUtils.SetActiveControls(userInfoControls, false);
+            ClsUtils.SetActiveControls(userInfoControls, false); 
+            cancelChangePassButton.Visibility = Visibility.Hidden;
+            saveButton.Visibility = Visibility.Hidden;
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ClsUtils.SetActiveControls(userInfoControls, false);
+            PopulateFieldsFromObject();
+            cancelChangePassButton.Visibility = Visibility.Hidden;
+            saveButton.Visibility = Visibility.Hidden;
         }
 
         private void ChangePassButton_Click(object sender, RoutedEventArgs e)
@@ -86,6 +91,7 @@ namespace TafeInformationSystem.Pages
             RefreshPasswordFields(Visibility.Hidden);
             savePassButton.Visibility = Visibility.Hidden;
             changePassButton.Visibility = Visibility.Visible;
+            cancelChangePassButton.Visibility = Visibility.Hidden;
         }
 
         private void RefreshPasswordFields( Visibility visibility)
@@ -97,7 +103,10 @@ namespace TafeInformationSystem.Pages
 
         private void SetUp()
         {
+            saveButton.Visibility = Visibility.Hidden;
             savePassButton.Visibility = Visibility.Hidden;
+            cancelChangePassButton.Visibility = Visibility.Hidden;
+
             userInfoControls[0] = firstNameTxt;
             userInfoControls[1] = lastNameTxt;
             userInfoControls[2] = dp1;
@@ -109,6 +118,11 @@ namespace TafeInformationSystem.Pages
             userInfoControls[8] = suburbTxt;
             userInfoControls[9] = stateCmb;
             userInfoControls[10] = postcodeTxt;
+
+            ClsUtils.SetActiveControls(userInfoControls, false);
+
+            RefreshPasswordFields(Visibility.Hidden);
+
 
             // Set state combobox values
             stateCmb.ItemsSource = Enum.GetValues(typeof(AustralianStates)).Cast<AustralianStates>();
@@ -128,19 +142,7 @@ namespace TafeInformationSystem.Pages
                         break;                       
                 }
 
-                idTxt.Text = _user.ID;
-                firstNameTxt.Text = _user.FName;
-                lastNameTxt.Text = _user.LName;
-                dp1.DisplayDate = _user.Dob;
-                dp1.Text = _user.Dob.ToString();
-                genderCmb.SelectedIndex = _user.Gender;
-                emailTxt.Text = _user.Email;
-                homePhoneTxt.Text = _user.Hphone;
-                mobilePhoneTxt.Text = _user.Mphone;
-                streetTxt.Text = _user.Address.StreetAddress;
-                suburbTxt.Text = _user.Address.Postcode;
-                //stateCmb.Text = _user.Address.;
-                postcodeTxt.Text = _user.Address.Postcode;
+                PopulateFieldsFromObject();
             }
             catch (Exception ex)
             {
@@ -152,6 +154,26 @@ namespace TafeInformationSystem.Pages
             }
 
         }
-   
+
+        private void PopulateFieldsFromObject()
+        {
+            if(_user != null)
+            {
+                idTxt.Text = _user.ID;
+                firstNameTxt.Text = _user.FName;
+                lastNameTxt.Text = _user.LName;
+                dp1.DisplayDate = _user.Dob;
+                dp1.Text = _user.Dob.ToString();
+                genderCmb.SelectedIndex = _user.Gender - 1;
+                emailTxt.Text = _user.Email;
+                homePhoneTxt.Text = _user.Hphone;
+                mobilePhoneTxt.Text = _user.Mphone;
+                streetTxt.Text = _user.Address.StreetAddress;
+                suburbTxt.Text = _user.Address.Postcode;
+                stateCmb.Text = _user.Address.State;
+                postcodeTxt.Text = _user.Address.Postcode;
+            }
+            
+        }
     }
 }

@@ -943,6 +943,17 @@ BEGIN
 END
 GO
 
+CREATE TRIGGER tr_Student_OnInsert
+ON Student
+FOR INSERT
+AS
+BEGIN
+	DECLARE @StudentID INT
+	SELECT @StudentID = ins.StudentID FROM INSERTED ins;
+	INSERT INTO StudentLogin (StudentID) VALUES (@StudentID);
+END
+GO
+
 -- After delete from Teacher delete from TeacherAddress by AddressID
 CREATE TRIGGER tr_Teacher_AfterDelete
 ON Teacher
@@ -953,6 +964,18 @@ BEGIN
 	SELECT @TeacherAddressID = del.TeacherAddressID FROM DELETED del;
 	DELETE FROM TeacherAddress
 	WHERE TeacherAddress.TeacherAddressID = @TeacherAddressID;
+END
+GO
+
+
+CREATE TRIGGER tr_Teacher_OnInsert
+ON Teacher
+FOR INSERT
+AS
+BEGIN
+	DECLARE @TeacherID INT
+	SELECT @TeacherID = ins.TeacherID FROM INSERTED ins;
+	INSERT INTO TeacherLogin (TeacherID) VALUES (@TeacherID);
 END
 GO
 
@@ -969,6 +992,7 @@ BEGIN
 END
 GO
 
+-- On delete from Student delete from StudentLogin by StudentID
 
 --------------------Views--------------------------
 --CREATE VIEW vwCoursePrice AS

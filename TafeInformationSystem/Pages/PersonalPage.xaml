@@ -69,8 +69,9 @@
                     DisplayDate="2022-10-31" />        
         <ComboBox x:Name ="genderCmb"  Grid.Row="4" Grid.Column="2"
                   Margin="0,5,10,10">
-            <ComboBoxItem>Female</ComboBoxItem>
+            <ComboBoxItem>Not Say</ComboBoxItem>
             <ComboBoxItem>Male</ComboBoxItem>
+            <ComboBoxItem>Female</ComboBoxItem>
         </ComboBox>
         <TextBox x:Name="emailTxt" 
                 Grid.Row="4" Grid.Column="3"
@@ -138,6 +139,11 @@
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SaveButton_Click"            
+                />
+            <Button x:Name="cancelButton" Content="Cancel" 
+                Margin="5,5,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="CancelButton_Click"            
                 />
             <Button x:Name="changePassButton" Content="Change Password"              
                 Margin="5,220,10,0" MinHeight="50"

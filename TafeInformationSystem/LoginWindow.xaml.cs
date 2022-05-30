@@ -35,10 +35,12 @@ namespace TafeInformationSystem
             switch (_userType)
             {
                 case UserType.student:
-                    loginSuccess = clsDatabase.Login(_userType, loginText.Text, passwordText.Password);
+                    loginSuccess = clsDatabase.Login(_userType, 
+                        loginText.Text, passwordText.Password);
                     break;
                 case UserType.teacher:
-                    loginSuccess = clsDatabase.Login(_userType, loginText.Text, passwordText.Password); 
+                    loginSuccess = clsDatabase.Login(_userType, 
+                        loginText.Text, passwordText.Password); 
                     break;
                 default:
                     break;

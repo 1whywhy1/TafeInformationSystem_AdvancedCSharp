@@ -23,8 +23,9 @@
         
         <Frame x:Name="_mainFrame" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3"
                NavigationUIVisibility="Hidden"
-               Background="#FF1C0027" 
                MinHeight="600" MinWidth="800" Margin="20,3,20,0"/>
+               <!--Background="#FF1C0027"--> 
+               
         <StackPanel Grid.Column="1" Grid.Row="1"
                     Orientation="Vertical"
                     MinWidth="150">

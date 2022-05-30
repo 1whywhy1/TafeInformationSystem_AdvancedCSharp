@@ -377,9 +377,9 @@ INSERT INTO TeacherAddress VALUES ('Raj street', '25',  2021, 'Sydney', 'NSW');
 INSERT INTO TeacherAddress VALUES ('Chris street2', '12', 2021, 'Sydney', 'NSW');
 INSERT INTO TeacherAddress VALUES ('Simone Street','7',2017,'Sydney', 'NSW');
 
-INSERT INTO Teacher VALUES ('Raj', 'Batra', CONVERT(datetime,'1960-01-28'), 'raj@batra.com', 0492234123, 1111111111, 2, 1); 
-INSERT INTO Teacher VALUES ('Chris', 'Medec', CONVERT(datetime,'1989-03-28'), 'chris@medec.com', 0491231223, 2222222222, 2, 2); 
-INSERT INTO Teacher VALUES ('Simone', 'Jones', CONVERT(datetime,'1972-05-12'), 'simone@jones.com', 0497764464, 3333333333, 1, 3); 
+INSERT INTO Teacher VALUES ('Raj', 'Batra', CONVERT(datetime,'1960-01-28'), 'raj@batra.com', '0492234123', 1111111111, 2, 1); 
+INSERT INTO Teacher VALUES ('Chris', 'Medec', CONVERT(datetime,'1989-03-28'), 'chris@medec.com', '0491231223', 2222222222, 2, 2); 
+INSERT INTO Teacher VALUES ('Simone', 'Jones', CONVERT(datetime,'1972-05-12'), 'simone@jones.com', '0497764464', 3333333333, 1, 3); 
 GO
 
 -- Insert into Student
@@ -387,9 +387,16 @@ INSERT INTO StudentAddress VALUES ('Ivan street', '25',  2021, 'Sydney', 'NSW');
 INSERT INTO StudentAddress VALUES ('Jake street', '12', 2021, 'Sydney', 'NSW');
 INSERT INTO StudentAddress VALUES ('Carla street', '1', 2021, 'Sydney', 'NSW');
 
-INSERT INTO Student VALUES ('Ivan', 'K', CONVERT(datetime,'1988-01-21'), 'emia@gmail.com', 0492234123, 1111111111, 2, 1); 
-INSERT INTO Student VALUES ('Jake', 'Strider', CONVERT(datetime,'2000-08-13'), 'hwo@me.com', 0491231223, 2222222222, 2, 2); 
-INSERT INTO Student VALUES ('Carla', 'Mein', CONVERT(datetime,'2002-10-12'), 'Carla@me.com', 0491231223, 2222222222, 2, 2); 
+INSERT INTO Student VALUES ('Ivan', 'K', CONVERT(datetime,'1988-01-21'), 'emia@gmail.com', '0492234123', 1111111111, 2, 1); 
+INSERT INTO Student VALUES ('Jake', 'Strider', CONVERT(datetime,'2000-08-13'), 'hwo@me.com', '0491231223', 2222222222, 2, 2); 
+INSERT INTO Student VALUES ('Carla', 'Mein', CONVERT(datetime,'2002-10-12'), 'Carla@me.com', '0491231223', 2222222222, 2, 2); 
+INSERT INTO StudentLogin VALUES (1, 'QL0AFWMIX8NRZTKeof9cXsvbvu8=');INSERT INTO StudentLogin VALUES (1, 'QL0AFWMIX8NRZTKeof9cXsvbvu8=');
+INSERT INTO StudentLogin VALUES (2, 'QL0AFWMIX8NRZTKeof9cXsvbvu8=');
+INSERT INTO StudentLogin VALUES (3, 'QL0AFWMIX8NRZTKeof9cXsvbvu8=');
+INSERT INTO TeacherLogin VALUES (1, 'QL0AFWMIX8NRZTKeof9cXsvbvu8=');
+INSERT INTO TeacherLogin VALUES (2, 'QL0AFWMIX8NRZTKeof9cXsvbvu8=');
+INSERT INTO TeacherLogin VALUES (3, 'QL0AFWMIX8NRZTKeof9cXsvbvu8=');
+
 GO
 
 -- Insert into Payment

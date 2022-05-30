@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:TafeInformationSystem"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style TargetType="Button">
+        <!--<Style TargetType="Button">
             <Setter Property="BorderThickness" Value="1"/>
         </Style>
         
@@ -54,13 +54,13 @@
             <Setter Property="MinHeight" Value="22"/>
         </Style>
         <Style TargetType="ComboBox">
-            <!--<Setter Property="Foreground" Value="DarkOliveGreen"/>
-            <Setter Property="Background" Value="#FF373737"/>-->
+            --><!--<Setter Property="Foreground" Value="DarkOliveGreen"/>
+            <Setter Property="Background" Value="#FF373737"/>--><!--
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
         <Style TargetType="ComboBoxItem">
             <Setter Property="Foreground" Value="Black"/>
-            <!--<Setter Property="Background" Value="#FF373737"/>-->
+            --><!--<Setter Property="Background" Value="#FF373737"/>--><!--
             <Setter Property="BorderThickness" Value="0"/>
         </Style>    
         <Style TargetType="TabItem">
@@ -105,7 +105,7 @@
 
             <Setter Property="Background" Value="#FF373737"/>
             <Setter Property="Foreground" Value="#FFE7E7E8"/>
-        </Style>
+        </Style>-->
 
     </Application.Resources>
 </Application>
