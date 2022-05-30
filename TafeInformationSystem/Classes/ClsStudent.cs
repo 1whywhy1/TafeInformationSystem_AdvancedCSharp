@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TafeInformationSystem.Enums;
 
 namespace TafeInformationSystem.Classes
 {
@@ -33,7 +34,8 @@ namespace TafeInformationSystem.Classes
                 int addressID = Address.Add();
                 int id = clsDatabase.ExecInsertSP($"EXEC spInsert_student @FirstName = '{FName}', " +
                   $"@LastName = '{LName}', @DOB = '{Dob.ToString()}', @Email = '{Email}', " +
-                  $"@MobilePhone = '{Mphone}', @HomePhone = '{Hphone}', @GenderID = '{Gender}', @AddressID = {Address};");
+                  $"@MobilePhone = '{Mphone}', @HomePhone = '{Hphone}', @GenderID = '{Gender}', " +
+                  $"@AddressID = {Address};");
 
                 if (id > 0)
                 {
@@ -50,7 +52,8 @@ namespace TafeInformationSystem.Classes
 
         public override int  Delete()
         {
-            throw new Exception("You cannot delete Student record. Contact the System Admin");
+            throw new Exception("You cannot delete Student record. " +
+                "Contact the System Admin");
         }
 
         public override void RetrieveUser()
@@ -107,6 +110,45 @@ namespace TafeInformationSystem.Classes
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public DataTable Search(StudentSearchBy.SearchBy searchBy)
+        {
+            string querie = "";
+            switch (searchBy)
+            {
+                case StudentSearchBy.SearchBy.ID:
+                    querie = $"EXEC spSelectAllByID_student_address @StudentID = {ID}";
+                    break;
+                case StudentSearchBy.SearchBy.FirstName:
+                    querie = $"EXEC spSelectAllByFName_student_address @FirstName = {FName};";
+                    break;
+                case StudentSearchBy.SearchBy.LastName:
+                    querie = $"EXEC spSelectAllByFName_student_address @LastName = {LName};";
+                    break;
+                case StudentSearchBy.SearchBy.NotPaid:
+                    //querie = $"EXEC spSelectAllPastCourseForTeacher_course @TeacherID = {CourseID};";
+                    break;
+                case StudentSearchBy.SearchBy.FullTime:
+                    //querie = $"EXEC spSelectAllCourseNoCollege_course;";
+                    break;
+                case StudentSearchBy.SearchBy.PartTime:
+                    //querie = $"EXEC spSelectAllCourseNoCollege_course;";
+                    break;
+                default:
+                    return null;
+            }
+            DataTable dt = new DataTable();
+            dt = clsDatabase.ExecSPDataTable(querie);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                //CourseID = dt.Rows[0]["CourseID"].ToString();
+                //Name = dt.Rows[0]["Name"].ToString();
+                //if (courseSearchBy != SearchCriteria.CourseSearchBy.Teacher)
+                //    Description = dt.Rows[0]["Description"].ToString();
+            }
+            return dt;
         }
         #endregion
 

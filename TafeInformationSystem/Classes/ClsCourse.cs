@@ -141,28 +141,29 @@ namespace TafeInformationSystem.Classes
 
         public DataTable Search(SearchCriteria.CourseSearchBy courseSearchBy)
         {
-            DataTable dt = new DataTable();
+            string querie = "";
             switch (courseSearchBy)
             {
                 case SearchCriteria.CourseSearchBy.ID:
-                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectCourseByID_course @CourseID = {CourseID};");
+                    querie= $"EXEC spSelectCourseByID_course @CourseID = '{CourseID}';";
                     break;
                 case SearchCriteria.CourseSearchBy.Name:
-                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectCourseByName_course @Name = {Name};");
+                    querie = $"EXEC spSelectCourseByName_course @Name = '{Name}';";
                     break;
                 case SearchCriteria.CourseSearchBy.Location:
                     //dt = clsDatabase.ExecSPDataTable($"EXEC this shoould be All courses and locations and semesters for a teacher @CourseID = {CourseID};");
                     break;
-                case SearchCriteria.CourseSearchBy.Teacher:   
-                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllPastCourseForTeacher_course @TeacherID = {CourseID};");
+                case SearchCriteria.CourseSearchBy.Teacher:
+                    querie = $"EXEC spSelectAllPastCourseForTeacher_course @TeacherID = {CourseID};";
                     break;
                 case SearchCriteria.CourseSearchBy.NoLocation:
-                    dt = clsDatabase.ExecSPDataTable($"EXEC spSelectAllCourseNoCollege_course;");
+                    querie = $"EXEC spSelectAllCourseNoCollege_course;";
                     break;
                 default:
                     return null;
             }
-
+            DataTable dt = new DataTable();
+            dt = clsDatabase.ExecSPDataTable(querie);
 
             if (dt != null && dt.Rows.Count > 0)
             {

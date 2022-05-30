@@ -383,7 +383,7 @@ BEGIN
 			[Name],
 			[Description]
 	FROM Course
-	WHERE [Name] LIKE '%' + @Name + '%'
+	WHERE [Name] LIKE ('%' + @Name + '%')
 	RETURN
 END
 GO
