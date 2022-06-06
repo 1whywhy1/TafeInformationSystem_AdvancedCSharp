@@ -34,8 +34,6 @@ namespace TafeInformationSystem
         public MainWindow()
         {
             InitializeComponent();
-
-            //MessageBox.Show(ClsUtils.HashPassword("123"));
         }
 
         public MainWindow(UserType userType, string userID)
@@ -73,6 +71,20 @@ namespace TafeInformationSystem
         private void PersonalPageButton_Click(object sender, RoutedEventArgs e)
         {            
             _mainFrame.Navigate(new PersonalPage(_userID));
+
+            switch (_userType)
+            {
+                case UserType.student:
+                    _mainFrame.Navigate(new PersonalPage(_mainFrame, new ClsStudent(_userID)));
+                    break;
+                case UserType.teacher:
+                    _mainFrame.Navigate(new PersonalPage(_mainFrame, new ClsTeacher(_userID)));
+                    break;
+                case UserType.DEFAULT:
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void TeachersButton_Click(object sender, RoutedEventArgs e)

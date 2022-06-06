@@ -99,16 +99,19 @@ namespace TafeInformationSystem.Pages
         // Opens selected row to be able to edit
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (unitsDataGrid.SelectedItem != null)
             {
-                DataRowView row = (DataRowView)unitsDataGrid.SelectedItem;
+                try
+                {
+                    DataRowView row = (DataRowView)unitsDataGrid.SelectedItem;
 
-                ClsUnit unit = new ClsUnit(row.Row[0].ToString(), row.Row[1].ToString(),
-                row.Row[2].ToString(), row.Row[3].ToString(), row.Row[4].ToString());
-                _mainFrame.Navigate(new UnitsPage(_mainFrame, Enums.EntityPageType.Edit, row));
+                    ClsUnit unit = new ClsUnit(row.Row[0].ToString(), row.Row[1].ToString(),
+                    row.Row[2].ToString(), row.Row[3].ToString(), row.Row[4].ToString());
+                    _mainFrame.Navigate(new UnitsPage(_mainFrame, Enums.EntityPageType.Edit, row));
+                }
+                catch (NullReferenceException nex) { }
+                catch (Exception ex) { } 
             }
-            catch (NullReferenceException nex){ }
-            catch (Exception ex){}
         }
         #endregion
 

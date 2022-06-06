@@ -27,9 +27,10 @@ namespace TafeInformationSystem.Pages
         #region Variables
         private string _id;
         private ClsPerson _user;
-        private UserType _userType;
+        private UserType _userType = UserType.DEFAULT;
         private Control[] userInfoControls = new Control[11];
         private Control[] passwordChangeCtrls = new Control[4];
+        private Frame _mainFrame;
         #endregion
 
 
@@ -48,18 +49,29 @@ namespace TafeInformationSystem.Pages
             SetUp();
         }
 
+        public PersonalPage(Frame mainFrame, ClsPerson user)
+        {
+            InitializeComponent();
+            _mainFrame = mainFrame;
+            _user = user;
+            _id = user.ID;
+            SetUp();
+        }
+
         #endregion
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             ClsUtils.SetActiveControls(userInfoControls, true);
+            editButton.Visibility = Visibility.Hidden;
             saveButton.Visibility = Visibility.Visible;
+            cancelButton.Visibility = Visibility.Visible;
 
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ClsUtils.SetActiveControls(userInfoControls, false); 
+            ClsUtils.SetActiveControls(userInfoControls, false);
             cancelChangePassButton.Visibility = Visibility.Hidden;
             saveButton.Visibility = Visibility.Hidden;
         }
@@ -68,14 +80,15 @@ namespace TafeInformationSystem.Pages
         {
             ClsUtils.SetActiveControls(userInfoControls, false);
             PopulateFieldsFromObject();
-            cancelChangePassButton.Visibility = Visibility.Hidden;
+            editButton.Visibility = Visibility.Visible;
+            cancelButton.Visibility = Visibility.Hidden;
             saveButton.Visibility = Visibility.Hidden;
         }
 
         private void ChangePassButton_Click(object sender, RoutedEventArgs e)
         {
             RefreshPasswordFields(Visibility.Visible);
-            changePassButton.Visibility = Visibility.Hidden;   
+            changePassButton.Visibility = Visibility.Hidden;
             savePassButton.Visibility = Visibility.Visible;
         }
 
@@ -94,7 +107,7 @@ namespace TafeInformationSystem.Pages
             cancelChangePassButton.Visibility = Visibility.Hidden;
         }
 
-        private void RefreshPasswordFields( Visibility visibility)
+        private void RefreshPasswordFields(Visibility visibility)
         {
             changePassBrdr.Visibility = visibility;
             newPasswordTxt.Password = "";
@@ -105,8 +118,19 @@ namespace TafeInformationSystem.Pages
         {
             saveButton.Visibility = Visibility.Hidden;
             savePassButton.Visibility = Visibility.Hidden;
+            cancelButton.Visibility = Visibility.Hidden;
             cancelChangePassButton.Visibility = Visibility.Hidden;
+            if (_userType == UserType.DEFAULT)
+            {
+                changePassButton.Visibility = Visibility.Hidden;
 
+            }
+            else
+            {
+                changePassBrdr.Visibility = Visibility.Hidden;
+            }    
+
+            // Populating personal info text array to trigger editing mode
             userInfoControls[0] = firstNameTxt;
             userInfoControls[1] = lastNameTxt;
             userInfoControls[2] = dp1;
@@ -129,24 +153,34 @@ namespace TafeInformationSystem.Pages
 
             try
             {
-                _userType = MainWindow.getInstance().UserType;
-                switch (_userType)
+                //_userType = MainWindow.getInstance().UserType;
+                if (_user is ClsTeacher)
                 {
-                    case UserType.student:
-                        _user = new ClsStudent(_id);                       
-                        break;
-                    case UserType.teacher:
-                        _user = new ClsTeacher(_id);
-                        break;
-                    default:
-                        break;                       
+                    _user = new ClsTeacher(_id);
                 }
+
+                if (_user is ClsStudent)
+                {
+                    _user = new ClsStudent(_id);
+                }
+
+                //switch (_userType)
+                //{
+                //    case UserType.student:
+                //        _user = new ClsStudent(_id);                       
+                //        break;
+                //    case UserType.teacher:
+                //        _user = new ClsTeacher(_id);
+                //        break;
+                //    default:
+                //        break;                       
+                //}
 
                 PopulateFieldsFromObject();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);    
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -157,7 +191,7 @@ namespace TafeInformationSystem.Pages
 
         private void PopulateFieldsFromObject()
         {
-            if(_user != null)
+            if (_user != null)
             {
                 idTxt.Text = _user.ID;
                 firstNameTxt.Text = _user.FName;
@@ -173,7 +207,13 @@ namespace TafeInformationSystem.Pages
                 stateCmb.Text = _user.Address.State;
                 postcodeTxt.Text = _user.Address.Postcode;
             }
-            
+
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            // need to fix, says navigation backlog is empty
+            _mainFrame.NavigationService.GoBack();
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TafeInformationSystem.Enums
 {
-    class SearchCriteria
+    public class SearchCriteria
     {
-        internal enum StudentSearchBy
+        public enum StudentSearchBy
         {
             ID,
             FirstName,
@@ -17,14 +17,14 @@ namespace TafeInformationSystem.Enums
             FullTime,
             PartTime
         }
-        internal enum TeacherSearchBy
+        public enum TeacherSearchBy
         {
             ID,
             FirstName,
             LastName,
             Location
         }
-        internal enum CourseSearchBy
+        public enum CourseSearchBy
         {
             ID,
             Name,
@@ -32,14 +32,14 @@ namespace TafeInformationSystem.Enums
             Teacher,
             NoLocation
         }
-        internal enum UnitSearchBy
+        public enum UnitSearchBy
         {
             ID,
             Name,
             AllForCourse,
             NotAllocated            
         }
-        internal enum EnrolmentSearchBy
+        public enum EnrolmentSearchBy
         {
             ID,
             StudentID

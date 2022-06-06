@@ -10,7 +10,7 @@ using DLLDatabase;
 
 namespace TafeInformationSystem.Classes
 {
-    abstract class ClsPerson : IInfoInteractable
+    public abstract class ClsPerson : IInfoInteractable
     {
         #region Fields
         private int _id;

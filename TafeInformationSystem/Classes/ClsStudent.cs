@@ -21,6 +21,27 @@ namespace TafeInformationSystem.Classes
             ID = id;
             RetrieveUser();
         }
+
+        public ClsStudent(string value, SearchCriteria.StudentSearchBy searchBy)
+        {
+            switch (searchBy)
+            {
+                case SearchCriteria.StudentSearchBy.ID:
+                    ID = value;
+                    break;
+                case SearchCriteria.StudentSearchBy.FirstName:
+                    FName = value;
+                    break;
+                case SearchCriteria.StudentSearchBy.LastName:
+                    LName = value;
+                    break;
+                case SearchCriteria.StudentSearchBy.NotPaid:
+                    // logic for finding students that have not paid the fees fully
+                    break;              
+                default:
+                    break;
+            }
+        }
         #endregion
 
         #region Properties
@@ -112,41 +133,46 @@ namespace TafeInformationSystem.Classes
             }
         }
 
-        public DataTable Search(StudentSearchBy.SearchBy searchBy)
+        public DataTable Search(SearchCriteria.StudentSearchBy searchBy)
         {
             string querie = "";
             switch (searchBy)
             {
-                case StudentSearchBy.SearchBy.ID:
+                case SearchCriteria.StudentSearchBy.ID:
                     querie = $"EXEC spSelectAllByID_student_address @StudentID = {ID}";
                     break;
-                case StudentSearchBy.SearchBy.FirstName:
+                case SearchCriteria.StudentSearchBy.FirstName:
                     querie = $"EXEC spSelectAllByFName_student_address @FirstName = {FName};";
                     break;
-                case StudentSearchBy.SearchBy.LastName:
+                case SearchCriteria.StudentSearchBy.LastName:
                     querie = $"EXEC spSelectAllByFName_student_address @LastName = {LName};";
                     break;
-                case StudentSearchBy.SearchBy.NotPaid:
-                    //querie = $"EXEC spSelectAllPastCourseForTeacher_course @TeacherID = {CourseID};";
+                case SearchCriteria.StudentSearchBy.NotPaid:
                     break;
-                case StudentSearchBy.SearchBy.FullTime:
-                    //querie = $"EXEC spSelectAllCourseNoCollege_course;";
+                case SearchCriteria.StudentSearchBy.FullTime:
                     break;
-                case StudentSearchBy.SearchBy.PartTime:
-                    //querie = $"EXEC spSelectAllCourseNoCollege_course;";
+                case SearchCriteria.StudentSearchBy.PartTime:
                     break;
                 default:
                     return null;
             }
+           
             DataTable dt = new DataTable();
             dt = clsDatabase.ExecSPDataTable(querie);
 
             if (dt != null && dt.Rows.Count > 0)
             {
-                //CourseID = dt.Rows[0]["CourseID"].ToString();
-                //Name = dt.Rows[0]["Name"].ToString();
-                //if (courseSearchBy != SearchCriteria.CourseSearchBy.Teacher)
-                //    Description = dt.Rows[0]["Description"].ToString();
+                ID = dt.Rows[0]["StudentID"].ToString();
+                FName = dt.Rows[0]["FirstName"].ToString();
+                LName = dt.Rows[0]["LastName"].ToString();
+                Dob = (DateTime)dt.Rows[0]["DOB"];
+                Email = dt.Rows[0]["Email"].ToString();
+                Hphone = dt.Rows[0]["HomePhone"].ToString();
+                Mphone = dt.Rows[0]["MobilePhone"].ToString();
+                Gender = (int)dt.Rows[0]["GenderID"];
+                Address = new ClsAddress(dt.Rows[0]["StreetAddress"].ToString(),
+                    dt.Rows[0]["AptNumber"].ToString(), dt.Rows[0]["Postcode"].ToString(),
+                    dt.Rows[0]["City"].ToString(), dt.Rows[0]["State"].ToString());
             }
             return dt;
         }

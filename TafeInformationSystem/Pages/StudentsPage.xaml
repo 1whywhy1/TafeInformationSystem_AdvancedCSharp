@@ -69,29 +69,29 @@
                     Margin="0,5,10,10" ScrollViewer.CanContentScroll="True">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Student ID" Width="60" DisplayMemberBinding="{Binding studentID}" />
-                    <GridViewColumn Header="First Name" Width="60" DisplayMemberBinding="{Binding firstName}" />
-                    <GridViewColumn Header="Last Name" Width="80" DisplayMemberBinding="{Binding lastName}" />
-                    <GridViewColumn Header="Date of Birth" Width="100" DisplayMemberBinding="{Binding dob, StringFormat='dd-MM-yyyy'}" />
+                    <GridViewColumn Header="Student ID" Width="60" DisplayMemberBinding="{Binding StudentID}" />
+                    <GridViewColumn Header="First Name" Width="60" DisplayMemberBinding="{Binding FirstName}" />
+                    <GridViewColumn Header="Last Name" Width="80" DisplayMemberBinding="{Binding LastName}" />
+                    <GridViewColumn Header="Date of Birth" Width="100" DisplayMemberBinding="{Binding DOB, StringFormat='dd-MM-yyyy'}" />
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="1" Grid.Column="4"
                     Grid.RowSpan="14" Orientation="Vertical">
-            <Button x:Name="searchNameButton" Content="Search" 
+            <Button x:Name="searchButton" Content="Search" 
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SearchNameButton_Click"     
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SearchButton_Click"     
                 />           
             <Button x:Name="clearButton" Content="Clear"              
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="ClearButton_Click"    
                 />
-            <Button x:Name="editButton" Content="Edit Selected" 
+            <Button x:Name="openSelectedButton" Content="Open Selected" 
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="EditButton_Click"     
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="OpenSelectedButton_Click"     
                 />
             <Button x:Name="deleteButton" Content="Delete"              
                 Margin="5,50,10,0" MinHeight="50"
@@ -99,10 +99,10 @@
                 FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8" Click="DeleteButton_Click"                     
                 />
 
-            <Button x:Name="menuButton" Content="To Menu"              
+            <Button x:Name="backButton" Content="Back"              
                 Margin="5,25,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="MenuButton_Click"    
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="BackButton_Click"    
                 />
         </StackPanel>
     </Grid>

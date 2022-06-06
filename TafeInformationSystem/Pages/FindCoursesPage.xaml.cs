@@ -101,8 +101,7 @@ namespace TafeInformationSystem.Pages
                     DataRowView row = (DataRowView)coursesListView.SelectedItem;
 
                     ClsCourse course = new ClsCourse(row.Row[0].ToString(), row.Row[1].ToString(),
-                    row.Row[2].ToString());
-                    MessageBox.Show(row.Row[0].ToString() + row.Row[1].ToString() + row.Row[2].ToString());
+                    row.Row[2].ToString());                    
                     _mainFrame.Navigate(new CoursesPage(_mainFrame, Enums.EntityPageType.Edit, row));
                 }
                

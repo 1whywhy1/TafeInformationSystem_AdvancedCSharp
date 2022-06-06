@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TafeInformationSystem.Classes;
 using TafeInformationSystem.Enums;
 
 namespace TafeInformationSystem.Pages
@@ -24,6 +25,7 @@ namespace TafeInformationSystem.Pages
         #region Fields
         private Frame _mainFrame;
         private UserType _userType;
+        private ClsPerson _user;
 
         #endregion
 
@@ -37,6 +39,13 @@ namespace TafeInformationSystem.Pages
         {
             InitializeComponent();
             _mainFrame = mainFrame;
+        }
+        public PersonPage(Frame mainFrame, ClsPerson person)
+        {
+            InitializeComponent();
+            _mainFrame = mainFrame;
+            _user = person; 
+            
         }
 
         public PersonPage(Frame mainFrame, UserType userType)

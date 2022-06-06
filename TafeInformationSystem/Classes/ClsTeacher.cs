@@ -5,19 +5,43 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TafeInformationSystem.Enums;
 
 namespace TafeInformationSystem.Classes
 {
     internal class ClsTeacher : ClsPerson
     {
-        #region Constructor
+        #region Constructors
         public ClsTeacher() { }
         public ClsTeacher(string id)
         {
             ID = id;
             RetrieveUser();
         }
+
+        public ClsTeacher(string value, SearchCriteria.TeacherSearchBy searchBy) 
+        {
+            switch (searchBy)
+            {
+                case SearchCriteria.TeacherSearchBy.ID:
+                    ID = value;
+                    break;
+                case SearchCriteria.TeacherSearchBy.FirstName:
+                    FName = value;
+                    break;
+                case SearchCriteria.TeacherSearchBy.LastName:
+                    LName = value;
+                    break;
+                case SearchCriteria.TeacherSearchBy.Location:
+                    FName = value;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         #endregion
+
         #region DB funcitonality
         public override int Add()
         {
@@ -43,7 +67,8 @@ namespace TafeInformationSystem.Classes
 
         public override int Delete()
         {
-            throw new Exception("You cannot delete a teacher, contact your System Admin");            
+            throw new Exception("You cannot delete a teacher, " +
+                "contact your System Admin");            
         }
 
         public override void Update()
@@ -61,9 +86,45 @@ namespace TafeInformationSystem.Classes
             }
         }
 
-        public int Search()
+        public DataTable Search(SearchCriteria.TeacherSearchBy searchBy)
         {
-            return 1;
+            string querie = "";
+            switch (searchBy)
+            {
+                case SearchCriteria.TeacherSearchBy.ID:
+                    querie = $"EXEC spSelectAllByID_Teacher_address @TeacherID = '{ID}';";
+                    break;
+                case SearchCriteria.TeacherSearchBy.FirstName:
+                    querie = $"EXEC spSelectAllByFName_Teacher_address @FirstName = '{FName}';";
+                    break;
+                case SearchCriteria.TeacherSearchBy.LastName:
+                  //  querie = $"
+                    break;
+                case SearchCriteria.TeacherSearchBy.Location:
+                    querie = $"EXEC spSelectAllTeachersByCollege_teacher_college @CollegeName = '{FName}';";
+                    break;
+                default:
+                    return null;
+            }
+
+            DataTable dt = new DataTable();
+            dt = clsDatabase.ExecSPDataTable(querie);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                ID = dt.Rows[0]["TeacherID"].ToString();
+                FName = dt.Rows[0]["FirstName"].ToString();
+                LName = dt.Rows[0]["LastName"].ToString();
+                Dob = (DateTime)dt.Rows[0]["DOB"];
+                Email = dt.Rows[0]["Email"].ToString();
+                Hphone = dt.Rows[0]["HomePhone"].ToString();
+                Mphone = dt.Rows[0]["MobilePhone"].ToString();
+                Gender = (int)dt.Rows[0]["GenderID"];
+                Address = new ClsAddress(dt.Rows[0]["StreetAddress"].ToString(), 
+                    dt.Rows[0]["AptNumber"].ToString(), dt.Rows[0]["Postcode"].ToString(),
+                    dt.Rows[0]["City"].ToString(), dt.Rows[0]["State"].ToString());
+            }
+            return dt;
         }
 
         public override void RetrieveUser()

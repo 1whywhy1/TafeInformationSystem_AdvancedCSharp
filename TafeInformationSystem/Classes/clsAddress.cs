@@ -9,7 +9,7 @@ using TafeInformationSystem.Interfaces;
 
 namespace TafeInformationSystem.Classes
 {
-    class ClsAddress : IInfoInteractable
+    public class ClsAddress : IInfoInteractable
     {
         #region Fields
         private int _id;
@@ -28,6 +28,17 @@ namespace TafeInformationSystem.Classes
                         string city, string state) 
         {
             _id = id;
+            _streetAddress = streedAddress;
+            _apt = apt;
+            _postcode = postcode;
+            _city = city;
+            _state = state;
+        }
+
+        public ClsAddress(string streedAddress,
+                       string apt, string postcode,
+                       string city, string state)
+        {
             _streetAddress = streedAddress;
             _apt = apt;
             _postcode = postcode;
