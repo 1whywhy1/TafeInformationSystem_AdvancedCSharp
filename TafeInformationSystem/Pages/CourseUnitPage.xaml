@@ -15,18 +15,12 @@
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -40,69 +34,120 @@
                    Grid.ColumnSpan="3" 
                    FontSize="20" 
                    Text="Assign Units to Course"/>
-        <TextBlock Grid.Row="2" Grid.Column="2"
-                   Margin="0,5,10,10"
-                   Text="Unit 1 ID"/>
-        <TextBlock Grid.Row="2" Grid.Column="3"
-                   Margin="0,5,10,10"
-                   Text="Unit 2 ID"/>
-        <TextBlock Grid.Row="2" Grid.Column="4"
-                   Margin="0,5,10,10"
-                   Text="Unit 3 ID"/>
-        <ComboBox x:Name="unit1Cmb"
-                Grid.Row="3" Grid.Column="2"
-                MinWidth="200" Margin="0,5,10,10"/>
-        <ComboBox x:Name="unit2Cmb"
-                Grid.Row="3" Grid.Column="3"
-                MinWidth="200" Margin="0,5,5,10"/>
-        <ComboBox x:Name="unit3Cmb" 
-                Grid.Row="3" Grid.Column="4"
-                MinWidth="200" Margin="0,5,10,10"/>
-
         <TextBlock Grid.Row="2" Grid.Column="1"
-                   Margin="0,5,5,10" HorizontalAlignment="Right"
-                   Text="Assign"/>
-   
-        <TextBlock Grid.Row="5" Grid.Column="4"
-                   Margin="0,5,10,10"
-                   Text="Refer by"
-                   />
-        <TextBlock Grid.Row="5" Grid.Column="1"
-                   Margin="0,5,5,10" HorizontalAlignment="Right"
-                   Text="To"
-                   />
-        <TextBlock Grid.Row="5" Grid.Column="2"
                    Margin="0,5,10,10"
                    Text="Course"
+                   />      
+        
+        <ComboBox  x:Name="courseCmb" 
+                    Grid.Row="3" Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    MinWidth="200" Margin="0,5,10,10"
+                    ItemsSource="{Binding CourseInfo}" SelectionChanged="courseCmb_SelectionChanged" />
+       
+        <TextBlock Grid.Row="4" Grid.Column="1"
+                   Margin="0,5,10,10"
+                   Text="Assigned Units"
                    />
-        <ComboBox Grid.Row="6" Grid.Column="4"    
-                  Margin="0,5,10,10">
-            <ComboBoxItem>Name</ComboBoxItem>
-            <ComboBoxItem>Course ID</ComboBoxItem>
-        </ComboBox>
-        <ComboBox x:Name="valueText"
-                Grid.Row="6" Grid.Column="2"
-                Grid.ColumnSpan="2"
-                MinWidth="200" Margin="0,5,10,10"/>
+      
+        <ListView  x:Name="courseUnitsListView"
+                    Grid.Row="5" Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    MinWidth="300" MinHeight="170"
+                    Margin="0,5,10,10" ScrollViewer.CanContentScroll="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Unit ID" Width="45" DisplayMemberBinding="{Binding UnitID}" />
+                    <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}" />
+                
+                </GridView>
+            </ListView.View>
+        </ListView>
+     
+        <StackPanel x:Name="editPnl"
+                    Grid.Row="3" Grid.Column="3"
+                    Grid.ColumnSpan="2" Grid.RowSpan="3"
+                    Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <Button x:Name="addUnitBtn" Content="Add" 
+                Margin="5,75,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AddUnitBtn_Click"     
+                />
+                <Button x:Name="deleteFromCourseBtn" Content="Delete" 
+                Margin="5,125,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8" Click="DeleteFromCourseBtn_Click"     
+                />
+            </StackPanel>
 
+            <Grid >
 
-        <StackPanel Grid.Row="1" Grid.Column="5"
-                    Grid.RowSpan="14" Orientation="Vertical">
-            <Button x:Name="assignButton" Content="Assign" 
-                    Margin="5,85,10,0" MinHeight="50"
-                    BorderThickness="0"
-                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AssignButton_Click"     
-                    />
-            <Button x:Name="unassignButton" Content="Unassign" 
-                    Margin="5,75,10,0" MinHeight="50"
-                    BorderThickness="0"
-                    FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8" Click="DeassignButton_Click"     
-                    />       
-            <Button x:Name="menuButton" Content="Back"              
-                    Margin="5,90,10,0" MinHeight="50"
-                    BorderThickness="0"
-                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="MenuButton_Click"    
-                    />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row ="0"
+                    Margin="0,5,10,10"
+                    Text="Select Units to add from"
+                   />
+                <TextBlock Grid.Row ="1"
+                    Margin="0,5,10,10"
+                    Text="All Units"
+                   />
+                <ListView x:Name="unitsListView"
+                    VerticalAlignment="Stretch"
+                    ItemsSource="{Binding UnitInfo}"
+                    Grid.Row="2"
+                    MinWidth="300" MinHeight="170"
+                    Margin="0,5,10,10" ScrollViewer.CanContentScroll="True">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Unit ID" Width="45" DisplayMemberBinding="{Binding UnitID}" />
+                            <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}" />
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </Grid>
         </StackPanel>
+       
+
+        <StackPanel Grid.Row="1" Grid.Column="6"
+                    Grid.RowSpan="14" Orientation="Vertical">         
+
+            <Button x:Name="editButton" Content="Edit" 
+                Margin="5,5,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="EditButton_Click"            
+                />
+
+            <Button x:Name="updateButton" Content="Save/Update"              
+                Margin="5,5,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="UpdateButton_Click"    
+                />
+            <Button x:Name="cancelButton" Content="Cancel"              
+                Margin="5,5,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="CancelButton_Click"    
+                />          
+            <Button x:Name="backButton" Content="Back"              
+                Margin="5,150,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="BackButton_Click"    
+
+                />
+
+        </StackPanel>
+  
     </Grid>
+
+   
 </Page>

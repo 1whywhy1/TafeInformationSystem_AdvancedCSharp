@@ -28,8 +28,6 @@ namespace TafeInformationSystem
         private string _userID = "1";
         #endregion
 
-
-
         #region Constructors
         public MainWindow()
         {

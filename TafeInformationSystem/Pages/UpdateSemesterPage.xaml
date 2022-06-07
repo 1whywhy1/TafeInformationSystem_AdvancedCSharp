@@ -74,6 +74,16 @@
                     BorderThickness="0"
                     FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="UpdateButton_Click"     
                     />
+            <Button x:Name="cancelButton" Content="Cancel" 
+                    Margin="5,10,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8"    
+                    />
+            <Button x:Name="deleteButton" Content="Delete" 
+                    Margin="5,50,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8"    
+                    />
 
             <Button x:Name="menuButton" Content="Back"              
                     Margin="5,90,10,0" MinHeight="50"

@@ -36,45 +36,6 @@ namespace TafeInformationSystem.Pages
             _mainFrame = mainFrame;
         }
 
-        private void SearchNameButton_Click(object sender, RoutedEventArgs e)
-        {
-          
-        }
-
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
-        {
-            studentsListView.ItemsSource = null;
-            searchCriteriaText.Text = string.Empty;
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OpenSelectedButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (studentsListView.SelectedItem != null)
-                {
-                    DataRowView row = (DataRowView)studentsListView.SelectedItem;
-
-                    ClsStudent student = new ClsStudent(row.Row[0].ToString());
-                    student.Search(SearchCriteria.StudentSearchBy.ID);
-                    _mainFrame.Navigate(new PersonalPage(_mainFrame, student));
-                }
-
-            }
-            catch (NullReferenceException nex) { }
-            catch (Exception ex) { }
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            _mainFrame.NavigationService.GoBack();
-        }
-
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             DataTable dt;
@@ -117,5 +78,39 @@ namespace TafeInformationSystem.Pages
                 studentsListView.ItemsSource = dt.DefaultView;
             }
         }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            studentsListView.ItemsSource = null;
+            searchCriteriaText.Text = string.Empty;
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OpenSelectedButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (studentsListView.SelectedItem != null)
+                {
+                    DataRowView row = (DataRowView)studentsListView.SelectedItem;
+
+                    ClsStudent student = new ClsStudent(row.Row[0].ToString());
+                    student.Search(SearchCriteria.StudentSearchBy.ID);
+                    _mainFrame.Navigate(new PersonalPage(_mainFrame, student));
+                }
+
+            }
+            catch (NullReferenceException nex) { }
+            catch (Exception ex) { }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.GoBack();
+        }  
     }
 }

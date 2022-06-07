@@ -383,10 +383,12 @@ BEGIN
 			[Name],
 			[Description]
 	FROM Course
-	WHERE [Name] LIKE ('%' + @Name + '%')
+	WHERE Course.[Name] LIKE ('%' + @Name + '%')
 	RETURN
 END
 GO
+
+EXEC spSelectCourseByName_course @Name = 'ram';
 
 --Retrieve all Courses not allowcated to a College
 CREATE PROCEDURE spSelectAllCourseNoCollege_course

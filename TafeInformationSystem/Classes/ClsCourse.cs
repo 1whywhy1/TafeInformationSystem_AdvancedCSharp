@@ -159,6 +159,9 @@ namespace TafeInformationSystem.Classes
                 case SearchCriteria.CourseSearchBy.NoLocation:
                     querie = $"EXEC spSelectAllCourseNoCollege_course;";
                     break;
+                case SearchCriteria.CourseSearchBy.All:
+                    querie = $"SELECT CourseID, Name FROM Course ORDER BY CourseID;";
+                    break;
                 default:
                     return null;
             }

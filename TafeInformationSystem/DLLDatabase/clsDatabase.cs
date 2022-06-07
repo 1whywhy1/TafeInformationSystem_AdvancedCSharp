@@ -223,6 +223,7 @@ namespace DLLDatabase
                 }
                 else
                 {
+                    ClsMessenger.ShowMessage("huj");
                     return null;
                 }
             }

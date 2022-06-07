@@ -30,19 +30,37 @@ namespace TafeInformationSystem.Enums
             Name,
             Location,
             Teacher,
-            NoLocation
+            NoLocation,
+            All
         }
         public enum UnitSearchBy
         {
             ID,
             Name,
             AllForCourse,
-            NotAllocated            
+            NotAllocated,
+            All
         }
         public enum EnrolmentSearchBy
         {
             ID,
             StudentID
         }
+
+        public enum CCSSearchBy
+        {
+            ID,
+            CourseID,
+            CollegeID,
+            SemesterID,
+            All
+        }
+
+        public enum SemesterSearchBy
+        {
+            ID,
+            All
+        }
+
     }
 }
