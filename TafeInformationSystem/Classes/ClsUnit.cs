@@ -44,6 +44,11 @@ namespace TafeInformationSystem.Classes
                     break;
             }
         }
+        public ClsUnit(string id, string name)
+        {
+            UnitID = id;
+            Name = name;
+        }
 
         public ClsUnit(string name, string description, string pointValue, string price)
         {

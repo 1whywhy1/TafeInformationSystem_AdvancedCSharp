@@ -60,24 +60,60 @@
                    Margin="0,5,10,10"
                    Text="Semester ID"
                    />
+        <TextBlock Grid.Row="5" Grid.Column="4"
+                   Margin="0,5,10,10"
+                   Text="Semester Name"
+                   />
         <DatePicker x:Name="endDP"
                     Grid.Row="3" Grid.Column="4"    
                     Margin="0,5,10,10" MinWidth="200">
          
         </DatePicker>
-        <TextBox x:Name="semesterIDText"
+        <TextBox x:Name="semesterIDTxt"
                 Grid.Row="6" Grid.Column="2"
-                Grid.ColumnSpan="2"
                 IsEnabled="False"
+                MinWidth="100" Margin="0,5,10,10"/>
+        <TextBox x:Name="semesterNameTxt"
+                Grid.Row="6" Grid.Column="4"
                 MinWidth="200" Margin="0,5,10,10"/>
+        <TextBlock Grid.Row="7" Grid.Column="1"
+                   Margin="0,15,0,20"
+                   Grid.ColumnSpan="3" 
+                   Text="All Semesters"/>
+        <ListView x:Name="semestersLV"
+                Grid.Row="8" Grid.Column="1"
+                Grid.ColumnSpan="4"
+                Grid.RowSpan="5"
+                ItemsSource="{Binding}"
+                DataContext="{Binding Path=SemesterInfo,Mode =TwoWay}"
+                MinWidth="300" MinHeight="170"
+                Margin="0,5,10,10"
+                   ScrollViewer.CanContentScroll="True">>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="45" DisplayMemberBinding="{Binding SemesterID}" />
+                    <GridViewColumn Header="Name" Width="75" DisplayMemberBinding="{Binding SemesterName}" />
+                    <GridViewColumn Header="Start Date" Width="120" DisplayMemberBinding="{Binding StartDate}" />
+                    <GridViewColumn Header="End Date" Width="120" DisplayMemberBinding="{Binding EndDate}" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        
         <StackPanel Grid.Row="1" Grid.Column="5"
                     Grid.RowSpan="14" Orientation="Vertical">
             <Button x:Name="addButton" Content="Add Semester" 
                     Margin="5,85,10,0" MinHeight="50"
                     BorderThickness="0"
-                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AssignButton_Click"     
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AddButton_Click"     
                     />
-          
+            <Button x:Name="clearButton" Content="Clear" 
+                    Margin="5,85,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AddButton_Click"     
+                    />
+
             <Button x:Name="menuButton" Content="Back"              
                     Margin="5,90,10,0" MinHeight="50"
                     BorderThickness="0"

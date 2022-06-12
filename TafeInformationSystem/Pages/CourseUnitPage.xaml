@@ -53,8 +53,12 @@
         <ListView  x:Name="courseUnitsListView"
                     Grid.Row="5" Grid.Column="1"
                     Grid.ColumnSpan="2"
+                    ItemsSource="{Binding}"
+                    DataContext="{Binding Path=UnitCourseInfo,Mode =TwoWay}"
+                   
                     MinWidth="300" MinHeight="170"
-                    Margin="0,5,10,10" ScrollViewer.CanContentScroll="True">
+                    Margin="0,5,10,10"
+                   ScrollViewer.CanContentScroll="True">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Unit ID" Width="45" DisplayMemberBinding="{Binding UnitID}" />
@@ -70,12 +74,12 @@
                     Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
                 <Button x:Name="addUnitBtn" Content="Add" 
-                Margin="5,75,10,0" MinHeight="50"
+                Margin="0,75,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AddUnitBtn_Click"     
                 />
                 <Button x:Name="deleteFromCourseBtn" Content="Delete" 
-                Margin="5,125,10,0" MinHeight="50"
+                Margin="0,125,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8" Click="DeleteFromCourseBtn_Click"     
                 />
@@ -84,6 +88,7 @@
             <Grid >
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
@@ -102,8 +107,9 @@
                    />
                 <ListView x:Name="unitsListView"
                     VerticalAlignment="Stretch"
-                    ItemsSource="{Binding UnitInfo}"
-                    Grid.Row="2"
+                    ItemsSource="{Binding}"
+                    DataContext="{Binding Path=UnitInfo, Mode=TwoWay}"
+                    Grid.Row="3"
                     MinWidth="300" MinHeight="170"
                     Margin="0,5,10,10" ScrollViewer.CanContentScroll="True">
                     <ListView.View>

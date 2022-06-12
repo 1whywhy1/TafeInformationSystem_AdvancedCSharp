@@ -16,7 +16,6 @@ namespace TafeInformationSystem.Classes
         public ClsTeacher(string id)
         {
             ID = id;
-            RetrieveUser();
         }
 
         public ClsTeacher(string value, SearchCriteria.TeacherSearchBy searchBy) 
@@ -40,6 +39,12 @@ namespace TafeInformationSystem.Classes
             }
         }
 
+        public ClsTeacher(string fname, string lname, DateTime dob,
+                  ClsAddress address, string email,
+                  string hphone, string mphone, int gender)
+                : base(fname, lname, dob, address, email, hphone, mphone, gender)
+        { }
+
         #endregion
 
         #region DB funcitonality
@@ -47,15 +52,30 @@ namespace TafeInformationSystem.Classes
         {
             try
             {
-                int addressID = Address.Add();
-                int id = clsDatabase.ExecInsertSP($"EXEC spInsert_Teacher  @FirstName = '{FName}', " +
-                    $"@LastName = '{LName}', @DOB = '{Dob.ToString()}', @Email = '{Email}', " +
-                    $"@MobilePhone = '{Mphone}', @HomePhone = '{Hphone}', @GenderID = '{Gender}', @AddressID = {Address};");
+                // Push Teacher Address to SQL
+                int addressID = clsDatabase.ExecInsertSP($"EXEC spInsert_TeacherAddress " +
+                $"@StreetAddress = '{Address.StreetAddress}', " +
+                $"@AptNumber = '{Address.Apt}', @Postcode = '{Address.Postcode}', " +
+                $"@City = '{Address.City}', @State = '{Address.State}';");
+
+                if (addressID > 0)
+                {
+                    Address.ID = addressID;
+                }
+
+                // Push Teacher Info to SQL
+                int id = clsDatabase.ExecInsertSP($"EXEC spInsert_Teacher @FirstName = '{FName}', " +
+                  $"@LastName = '{LName}', @DOB = '{Dob.ToString("yyyy-MM-dd")}', @Email = '{Email}', " +
+                  $"@MobilePhone = '{Mphone}', @HomePhone = '{Hphone}', @GenderID = {Gender.ToString()}, " +
+                  $"@AddressID = {Address.ID.ToString()};");
 
                 if (id > 0)
                 {
                     ID = id.ToString();
                 }
+
+                // Insert Teacher Login Info into DB
+                AddLoginInfo();
 
                 return id;
             }
@@ -75,9 +95,11 @@ namespace TafeInformationSystem.Classes
         {
             try
             {
-                clsDatabase.ExecSP($"EXEC spUpdate_course  @TeacherID = {ID},  @FirstName = '{FName}', " +
-                    $"@LastName = '{LName}', @DOB = '{Dob.ToString()}', @Email = '{Email}', " +
-                    $"@MobilePhone = '{Mphone}', @HomePhone = '{Hphone}', @GenderID = '{Gender}', @AddressID = {Address};");
+                clsDatabase.ExecSP($"EXEC spUpdate_Teacher_TeacherAddress  @TeacherID = {ID},  @FirstName = '{FName}', " +
+                    $"@LastName = '{LName}', @DOB = '{Dob.ToString("yyyy-MM-dd")}', @Email = '{Email}', " +
+                    $"@MobilePhone = '{Mphone}', @HomePhone = '{Hphone}', @GenderID = '{Gender}', " +
+                    $"@StreetAddress = '{Address.StreetAddress}', @AptNumber = '{Address.Apt}', " +
+                    $"@Postcode = '{Address.Postcode}', @City = '{Address.City}', @State = '{Address.State}';");
 
             }
             catch (Exception ex)
@@ -162,5 +184,28 @@ namespace TafeInformationSystem.Classes
         }
 
         #endregion
+
+        #region Login
+        public override bool Login(string login, string password)
+        {
+            return clsDatabase.Login(UserType.teacher, login, password);
+        }
+        #endregion
+
+        #region Update Password
+        public override void UpdatePassword(string oldPassword, string newPassword)
+        {
+            if (clsDatabase.Login(UserType.teacher, ID, oldPassword) && 
+                oldPassword != "" && newPassword != "")
+            {
+                clsDatabase.ExecuteNonQuery($"UPDATE TeacherLogin " +
+                $"SET Password = '{ClsUtils.HashPassword(newPassword)}' WHERE TeacherID = {ID};");
+            }
+        }
+        #endregion
+        public override void AddLoginInfo()
+        {
+            clsDatabase.ExecuteNonQuery($"INSERT INTO TeacherLogin(TeacherID) VALUES  ({ID});");
+        }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TafeInformationSystem.Classes;
 
 namespace TafeInformationSystem.Pages
 {
@@ -20,8 +21,13 @@ namespace TafeInformationSystem.Pages
     /// </summary>
     public partial class SemesterPage : Page
     {
-        Frame _mainFrame;
+        #region Fields
+        private Frame _mainFrame;
+        private ClsSemester _semester;
 
+        #endregion
+
+        #region Constructors
         public SemesterPage()
         {
             InitializeComponent();
@@ -32,7 +38,10 @@ namespace TafeInformationSystem.Pages
             _mainFrame = mainFrame;
         }
 
-        private void AssignButton_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+        #region Buttons
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -41,5 +50,15 @@ namespace TafeInformationSystem.Pages
         {
             _mainFrame.NavigationService.GoBack();
         }
+
+        #endregion
+
+        #region SetUp
+        private void SetUp()
+        {
+            _semester = new ClsSemester();
+            DataContext = _semester;
+        }
+        #endregion
     }
 }

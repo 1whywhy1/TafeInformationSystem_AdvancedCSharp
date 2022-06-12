@@ -111,7 +111,7 @@ namespace TafeInformationSystem.Pages
 
                     ClsTeacher teacher = new ClsTeacher(row.Row[0].ToString());
                     teacher.Search(Enums.SearchCriteria.TeacherSearchBy.ID);
-                    _mainFrame.Navigate(new PersonalPage(_mainFrame, teacher));
+                    _mainFrame.Navigate(new PersonalPage(_mainFrame, teacher, Enums.UIState.View));
                 }
 
             }

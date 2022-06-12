@@ -100,9 +100,9 @@ namespace TafeInformationSystem.Pages
 
                     ClsStudent student = new ClsStudent(row.Row[0].ToString());
                     student.Search(SearchCriteria.StudentSearchBy.ID);
-                    _mainFrame.Navigate(new PersonalPage(_mainFrame, student));
-                }
+                    _mainFrame.Navigate(new PersonalPage(_mainFrame, student, Enums.UIState.View));
 
+                }
             }
             catch (NullReferenceException nex) { }
             catch (Exception ex) { }

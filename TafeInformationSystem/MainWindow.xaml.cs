@@ -56,6 +56,7 @@ namespace TafeInformationSystem
         #region Properties
         public UserType UserType { get { return _userType; } set { _userType = value; } }
         public string UserID { get { return _userID; } set { _userID = value; } }
+
         #endregion
 
         #region Navigation Buttons
@@ -67,16 +68,14 @@ namespace TafeInformationSystem
         }
 
         private void PersonalPageButton_Click(object sender, RoutedEventArgs e)
-        {            
-            _mainFrame.Navigate(new PersonalPage(_userID));
-
+        {   
             switch (_userType)
             {
                 case UserType.student:
-                    _mainFrame.Navigate(new PersonalPage(_mainFrame, new ClsStudent(_userID)));
+                    _mainFrame.Navigate(new PersonalPage(_mainFrame, new ClsStudent(_userID), UIState.Default));
                     break;
                 case UserType.teacher:
-                    _mainFrame.Navigate(new PersonalPage(_mainFrame, new ClsTeacher(_userID)));
+                    _mainFrame.Navigate(new PersonalPage(_mainFrame, new ClsTeacher(_userID), UIState.Default));
                     break;
                 case UserType.DEFAULT:
                     break;

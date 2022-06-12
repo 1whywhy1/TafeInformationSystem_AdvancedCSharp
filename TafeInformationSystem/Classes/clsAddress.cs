@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLLDatabase;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -67,21 +68,27 @@ namespace TafeInformationSystem.Classes
         #region Functionality
         public int Add()
         {
-            throw new NotImplementedException();
+            int result = clsDatabase.ExecInsertSP($"EXEC spInsert_studentAddress " +
+                $"@StreetAddress = '{StreetAddress}', " +
+                $"@AptNumber = '{Apt}', @Postcode = '{Postcode}', " +
+                $"@City = '{City}', @State = '{State}';");
+            if (result > 0)
+            {
+                ID = result;
+            }
+            return result;
         }
 
         public int Delete()
         {
-            throw new NotImplementedException();
+            ClsMessenger.ShowMessage("You cannot delete address. If required, consult with your system administrator.");
+            return 1;
         }
 
-        public DataTable Search(SearchCriteria.UnitSearchBy unitSearchBy)
-        {
-            throw new NotImplementedException();
-        }
-
+     
         public void Update()
         {
+            // Update is done through ClsStudent
             throw new NotImplementedException();
         }
 

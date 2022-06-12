@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TafeInformationSystem.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="LocationPage">
 
     <Grid>
@@ -13,9 +13,8 @@
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -36,19 +35,21 @@
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1" Grid.Column="1"
-                    Text="Location Name"/>
-        <TextBlock Grid.Row="1" Grid.Column="2"
                     Text="Location ID"/>
-        <TextBox x:Name="locationNameText"
-                    Grid.Row="2" Grid.Column="1"
-                    MinWidth="200" Margin="0,5,10,10"/>
+        <TextBlock Grid.Row="1" Grid.Column="2"
+                    Text="Location Name"/>
         <TextBox x:Name="idText"
+                    Grid.Row="2" Grid.Column="1"
+                    MinWidth="200" Margin="0,5,10,10"
+                 IsEnabled="False"/>
+        <TextBox x:Name="locationNameText"
                     Grid.Row="2" Grid.Column="2"
+                    Grid.ColumnSpan="2"
                     MinWidth="200" Margin="0,5,10,10"/>
-        <TextBlock Grid.Row="1" Grid.Column="3"
+        <TextBlock Grid.Row="3" Grid.Column="1"
                    Text="Phone"/>
         <TextBox x:Name="phoneText"
-                Grid.Row="2" Grid.Column="3"
+                Grid.Row="4" Grid.Column="1"
                 MinWidth="200
                  " Margin="0,5,10,10"/>      
         <TextBlock Grid.Row="7" Grid.Column="1"
@@ -60,58 +61,66 @@
                    Text="Suburb"/>
         <TextBlock Grid.Row="9" Grid.Column="2"
                    Text="State"/>
-        <TextBlock Grid.Row="9" Grid.Column="3"
+        <TextBlock Grid.Row="11" Grid.Column="1"
                    Text="Postcode"/>
         <TextBox x:Name="suburbText"
                 Grid.Row="10" Grid.Column="1"
                 MinWidth="200" Margin="0,5,10,10"/>
         <ComboBox x:Name ="stateCmb" 
                   Grid.Row="10" Grid.Column="2"
-                  Margin="0,5,10,10">
+                  Margin="0,5,10,10"
+                  MinWidth="150">
 
         </ComboBox>
         <TextBox x:Name="postcodeText"
-                Grid.Row="10" Grid.Column="3"
-                MinWidth="200" Margin="0,5,10,10"/>
-        <TextBlock Grid.Row="11" Grid.Column="1"
-                   Text="Status"/>
-        <TextBox x:Name="statText"
                 Grid.Row="12" Grid.Column="1"
                 MinWidth="200" Margin="0,5,10,10"/>
-        
+
         <StackPanel Grid.Row="1" Grid.Column="4"
                     Grid.RowSpan="14" Orientation="Vertical">
-            <Button x:Name="newButton" Content="Add Location" 
+            <Button x:Name="addButton" Content="Add Location" 
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="NewButton_Click"     
+                FontSize="16" Background="#FF252526" 
+                Foreground="#FFE7E7E8" Click="AddButton_Click"    
                 />
 
             <Button x:Name="editButton" Content="Edit" 
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="EditButton_Click"            
+                FontSize="16" Background="#FF252526" 
+                Foreground="#FFE7E7E8" Click="EditButton_Click"            
                 />
 
             <Button x:Name="updateButton" Content="Save/Update"              
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="UpdateButton_Click"    
+                FontSize="16" Background="#FF252526" 
+                Foreground="#FFE7E7E8" Click="UpdateButton_Click"    
+                />
+            <Button x:Name="cancelButton" Content="Cancel"              
+                Margin="5,25,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" 
+                Foreground="#FFE7E7E8" Click="ClearButton_Click"    
                 />
             <Button x:Name="clearButton" Content="Clear"              
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="ClearButton_Click"    
+                FontSize="16" Background="#FF252526" 
+                Foreground="#FFE7E7E8" Click="ClearButton_Click"    
                 />
             <Button x:Name="deleteButton" Content="Delete"              
                 Margin="5,30,10,0" MinHeight="50"
                 BorderThickness="1" BorderBrush="#FF818185"
-                FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8" Click="DeleteButton_Click"                     
+                FontSize="16" Background="#FF121212" 
+                Foreground="#FFE7E7E8" Click="DeleteButton_Click"                     
                 />
-            <Button x:Name="menuButton" Content="To Menu"              
+            <Button x:Name="backButton" Content="Back"              
                 Margin="5,25,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="MenuButton_Click"    
+                FontSize="16" Background="#FF252526" 
+                Foreground="#FFE7E7E8" Click="BackButton_Click"    
 
                 />
 

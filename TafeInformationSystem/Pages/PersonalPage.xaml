@@ -35,6 +35,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
@@ -62,7 +63,7 @@
                    Text="Gender"/>
         <TextBlock Grid.Row="3" Grid.Column="3"
                    Text="Email"/>
-        <DatePicker x:Name="dp1" 
+        <DatePicker x:Name="dobPicker" 
                     Grid.Row="4" Grid.Column="1"
                     Margin="0,5,10,10" BorderThickness="0"
                     FontSize="16"
@@ -90,8 +91,13 @@
                 MinWidth="200" Margin="0,5,10,10"/>
         <TextBlock Grid.Row="7" Grid.Column="1"
                    Text="Street Address"/>
+        <TextBlock Grid.Row="7" Grid.Column="3"
+                   Text="Apt"/>
         <TextBox x:Name="streetTxt"
-                Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3"
+                Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"
+                MinWidth="200" Margin="0,5,10,10"/>
+        <TextBox x:Name="aptTxt"
+                Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="1"
                 MinWidth="200" Margin="0,5,10,10"/>
         <TextBlock Grid.Row="9" Grid.Column="1"
                    Text="Suburb"/>
@@ -102,9 +108,15 @@
         <TextBox x:Name="suburbTxt"
                 Grid.Row="10" Grid.Column="1"
                 MinWidth="200" Margin="0,5,10,10"/>
+        <TextBlock Grid.Row="11" Grid.Column="1"
+                   Text="City"/>
+        <TextBox x:Name="cityTxt"
+                Grid.Row="12" Grid.Column="1"
+                MinWidth="200" Margin="0,5,10,10"/>
         <ComboBox x:Name ="stateCmb" 
                   Grid.Row="10" Grid.Column="2"
-                  Margin="0,5,10,10">            
+                  Margin="0,5,10,10"
+                  SelectedIndex="0">            
         </ComboBox>
         <TextBox x:Name="postcodeTxt"
                 Grid.Row="10" Grid.Column="3"
@@ -116,29 +128,72 @@
                 Grid.Row="12" Grid.Column="1"
                 MinWidth="200" Margin="0,5,10,10"
                 Visibility ="Hidden"/>
-        <Border  x:Name="changePassBrdr" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,0,10" Grid.RowSpan="3" Grid.Row="13">
+        <Border  x:Name="changePassBrdr" 
+                 Grid.Row="13" Grid.Column="1" 
+                 Grid.ColumnSpan="2" Grid.RowSpan="3"
+                 Margin="0,0,0,10" 
+                  >
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+
+                </Grid.RowDefinitions>
+                <TextBlock x:Name ="oldPasswordLbl"
+                           Grid.Row="0" Grid.Column="0"
+                    Text="Old Password"/>
+                <PasswordBox x:Name="oldPasswordTxt"                             
+                           Grid.Row="1" Grid.Column="0"
+                    MinWidth="200" Margin="0,5,10,10"/>
                 <TextBlock x:Name ="newPasswordLbl"
-                    Text="New Password" Margin="0,0,210,19"/>
-                <TextBlock x:Name ="repeatPasswordLbl"
-                    Text="Repeat New Password" Margin="210,0,0,19"/>
+                           Grid.Row="2" Grid.Column="0"
+                    Text="New Password"/>                
+                <TextBlock  x:Name ="repeatPasswordLbl"
+                    Grid.Row="2" Grid.Column="1"
+                    Text="Repeat New Password"/>
                 <PasswordBox x:Name="newPasswordTxt"
-                    MinWidth="200" Margin="0,23,220,-8"/>
+                    Grid.Row="3" Grid.Column="0"
+                    MinWidth="200" Margin="0,5,10,10"/>
                 <PasswordBox x:Name="repeatNewPasswordTxt"
-                    MinWidth="200" Margin="210,23,10,-8"/>
+                    Grid.Row="3" Grid.Column="1"
+                    MinWidth="200" Margin="0,5,10,10"/>
             </Grid>
         </Border>
+        <TextBlock x:Name="pageNameTxt"
+            Grid.Row="16" Grid.Column="1"
+            Grid.ColumnSpan="3" FontSize="36"/>
         <StackPanel Grid.Row="1" Grid.Column="4"
-                    Grid.RowSpan="14" Orientation="Vertical">
+                    Grid.RowSpan="17"
+                    >
+            <Button x:Name="addButton" Content="Add"
+                Margin="5,5,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AddButton_Click"     
+                />
+            <Button x:Name="clearButton" Content="Clear"
+                Margin="5,60,10,0" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="ClearButton_Click"     
+                />
+        </StackPanel>
+       
+        <StackPanel Grid.Row="1" Grid.Column="4"
+                    Grid.RowSpan="17" Orientation="Vertical">
             <Button x:Name="editButton" Content="Edit" 
                 Margin="5,5,10,0" MinHeight="50"
-                BorderThickness="0"
+                BorderThickness="0" 
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="EditButton_Click"     
                 />
-            <Button x:Name="saveButton" Content="Save" 
+            <Button x:Name="updateButton" Content="Save/Update" 
                 Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SaveButton_Click"            
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="UpdateButton_Click"            
                 />
             <Button x:Name="cancelButton" Content="Cancel" 
                 Margin="5,5,10,0" MinHeight="50"
@@ -146,7 +201,7 @@
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="CancelButton_Click"            
                 />
             <Button x:Name="changePassButton" Content="Change Password"              
-                Margin="5,220,10,0" MinHeight="50"
+                Margin="5,150,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="ChangePassButton_Click"
                 />
@@ -156,12 +211,12 @@
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SavePassButton_Click"
                 />
             <Button x:Name="cancelChangePassButton" Content="Cancel Change"
-                Margin="5,0,10,0" MinHeight="50"
+                Margin="5,5,10,0" MinHeight="50"
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="CancelChangePassButton_Click"
                 />
             <Button x:Name="backButton" Content="Back"              
-                    Margin="5,-50,10,0" MinHeight="50"
+                    Margin="5,25,10,0" MinHeight="50"
                     BorderThickness="0"
                     FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="BackButton_Click"    
                     />

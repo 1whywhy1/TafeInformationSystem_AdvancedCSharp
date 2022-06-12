@@ -85,6 +85,11 @@ namespace TafeInformationSystem.Classes
 
         public abstract void RetrieveUser();
 
+        public abstract bool Login(string login, string password);
+
+        public abstract void UpdatePassword(string oldPassword, string newPassword);
+
+        public abstract void AddLoginInfo();
         #endregion
     }
 }

@@ -16,8 +16,10 @@ namespace TafeInformationSystem.Classes
     {
         #region Fields
         private ObservableCollection<string> _courseInfo;
-        private ObservableCollection<int> _courseId;
-        private ObservableCollection<string> _unitInfo;
+        private ObservableCollection<string> _courseId;
+        private ObservableCollection<ClsUnit> _unitCourseInfo;
+        private ObservableCollection<ClsUnit> _originalCourseUnit;
+        private ObservableCollection<ClsUnit> _unitInfo;
         #endregion
 
         #region Events
@@ -36,7 +38,7 @@ namespace TafeInformationSystem.Classes
         }
 
 
-        public ObservableCollection<int> CourseId
+        public ObservableCollection<string> CourseId
         {
             get { return _courseId; }
             set
@@ -45,7 +47,20 @@ namespace TafeInformationSystem.Classes
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CourseID"));
             }
         }
-        public ObservableCollection<string> UnitInfo
+
+        public ObservableCollection<ClsUnit> OriginalCourseUnit
+        { get; set; }
+
+        public ObservableCollection<ClsUnit> UnitCourseInfo
+        {
+            get { return _unitCourseInfo; }
+            set
+            {
+                _unitCourseInfo = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UnitCourseInfo"));
+            }
+        }
+        public ObservableCollection<ClsUnit> UnitInfo
         {
             get { return _unitInfo; }
             set
@@ -60,8 +75,39 @@ namespace TafeInformationSystem.Classes
         public ClsCourseUnit()
         {
             CourseInfo = new ObservableCollection<string>();
+            PopulateFromSQl(CourseInfo, "SELECT CourseID, Name FROM Course ORDER BY CourseID;");
 
-            // Populate CourseInfo collection
+
+            UnitInfo = new ObservableCollection<ClsUnit>();
+            PopulateFromSQl(UnitInfo, "SELECT UnitID, Name FROM Unit ORDER BY UnitID;");
+
+        }
+
+        #endregion
+
+        #region Populate Collection from SQL table
+        public static void PopulateFromSQl(ObservableCollection<ClsUnit> collection, string querie)
+        {
+            using (IDataReader dr = clsDatabase.ExecuteQuery(querie))
+            {
+
+                var ordinals = new
+                {
+                    unitID = dr.GetOrdinal("UnitID"),
+                    unitName = dr.GetOrdinal("Name")
+                };
+
+                while (dr.Read())
+                {
+                    //UnitInfo.Add(dr.GetInt32(ordinals.unitID).ToString()
+                    //    + " " + dr.GetString(ordinals.unitName));
+
+                    collection.Add(new ClsUnit(dr.GetInt32(ordinals.unitID).ToString(), dr.GetString(ordinals.unitName)));
+                }
+            }
+        }
+        public static void PopulateFromSQl(ObservableCollection<string> collection, string querie)
+        {
             using (IDataReader dr = clsDatabase.ExecuteQuery("SELECT CourseID, Name FROM Course ORDER BY CourseID;"))
             {
                 var ordinals = new
@@ -72,61 +118,62 @@ namespace TafeInformationSystem.Classes
 
                 while (dr.Read())
                 {
-                    CourseInfo.Add(dr.GetInt32(ordinals.courseID).ToString()
+                    collection.Add(dr.GetInt32(ordinals.courseID).ToString()
                         + " - " + dr.GetString(ordinals.courseName));
-//CourseId.Add(dr.GetInt32(ordinals.courseID));
+                    //CourseId.Add(dr.GetInt32(ordinals.courseID).ToString());
                 }
-            }
-
-            // Populate CourseInfo collection
-            using (IDataReader dr = clsDatabase.ExecuteQuery("SELECT UnitID, Name FROM Unit ORDER BY UnitID;"))
-            {
-                var ordinals = new
-                {
-                    unitID = dr.GetOrdinal("UnitID"),
-                    unitName = dr.GetOrdinal("Name")
-                };
-
-                //while (dr.Read())
-                //{
-                //    UnitInfo.Add(dr.GetInt32(ordinals.unitID).ToString()
-                //        + " " + dr.GetString(ordinals.unitName));                   
-                //}
             }
         }
 
         #endregion
 
-        public static DataTable RetrieveUnits(SearchCriteria.UnitSearchBy searchBy)
+        public void RetrieveUnitsForCourse(string courseID)
         {
-            string querie = null;
-            switch (searchBy)
+            UnitCourseInfo = new ObservableCollection<ClsUnit>();            
+            PopulateFromSQl(UnitCourseInfo, $"SELECT UnitID, Name FROM Unit WHERE UnitID in (SELECT UnitID FROM UnitCourse WHERE CourseID = {courseID});");
+            
+        }   
+
+        public int UpdateUnitCourse(string courseID)
+        {
+            string insertQuerie = "";
+            string deleteQuerie = "";
+
+            // Compare what was deleted from OriginalCourseUnit and write appropriate querie
+            IEnumerable<ClsUnit> units = OriginalCourseUnit.Except(UnitCourseInfo);
+            foreach (ClsUnit unit in units)
             {
-                case SearchCriteria.UnitSearchBy.ID:
-                    break;
-                case SearchCriteria.UnitSearchBy.Name:
-                    break;
-                case SearchCriteria.UnitSearchBy.AllForCourse:
-                    querie = "SELECT UnitID, Name FROM Unit WHERE UnitID in (SELECT UnitID FROM UnitCourse WHERE CourseID = ";
-                    break;
-                case SearchCriteria.UnitSearchBy.NotAllocated:
-                    break;
-                case SearchCriteria.UnitSearchBy.All:
-                    querie = "SELECT UnitID, Name FROM Unit ORDER BY UnitID;";
-                    break;
-                default:
-                    break;
+                deleteQuerie += $"DELETE FROM UnitCourse WHERE CourseID = {courseID} AND UnitID ={unit.UnitID};";
             }
 
-            return clsDatabase.ExecSPDataTable(querie);            
+
+            // Compare what was added to CourseUnit and write appropriate querie
+            units = UnitCourseInfo.Except(OriginalCourseUnit);
+            foreach (ClsUnit unit in units)
+            {
+                insertQuerie += $"INSERT INTO UnitCourse VALUES ({courseID}, {unit.UnitID});";
+            }
+
+            // Run queries to update
+            if (insertQuerie != "" || deleteQuerie != "")
+            {               
+                clsDatabase.ExecuteNonQuery(deleteQuerie + insertQuerie);
+            }
+
+            RetrieveUnitsForCourse(courseID);
+
+            return 1;
         }
 
-        public static DataTable RefreshUnitsForCourse(string courseID)
+        public void DiscardEdit()
         {
-            return clsDatabase.ExecSPDataTable($"SELECT UnitID, Name FROM Unit WHERE UnitID in (SELECT UnitID FROM UnitCourse WHERE CourseID = {courseID});");
+            UnitCourseInfo = new ObservableCollection<ClsUnit>(OriginalCourseUnit);
         }
 
-
+        public void PrepareEdit()
+        {
+            OriginalCourseUnit = new ObservableCollection<ClsUnit>(UnitCourseInfo);
+        }
         #region
         #endregion
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using TafeInformationSystem.Classes;
+using TafeInformationSystem.Enums;
 
 namespace TafeInformationSystem.Pages
 {
@@ -16,17 +17,13 @@ namespace TafeInformationSystem.Pages
     /// Interaction logic for CourseUnitPage.xaml
     /// </summary>
     public partial class CourseUnitPage : Page
-    {
-        public enum UIState
-        {
-            Edit,
-            Save,
-            Default
-        }
-
+    {        
         #region Fields
         private UIState _state = UIState.Default;
         Frame _mainFrame;
+
+        private ClsCourseUnit _courseUnit;
+        private string _selectedCourse;
 
         #endregion
 
@@ -56,20 +53,52 @@ namespace TafeInformationSystem.Pages
         #region Buttons      
         private void AddUnitBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(unitsListView.SelectedItems is not null)
+            if (courseUnitsListView.Items.Count < 4)
             {
-                //courseUnitsListView.ItemsSource.
+                if (unitsListView.SelectedItems is not null )
+                {
+                    bool unitAssigned = false;
+                    foreach (ClsUnit selectedUnit in unitsListView.SelectedItems)
+                    {
+                        foreach (ClsUnit courseUnit in courseUnitsListView.Items)
+                        {
+                            if(selectedUnit.UnitID == courseUnit.UnitID)
+                            {
+                                unitAssigned = true;
+                                MessageBox.Show($"Unit {selectedUnit.UnitID} is already assigned to Course {_selectedCourse}");
+                                break;
+                            }
+
+                        }
+                        if (!unitAssigned && courseUnitsListView.Items.Count < 4)
+                        {
+                            _courseUnit.UnitCourseInfo.Add(selectedUnit);
+                        }
+
+                        unitAssigned = false;
+                    }
+                    
+                    //DataRowView row = (DataRowView)unitsListView.SelectedItem;
+                    //{
+                    //    _courseUnit.UnitCourseInfo.Add(new ClsUnit(row.Row[0].ToString(), row.Row[1].ToString()));
+                    //}
+                }
             }
+            else
+            { 
+                MessageBox.Show("Maximum of 4 units can be assigned to a course"); 
+            }
+            
         }
 
         private void DeleteFromCourseBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            _courseUnit.UnitCourseInfo.Remove(courseUnitsListView.SelectedItem as ClsUnit);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            _courseUnit.DiscardEdit();
             SetUIState(UIState.Default);
         }
 
@@ -80,12 +109,13 @@ namespace TafeInformationSystem.Pages
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-
+            _courseUnit.PrepareEdit();
             SetUIState(UIState.Edit);
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            _courseUnit.UpdateUnitCourse(_selectedCourse);
             SetUIState(UIState.Default);
         } 
         #endregion
@@ -93,10 +123,10 @@ namespace TafeInformationSystem.Pages
         #region SetUp
         private void SetUp()
         {
-            DataContext = new ClsCourseUnit();
+            _courseUnit = new ClsCourseUnit();
+            DataContext = _courseUnit;
             
             SetUIState(UIState.Default);
-            PopulateAllUnitsView();
             courseCmb.SelectedIndex = 0;
         }
         #endregion
@@ -117,17 +147,10 @@ namespace TafeInformationSystem.Pages
         // On courseCmb Seletion change refresh View of assigned units
         private void courseCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string str = courseCmb.SelectedValue.ToString().Substring(0, 4);
+            _selectedCourse = courseCmb.SelectedValue.ToString().Substring(0, 4);           
+            _courseUnit.RetrieveUnitsForCourse(_selectedCourse);           
             
-            courseUnitsListView.ItemsSource = ClsCourseUnit.RefreshUnitsForCourse(str).DefaultView;
-            
-        }
-
-        private void PopulateAllUnitsView()
-        {
-            unitsListView.ItemsSource = ClsCourseUnit.RetrieveUnits(Enums.SearchCriteria.UnitSearchBy.All).DefaultView;
-        }
-
+        }   
       
     }
 }

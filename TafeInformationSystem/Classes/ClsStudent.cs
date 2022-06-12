@@ -11,15 +11,11 @@ namespace TafeInformationSystem.Classes
 {
     class ClsStudent : ClsPerson
     {
-        #region Fields
-        #endregion
-
         #region Constructors
         public ClsStudent() { }
         public ClsStudent(string id)
         {
             ID = id;
-            RetrieveUser();
         }
 
         public ClsStudent(string value, SearchCriteria.StudentSearchBy searchBy)
@@ -42,26 +38,45 @@ namespace TafeInformationSystem.Classes
                     break;
             }
         }
+
+        public ClsStudent(string fname, string lname, DateTime dob,
+                        ClsAddress address, string email,
+                        string hphone, string mphone, int gender)
+            : base(fname, lname, dob, address, email,hphone,mphone, gender)
+        { }
         #endregion
 
-        #region Properties
-        #endregion
-
+        // public ClsStudent(string fname, string lname, DateTime dob, string email, string mphone, string hphone,)
+               
         #region Functionality
         public override int Add()
         {
             try
             {
-                int addressID = Address.Add();
+                // Push Student Address to SQL
+                int addressID = clsDatabase.ExecInsertSP($"EXEC spInsert_studentAddress " +
+                $"@StreetAddress = '{Address.StreetAddress}', " +
+                $"@AptNumber = '{Address.Apt}', @Postcode = '{Address.Postcode}', " +
+                $"@City = '{Address.City}', @State = '{Address.State}';");
+
+                if(addressID> 0)
+                {
+                    Address.ID = addressID;
+                }
+
+                // Push Student Info to SQL
                 int id = clsDatabase.ExecInsertSP($"EXEC spInsert_student @FirstName = '{FName}', " +
-                  $"@LastName = '{LName}', @DOB = '{Dob.ToString()}', @Email = '{Email}', " +
-                  $"@MobilePhone = '{Mphone}', @HomePhone = '{Hphone}', @GenderID = '{Gender}', " +
-                  $"@AddressID = {Address};");
+                  $"@LastName = '{LName}', @DOB = '{Dob.ToString("yyyy-MM-dd")}', @Email = '{Email}', " +
+                  $"@MobilePhone = '{Mphone}', @HomePhone = '{Hphone}', @GenderID = {Gender.ToString()}, " +
+                  $"@AddressID = {Address.ID.ToString()};");
 
                 if (id > 0)
                 {
                     ID = id.ToString();
                 }
+
+                // Insert Student Login Info into DB
+                AddLoginInfo();
 
                 return id;
             }
@@ -115,17 +130,13 @@ namespace TafeInformationSystem.Classes
         {
             try
             {
-                int addressID = Address.Add();
-                int id = clsDatabase.ExecInsertSP($"EXEC spUpdate_student @StudentID = '{ID}', @FirstName = '{FName}', " +
-                  $"@LastName = '{LName}', @DOB = '{Dob.ToString()}', @Email = '{Email}', " +
-                  $"@MobilePhone = '{Mphone}', @HomePhone = '{Hphone}', @GenderID = '{Gender}', @AddressID = {Address};");
+                //int addressID = Address.Add();
+                clsDatabase.ExecSP($"EXEC spUpdate_student_studentAddress  @StudentID = {ID},  @FirstName = '{FName}', " +
+                   $"@LastName = '{LName}', @DOB = '{Dob.ToString("yyyy-MM-dd")}', @Email = '{Email}', " +
+                   $"@MobilePhone = '{Mphone}', @HomePhone = '{Hphone}', @GenderID = '{Gender}', " +
+                   $"@StreetAddress = '{Address.StreetAddress}', @AptNumber = '{Address.Apt}', " +
+                   $"@Postcode = '{Address.Postcode}', @City = '{Address.City}', @State = '{Address.State}';");
 
-                if (id > 0)
-                {
-                    ID = id.ToString();
-                }
-
-               // return id;
             }
             catch (Exception ex)
             {
@@ -176,10 +187,31 @@ namespace TafeInformationSystem.Classes
             }
             return dt;
         }
+
+
         #endregion
 
-        #region
+        #region Login
+        public override bool Login(string login, string password)
+        {
+            return clsDatabase.Login(UserType.student, login, password);
+        }
         #endregion
 
+        public override void UpdatePassword(string oldPassword, string newPassword)
+        {
+            if (clsDatabase.Login(UserType.student, ID, oldPassword) &&
+                oldPassword != "" && newPassword != "")
+            {
+                ClsMessenger.ShowMessage($"SET Password = {ClsUtils.HashPassword(newPassword)} ");
+                clsDatabase.ExecuteNonQuery($"UPDATE StudentLogin " +
+                    $"SET Password = '{ClsUtils.HashPassword(newPassword)}' WHERE StudentID = {ID};");
+            }
+        }
+
+        public override void AddLoginInfo()
+        {
+            clsDatabase.ExecuteNonQuery($"INSERT INTO StudentLogin(StudentID) VALUES ({ID});");
+        }
     }
 }
