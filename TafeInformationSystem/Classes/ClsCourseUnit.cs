@@ -108,7 +108,7 @@ namespace TafeInformationSystem.Classes
         }
         public static void PopulateFromSQl(ObservableCollection<string> collection, string querie)
         {
-            using (IDataReader dr = clsDatabase.ExecuteQuery("SELECT CourseID, Name FROM Course ORDER BY CourseID;"))
+            using (IDataReader dr = clsDatabase.ExecuteQuery(querie))
             {
                 var ordinals = new
                 {
@@ -120,7 +120,6 @@ namespace TafeInformationSystem.Classes
                 {
                     collection.Add(dr.GetInt32(ordinals.courseID).ToString()
                         + " - " + dr.GetString(ordinals.courseName));
-                    //CourseId.Add(dr.GetInt32(ordinals.courseID).ToString());
                 }
             }
         }

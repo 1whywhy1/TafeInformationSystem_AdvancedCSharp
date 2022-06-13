@@ -3,11 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TafeInformationSystem.Pages"
+      xmlns:local="clr-namespace:TafeInformationSystem.Pages" xmlns:classes="clr-namespace:TafeInformationSystem.Classes" d:DataContext="{d:DesignInstance Type=classes:ClsSemesterViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="SemesterPage">
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
@@ -40,17 +39,14 @@
                    Margin="0,15,0,20"
                    Grid.ColumnSpan="3" 
                    FontSize="20" 
-                   Text="Add New Semester"/>
+                   Text="Semester"/>
         <TextBlock Grid.Row="2" Grid.Column="2"
                    Margin="0,5,10,10"
                    Text="Start Date"/>
 
         <DatePicker x:Name="startDP"
                 Grid.Row="3" Grid.Column="2"
-                MinWidth="200" Margin="0,5,10,10"/>
-        <TextBlock Grid.Row="2" Grid.Column="1"
-                   Margin="0,5,5,10" HorizontalAlignment="Right"
-                   Text="Assign"/>
+                MinWidth="200" Margin="0,5,10,10" SelectedDateChanged="startDP_SelectedDateChanged"/>     
 
         <TextBlock Grid.Row="2" Grid.Column="4"
                    Margin="0,5,10,10"
@@ -83,23 +79,23 @@
         <ListView x:Name="semestersLV"
                 Grid.Row="8" Grid.Column="1"
                 Grid.ColumnSpan="4"
-                Grid.RowSpan="5"
+                Grid.RowSpan="5" 
                 ItemsSource="{Binding}"
-                DataContext="{Binding Path=SemesterInfo,Mode =TwoWay}"
+                DataContext="{Binding Path=SemestersInfo,Mode =TwoWay}"                
                 MinWidth="300" MinHeight="170"
                 Margin="0,5,10,10"
-                   ScrollViewer.CanContentScroll="True">>
+                ScrollViewer.CanContentScroll="True"
+                SelectionMode="Single" SelectionChanged="semestersLV_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="45" DisplayMemberBinding="{Binding SemesterID}" />
                     <GridViewColumn Header="Name" Width="75" DisplayMemberBinding="{Binding SemesterName}" />
-                    <GridViewColumn Header="Start Date" Width="120" DisplayMemberBinding="{Binding StartDate}" />
-                    <GridViewColumn Header="End Date" Width="120" DisplayMemberBinding="{Binding EndDate}" />
+                    <GridViewColumn Header="Start Date" Width="120" DisplayMemberBinding="{Binding StartDate, StringFormat='dd-MMM-yyyy'}" />
+                    <GridViewColumn Header="End Date" Width="120" DisplayMemberBinding="{Binding EndDate, StringFormat='dd-MMM-yyyy'}" />
 
                 </GridView>
             </ListView.View>
-        </ListView>
-        
+        </ListView>        
         
         <StackPanel Grid.Row="1" Grid.Column="5"
                     Grid.RowSpan="14" Orientation="Vertical">
@@ -108,10 +104,30 @@
                     BorderThickness="0"
                     FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AddButton_Click"     
                     />
-            <Button x:Name="clearButton" Content="Clear" 
+            <Button x:Name="newButton" Content="New" 
+                    Margin="5,-50,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="NewButton_Click"     
+                    />
+            <Button x:Name="editButton" Content="Edit" 
+                    Margin="5,25,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="EditButton_Click"     
+                    />
+            <Button x:Name="cancelButton" Content="Cancel" 
+                    Margin="5,-50,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="CancelButton_Click"     
+                    />
+            <Button x:Name="updateButton" Content="Save/Update" 
+                    Margin="5,25,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="UpdateButton_Click"     
+                    />
+            <Button x:Name="clearButton" Content="Clear Selection" 
                     Margin="5,85,10,0" MinHeight="50"
                     BorderThickness="0"
-                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AddButton_Click"     
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="ClearButton_Click"     
                     />
 
             <Button x:Name="menuButton" Content="Back"              

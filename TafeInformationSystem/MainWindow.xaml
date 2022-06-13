@@ -59,7 +59,7 @@
             <Button x:Name="locationsButton" Content="Locations"   
                 Margin="0,5,10,10" MinHeight="50"
                 BorderThickness="0"
-                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="locationsButton_Click"  
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="LocationsButton_Click"  
                 />
             <Button x:Name="semestersButton" Content="Semesters"   
                 Margin="0,5,10,10" MinHeight="50"

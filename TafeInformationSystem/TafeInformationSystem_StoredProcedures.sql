@@ -116,7 +116,7 @@ CREATE PROCEDURE spInsert_semester
 	@EndDate			DATE
 AS
 BEGIN
-INSERT INTO Semester
+INSERT INTO Semester OUTPUT INSERTED.SemesterID
 VALUES (@SemesterName,
 		@StartDate,
 		@EndDate)
@@ -200,6 +200,7 @@ END
 GO
 
 
+
 --Detele from CollegeAddress
 CREATE PROCEDURE spDeleteAddress_collegeAddress
 	@CollegeAddressID			INT
@@ -247,7 +248,8 @@ CREATE PROCEDURE spUpdate_college_collegeAddress
 	@State				NVARCHAR(30)
 AS
 BEGIN
-UPDATE College
+DECLARE @RC int
+UPDATE College 
 SET Name = @Name,
 	@Phone = @Phone
 WHERE CollegeID = @CollegeID
@@ -271,6 +273,25 @@ SELECT	CollegeID,
 FROM	College
 END
 GO
+
+CREATE PROCEDURE spSelect_all_college_collegeAddress
+AS
+BEGIN
+SELECT	c.CollegeID,
+		c.[Name],
+		c.Phone,
+		ca.CollegeAddressID,
+		ca.StreetAddress,
+		ca.Postcode,
+		ca.City,
+		ca.State
+FROM	College as c
+JOIN	CollegeAddress as ca
+ON c.AddressID = ca.CollegeAddressID
+END
+GO
+
+EXEC spSelect_all_college_collegeAddress;
 
 -----------CourseCollegeSemester-------------
 -- Insert into CourseCollegeSemester
@@ -988,6 +1009,18 @@ BEGIN
 	SELECT @StaffAddressID = del.StaffAddressID FROM DELETED del;
 	DELETE FROM StaffAddress
 	WHERE StaffAddress.StaffAddressID = @StaffAddressID;
+END
+GO
+
+CREATE TRIGGER tr_College_AfterDelete
+ON College
+FOR DELETE
+AS
+BEGIN
+	DECLARE @CollegeAddressID INT
+	SELECT @CollegeAddressID = del.AddressID FROM DELETED del;
+	DELETE FROM CollegeAddress
+	WHERE CollegeAddress.CollegeAddressID = @CollegeAddressID;
 END
 GO
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace TafeInformationSystem.Classes
 {
-    class ClsSemester : INotifyPropertyChanged
+    class ClsSemester 
     {
         enum Semester
         {
@@ -27,40 +27,61 @@ namespace TafeInformationSystem.Classes
         DateTime _endDate;
 
         private ObservableCollection<ClsSemester> semesterInfo;
-        #endregion
-
-        #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
+        #endregion                
 
         #region Constructors
         public ClsSemester() { }
 
         public ClsSemester(DateTime startDate, DateTime endDate) 
         { 
-
+            StartDate = startDate;
+            EndDate = endDate;
         }
 
+        public ClsSemester(int id, string name, DateTime startDate, DateTime endDate)
+        {
+            SemesterID = id;
+            SemesterName = name;
+            StartDate = startDate;
+            EndDate = endDate;
+        }
 
         #endregion
 
         #region Properties
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        public int ID
+        public int SemesterID
         {
             get { return _id; }
             set { _id = value; }
         }
-        public DateTime StartDate { get => _startDate; set => _startDate = value; }
-        public DateTime EndDate { get => _endDate; set => _endDate = value; }
+
+        public string SemesterName
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+    
+        public DateTime StartDate
+        {
+            get => _startDate;
+            set
+            {
+                if (_startDate != value)
+                    _startDate = value;
+            }
+        }
+        public DateTime EndDate
+        {
+            get => _endDate;
+            set
+            {
+                if (_endDate != value)
+                    _endDate = value;
+            }
+        }
         #endregion
 
-        #region Functionality
+            #region Functionality
         public int Add()
         {
             SqlDataReader dr = clsDatabase.ExecuteQuery($"SELECT COUNT(SemesterName) FROM Semester WHERE SemesterName like '{StartDate.ToString("yyyy")}%';");

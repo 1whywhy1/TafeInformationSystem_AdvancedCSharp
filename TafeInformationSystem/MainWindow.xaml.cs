@@ -109,15 +109,15 @@ namespace TafeInformationSystem
             _mainFrame.Navigate(new EnrollmentMenuPage(_mainFrame));
         }
 
-        private void locationsButton_Click(object sender, RoutedEventArgs e)
+        private void LocationsButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new LocationsMenuPage(_mainFrame));
+            _mainFrame.Navigate(new LocationPage(_mainFrame));
         }
 
 
         private void SemestersButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new SemesterMenuPage(_mainFrame));
+            _mainFrame.Navigate(new SemesterPage(_mainFrame));
         }
 
         #endregion

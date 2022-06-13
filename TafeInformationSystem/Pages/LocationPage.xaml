@@ -31,6 +31,9 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
@@ -58,12 +61,12 @@
                 Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3"
                 MinWidth="200" Margin="0,5,10,10"/>
         <TextBlock Grid.Row="9" Grid.Column="1"
-                   Text="Suburb"/>
+                   Text="City"/>
         <TextBlock Grid.Row="9" Grid.Column="2"
                    Text="State"/>
-        <TextBlock Grid.Row="11" Grid.Column="1"
+        <TextBlock Grid.Row="9" Grid.Column="3"
                    Text="Postcode"/>
-        <TextBox x:Name="suburbText"
+        <TextBox x:Name="cityText"
                 Grid.Row="10" Grid.Column="1"
                 MinWidth="200" Margin="0,5,10,10"/>
         <ComboBox x:Name ="stateCmb" 
@@ -73,57 +76,81 @@
 
         </ComboBox>
         <TextBox x:Name="postcodeText"
-                Grid.Row="12" Grid.Column="1"
+                Grid.Row="10" Grid.Column="3"
                 MinWidth="200" Margin="0,5,10,10"/>
+        <TextBlock Grid.Row="13" Grid.Column="1"
+                   Text="Colleges"/>
+        
+        <TextBlock Grid.Row="15" Grid.Column="1"
+                   Text="Colleges"
+                   FontSize="36"/>
+        <ListView x:Name="collegesLV"
+                Grid.Row="14" Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="5" 
+                ItemsSource="{Binding}"
+                DataContext="{Binding Path=CollegesInfo,Mode =TwoWay}"                
+                MinWidth="300" MinHeight="170"
+                Margin="0,5,10,10"
+                ScrollViewer.CanContentScroll="True"
+                SelectionMode="Single" SelectionChanged="collegesLV_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="45" DisplayMemberBinding="{Binding CollegeID}" />
+                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding CollegeName}" />
+                    <GridViewColumn Header="Postcode" Width="60" DisplayMemberBinding="{Binding Postcode}" />
+                    <GridViewColumn Header="Phone Number" Width="120" DisplayMemberBinding="{Binding PhoneNumber}" />
+                    <GridViewColumn Header="City" Width="120" DisplayMemberBinding="{Binding City}" />
+                    <GridViewColumn Header="State" Width="75" DisplayMemberBinding="{Binding State}" />
+
+
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <StackPanel Grid.Row="1" Grid.Column="4"
-                    Grid.RowSpan="14" Orientation="Vertical">
-            <Button x:Name="addButton" Content="Add Location" 
-                Margin="5,5,10,0" MinHeight="50"
-                BorderThickness="0"
-                FontSize="16" Background="#FF252526" 
-                Foreground="#FFE7E7E8" Click="AddButton_Click"    
-                />
-
+                    Grid.RowSpan="18" Orientation="Vertical">
+            <Button x:Name="addButton" Content="Add Semester" 
+                    Margin="5,20,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AddButton_Click"     
+                    />
+            <Button x:Name="newButton" Content="New" 
+                    Margin="5,-50,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="NewButton_Click"     
+                    />
             <Button x:Name="editButton" Content="Edit" 
-                Margin="5,5,10,0" MinHeight="50"
-                BorderThickness="0"
-                FontSize="16" Background="#FF252526" 
-                Foreground="#FFE7E7E8" Click="EditButton_Click"            
-                />
-
-            <Button x:Name="updateButton" Content="Save/Update"              
-                Margin="5,5,10,0" MinHeight="50"
-                BorderThickness="0"
-                FontSize="16" Background="#FF252526" 
-                Foreground="#FFE7E7E8" Click="UpdateButton_Click"    
-                />
-            <Button x:Name="cancelButton" Content="Cancel"              
-                Margin="5,25,10,0" MinHeight="50"
-                BorderThickness="0"
-                FontSize="16" Background="#FF252526" 
-                Foreground="#FFE7E7E8" Click="ClearButton_Click"    
-                />
-            <Button x:Name="clearButton" Content="Clear"              
-                Margin="5,5,10,0" MinHeight="50"
-                BorderThickness="0"
-                FontSize="16" Background="#FF252526" 
-                Foreground="#FFE7E7E8" Click="ClearButton_Click"    
-                />
+                    Margin="5,25,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="EditButton_Click"     
+                    />
+            <Button x:Name="cancelButton" Content="Cancel" 
+                    Margin="5,-50,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="CancelButton_Click"     
+                    />
+            <Button x:Name="updateButton" Content="Save/Update" 
+                    Margin="5,25,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="UpdateButton_Click"     
+                    />
+            <Button x:Name="clearButton" Content="Clear Selection" 
+                    Margin="5,50,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="ClearButton_Click"     
+                    />
             <Button x:Name="deleteButton" Content="Delete"              
-                Margin="5,30,10,0" MinHeight="50"
+                Margin="5,50,10,0" MinHeight="50"
                 BorderThickness="1" BorderBrush="#FF818185"
                 FontSize="16" Background="#FF121212" 
                 Foreground="#FFE7E7E8" Click="DeleteButton_Click"                     
                 />
-            <Button x:Name="backButton" Content="Back"              
-                Margin="5,25,10,0" MinHeight="50"
-                BorderThickness="0"
-                FontSize="16" Background="#FF252526" 
-                Foreground="#FFE7E7E8" Click="BackButton_Click"    
-
-                />
-
+            <Button x:Name="menuButton" Content="Back"              
+                    Margin="5,95,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="BackButton_Click"    
+                    />
         </StackPanel>
 
     </Grid>
