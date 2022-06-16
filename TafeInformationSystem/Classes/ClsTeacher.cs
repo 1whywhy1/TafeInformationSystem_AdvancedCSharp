@@ -1,6 +1,7 @@
 ﻿using DLLDatabase;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,22 @@ using TafeInformationSystem.Enums;
 
 namespace TafeInformationSystem.Classes
 {
-    internal class ClsTeacher : ClsPerson
+    internal class ClsTeacher : ClsPerson, INotifyPropertyChanged
     {
+
+
         #region Constructors
         public ClsTeacher() { }
         public ClsTeacher(string id)
         {
             ID = id;
+        }
+
+        public ClsTeacher(string id, string fname, string lname)
+        {
+            ID = id;
+            FName = fname;
+            LName = lname;
         }
 
         public ClsTeacher(string value, SearchCriteria.TeacherSearchBy searchBy) 
@@ -44,6 +54,21 @@ namespace TafeInformationSystem.Classes
                   string hphone, string mphone, int gender)
                 : base(fname, lname, dob, address, email, hphone, mphone, gender)
         { }
+
+        #endregion
+
+        #region Properties
+        //public override string ID
+        //{
+        //    get { return base.ID.ToString(); }
+
+        //    set
+        //    {
+        //        // Add validation here
+        //        base.ID = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TeacherID"));
+        //    }
+        //}
 
         #endregion
 
@@ -203,9 +228,13 @@ namespace TafeInformationSystem.Classes
             }
         }
         #endregion
+
+        #region AddLoginInfo
         public override void AddLoginInfo()
         {
             clsDatabase.ExecuteNonQuery($"INSERT INTO TeacherLogin(TeacherID) VALUES  ({ID});");
         }
+
+        #endregion
     }
 }

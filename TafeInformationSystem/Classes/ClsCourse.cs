@@ -7,15 +7,21 @@ using TafeInformationSystem.Interfaces;
 using TafeInformationSystem.Enums;
 using DLLDatabase;
 using System.Data;
+using System.ComponentModel;
 
 namespace TafeInformationSystem.Classes
 {
-    class ClsCourse : IInfoInteractable
+    class ClsCourse : IInfoInteractable, INotifyPropertyChanged
     {
         #region Fields
         private int _courseID;
         private string _name;
         private string _description;
+        #endregion
+
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+
         #endregion
 
         #region Constructors
@@ -50,7 +56,13 @@ namespace TafeInformationSystem.Classes
         public ClsCourse(string name, string description)
         {
             Name = name;
-            Description = description;          
+            Description = description;
+        }
+
+        public ClsCourse(int id, string name)
+        {
+            CourseID = id.ToString();
+            Name = name;                
         }
 
         public ClsCourse(string id, string name, string description)
@@ -74,6 +86,7 @@ namespace TafeInformationSystem.Classes
             {
                 // Add validation here
                 _courseID = Convert.ToInt32(value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CourseID"));
             }
         }
 
@@ -88,6 +101,7 @@ namespace TafeInformationSystem.Classes
             {
                 // Add validation here
                 _name = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CourseName"));
             }
         }
 
@@ -104,7 +118,6 @@ namespace TafeInformationSystem.Classes
                 _description = value;
             }
         }
-
 
         #endregion
 

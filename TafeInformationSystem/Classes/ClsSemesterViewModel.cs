@@ -71,29 +71,35 @@ namespace TafeInformationSystem.Classes
         #region Add
         public int Add(DateTime startDate, DateTime endDate)
         {
-
-            SqlDataReader dr = clsDatabase.ExecuteQuery($"SELECT COUNT(SemesterName) FROM Semester WHERE SemesterName like '{startDate.ToString("yyyy")}%';");
-            dr.Read();
-
-            int nameint = (int)dr[0];
-            string semesterName = "";
-
-            if (nameint >= 0 &&  nameint < 2)
+            int result = -1;
+            ClsMessenger.ShowMessage(Convert.ToInt32(startDate.ToString("yyyy")).ToString());
+            if (Convert.ToInt32(startDate.ToString("yyyy")) > 2022)
             {
-                semesterName = startDate.ToString("yyyy") + "-" + (nameint + 1).ToString();
-            }
-            else if (nameint >= 2)
-            {
-                ClsMessenger.ShowMessage("Maximum number of Semesters in selected year has been reached");
-            }
+                SqlDataReader dr = clsDatabase.ExecuteQuery($"SELECT COUNT(SemesterName) FROM Semester WHERE SemesterName like '{startDate.ToString("yyyy")}%';");
+                dr.Read();
 
-            int result = clsDatabase.ExecInsertSP($"EXEC spInsert_semester @SemesterName = '{semesterName}', " +
-                $"@StartDate = '{startDate.ToString("yyyy-MM-dd")}', " +
-                $"@EndDate = '{endDate.ToString("yyyy-MM-dd")}';");          
-            RefreshCollection();
-            //ClsMessenger.ShowMessage(dr[0].ToString());
+                int nameint = (int)dr[0];
+                string semesterName = "";
+                    
 
-            return result;
+                if (nameint >= 0 && nameint < 2)
+                {
+                    semesterName = startDate.ToString("yyyy") + "-" + (nameint + 1).ToString();
+                    result = clsDatabase.ExecInsertSP($"EXEC spInsert_semester @SemesterName = '{semesterName}', " +
+                    $"@StartDate = '{startDate.ToString("yyyy-MM-dd")}', " +
+                    $"@EndDate = '{endDate.ToString("yyyy-MM-dd")}';");
+                }
+                else if (nameint >= 2)
+                {
+                    ClsMessenger.ShowMessage("Maximum number of Semesters in selected year has been reached");
+                }
+
+
+                RefreshCollection();
+            }
+            else { ClsMessenger.ShowMessage("Please choose a date in the future"); }
+
+                return result;
         }
         #endregion
 

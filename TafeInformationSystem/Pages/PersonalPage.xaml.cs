@@ -197,7 +197,6 @@ namespace TafeInformationSystem.Pages
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            // need to fix, says navigation backlog is empty
             _mainFrame.NavigationService.GoBack();
         }
         #endregion

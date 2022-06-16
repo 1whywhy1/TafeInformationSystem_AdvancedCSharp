@@ -10,24 +10,20 @@ using System.Threading.Tasks;
 
 namespace TafeInformationSystem.Classes
 {
-    class ClsSemester 
+    class ClsSemester : INotifyPropertyChanged
     {
-        enum Semester
-        {
-            S1,
-            S2,
-            DEFAULT
-        }
-
         #region Fields
-        private Semester _semester;
         private string _name;
         private int _id;
         DateTime _startDate;
         DateTime _endDate;
 
-        private ObservableCollection<ClsSemester> semesterInfo;
-        #endregion                
+        #endregion
+
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
 
         #region Constructors
         public ClsSemester() { }
@@ -36,6 +32,12 @@ namespace TafeInformationSystem.Classes
         { 
             StartDate = startDate;
             EndDate = endDate;
+        }
+
+        public ClsSemester(int id, string name)
+        {
+            SemesterID = id;
+            SemesterName = name;
         }
 
         public ClsSemester(int id, string name, DateTime startDate, DateTime endDate)
@@ -52,13 +54,21 @@ namespace TafeInformationSystem.Classes
         public int SemesterID
         {
             get { return _id; }
-            set { _id = value; }
+            set 
+            { 
+                _id = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SemesterID"));
+            }
         }
 
         public string SemesterName
         {
             get { return _name; }
-            set { _name = value; }
+            set 
+            { 
+                _name = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SemesterName"));
+            }
         }
     
         public DateTime StartDate
@@ -67,16 +77,23 @@ namespace TafeInformationSystem.Classes
             set
             {
                 if (_startDate != value)
+                {
                     _startDate = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StartDate"));
+                }
             }
         }
+
         public DateTime EndDate
         {
             get => _endDate;
             set
             {
                 if (_endDate != value)
+                {
                     _endDate = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EndDate"));
+                }                   
             }
         }
         #endregion
@@ -84,16 +101,18 @@ namespace TafeInformationSystem.Classes
             #region Functionality
         public int Add()
         {
-            SqlDataReader dr = clsDatabase.ExecuteQuery($"SELECT COUNT(SemesterName) FROM Semester WHERE SemesterName like '{StartDate.ToString("yyyy")}%';");
-            dr.Read();
-            ClsMessenger.ShowMessage(dr[0].ToString());
-            //int id = clsDatabase.ExecInsertSP($"INSERT INTO Semester(SemesterName, StartDate, EndDate)" +
-            //    $"VALUES ({Name}, {StartDate}, {EndDate}");
-            //if (id > 0)
-            //{
-            //    ID = id;
-            //}
-
+            try
+            {
+                SqlDataReader dr = clsDatabase.ExecuteQuery($"SELECT COUNT(SemesterName) FROM Semester WHERE SemesterName like '{StartDate.ToString("yyyy")}%';");
+                dr.Read();
+                ClsMessenger.ShowMessage(dr[0].ToString());
+            }
+            catch (Exception ex)
+            {
+                ClsMessenger.ShowMessage(ex.Message);
+            }
+          
+       
             return 1;
         }
 

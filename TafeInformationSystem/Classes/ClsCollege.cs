@@ -33,6 +33,12 @@ namespace TafeInformationSystem.Classes
             CollegeName = collegeName;
             Address = new ClsAddress();
         }
+        public ClsCollege(int id, string collegeName)
+        {
+            CollegeID = id.ToString();
+            CollegeName = collegeName;
+            Address = new ClsAddress();
+        }
 
         public ClsCollege(string collegeName, string phoneNumber, string streetAddress, string postcode, string city, string state)
         {

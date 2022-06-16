@@ -12,11 +12,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -32,55 +32,154 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="1" Grid.Column="1"
-                   Margin="0,15,0,20"
-                   Grid.ColumnSpan="3" 
-                   FontSize="20" 
-                   Text="Assign Course Location"/>
-        <TextBlock Grid.Row="2" Grid.Column="2"
-                   Margin="0,5,10,10"
-                   Text="Teacher"/>
-
-        <TextBox x:Name="teacherText"
-                Grid.Row="3" Grid.Column="2"
-                MinWidth="200" Margin="0,5,10,10"/>
         <TextBlock Grid.Row="2" Grid.Column="1"
-                   Margin="0,5,5,10" HorizontalAlignment="Right"
-                   Text="Assign"/>
+                    Text="Teachers"/>
+        <Button x:Name="clearTeacherBtn" Content="Clear Filter"
+                Grid.Row="2" Grid.Column="3"
+                    Margin="0,0,10,0" MinHeight="25"
+                    BorderThickness="0"
+                    FontSize="14" Background="#FF252526" Foreground="#FFE7E7E8" Click="clearTeacherBtn_Click"   
+                    />
+        <TextBlock Grid.Row="7" Grid.Column="1"
+                    Text="Semesters"/>
+        <TextBlock Grid.Row="7" Grid.Column="2"
+                    Text="Colleges"/>
+        <TextBlock Grid.Row="7" Grid.Column="3"
+                    Text="Courses"/>
+        <ListView x:Name="teachersLV"
+                    Grid.Row="3" Grid.Column="1"
+                    Grid.RowSpan="3" Grid.ColumnSpan="4"
+                    MinWidth="100" MinHeight="150"
+                    Margin="0,5,10,10"
+                    ItemsSource="{Binding}"
+                    DataContext="{Binding Path=TeachersInfo,Mode =TwoWay}"
+                    SelectionMode="Single" SelectionChanged="teachersLV_SelectionChanged"
+                  ScrollViewer.CanContentScroll="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}" />
+                    <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding FName}" />
+                    <GridViewColumn Header="Surname" Width="250" DisplayMemberBinding="{Binding LName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="semestersLV"
+                    Grid.Row="8" Grid.Column="1"
+                    Grid.RowSpan="3"
+                    MinWidth="100" MinHeight="150"
+                    Margin="0,5,10,10"
+                    ItemsSource="{Binding}"
+                    DataContext="{Binding Path=SemestersInfo,Mode =TwoWay}"
+                    SelectionMode="Single" SelectionChanged="semestersLV_SelectionChanged"
+                    ScrollViewer.CanContentScroll="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding SemesterID}" />
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding SemesterName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="collegesLV"
+                    Grid.Row="8" Grid.Column="2"
+                    Grid.RowSpan="3"
+                    MinWidth="200" MinHeight="150"
+                    Margin="0,5,10,10"
+                    ItemsSource="{Binding}"
+                    DataContext="{Binding Path=CollegesInfo,Mode =TwoWay}"
+                    SelectionMode="Single" SelectionChanged="collegesLV_SelectionChanged"
+                    ScrollViewer.CanContentScroll="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="60" DisplayMemberBinding="{Binding CollegeID}" />
+                    <GridViewColumn Header="Name" Width="130" DisplayMemberBinding="{Binding CollegeName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="coursesLV"
+                    Grid.Row="8" Grid.Column="3"
+                    Grid.RowSpan="3"
+                    MinWidth="200" MinHeight="150"
+                    Margin="0,5,10,10" 
+                    ItemsSource="{Binding}"
+                    DataContext="{Binding Path=CoursesInfo,Mode =TwoWay}"
+                    SelectionMode="Single" SelectionChanged="coursesLV_SelectionChanged"
+                    ScrollViewer.CanContentScroll="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="60" DisplayMemberBinding="{Binding CourseID}" />
+                    <GridViewColumn Header="Name" Width="175" DisplayMemberBinding="{Binding Name}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-        <TextBlock Grid.Row="2" Grid.Column="4"
-                   Margin="0,5,10,10"
-                   Text="Refer by"
-                   />
-        <TextBlock Grid.Row="5" Grid.Column="1"
-                   Margin="0,5,5,10" HorizontalAlignment="Right"
-                   Text="To"
-                   />
-        <TextBlock Grid.Row="5" Grid.Column="2"
-                   Margin="0,5,10,10"
-                   Text="Course"
-                   />
-        <ComboBox Grid.Row="3" Grid.Column="4"    
-                  Margin="0,5,10,10" MinWidth="200">
-            <ComboBoxItem>Name</ComboBoxItem>
-            <ComboBoxItem>ID</ComboBoxItem>
-        </ComboBox>
-        <TextBox x:Name="courseText"
-                Grid.Row="6" Grid.Column="2"
-                Grid.ColumnSpan="2"
-                MinWidth="200" Margin="0,5,10,10"/>
-        <StackPanel Grid.Row="1" Grid.Column="5"
-                    Grid.RowSpan="14" Orientation="Vertical">
-            <Button x:Name="assignButton" Content="Assign" 
+        <Button x:Name="clearSemesterBtn" Content="Clear Filter"
+                Grid.Row="11" Grid.Column="1"
+                    Margin="0,0,10,0" MinHeight="25"
+                    BorderThickness="0"
+                    FontSize="14" Background="#FF252526" Foreground="#FFE7E7E8" Height="25" Click="clearSemesterBtn_Click"   
+                    />
+        <Button x:Name="clearCollegeBtn" Content="Clear Filter"
+                Grid.Row="11" Grid.Column="2"
+                    Margin="0,0,10,0" MinHeight="25"
+                    BorderThickness="0"
+                    FontSize="14" Background="#FF252526" Foreground="#FFE7E7E8" Height="25" Click="clearCollegeBtn_Click"    
+                    />
+        <Button x:Name="clearCourseBtn" Content="Clear Filter"
+                Grid.Row="11" Grid.Column="3"
+                    Margin="0,0,10,0" MinHeight="25"
+                    BorderThickness="0"
+                    FontSize="14" Background="#FF252526" Foreground="#FFE7E7E8" Click="clearCourseBtn_Click"    
+                    />
+
+        <TextBlock Grid.Row="112" Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   FontSize="18"
+                   Text="Semester - College - Course"/>
+        <ListView x:Name="teacherCourseLV"
+                Grid.Row="13" Grid.Column="1"
+                Grid.ColumnSpan="3"
+                ItemsSource="{Binding}"
+                DataContext="{Binding Path=TeacherCourseInfo,Mode =TwoWay}"                
+                MinWidth="300" MinHeight="250"
+                Margin="0,5,10,10"
+                ScrollViewer.CanContentScroll="True"
+                SelectionMode="Single">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="45" DisplayMemberBinding="{Binding TeacherID}" />
+                    <GridViewColumn Header="Name" Width="90" DisplayMemberBinding="{Binding TeacherFName}" />
+                    <GridViewColumn Header="Surname" Width="120" DisplayMemberBinding="{Binding TeacherLName}" />
+                    <GridViewColumn Header="Semester" Width="70" DisplayMemberBinding="{Binding SemesterName}" />                    
+                    <GridViewColumn Header="College Name" Width="130" DisplayMemberBinding="{Binding CollegeName}" />
+                    <GridViewColumn Header="Course ID" Width="60" DisplayMemberBinding="{Binding CourseID}" />
+                    <GridViewColumn Header="CourseName" Width="175" DisplayMemberBinding="{Binding CourseName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock x:Name ="pageTxt" 
+                   Grid.Row="12" Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   Text="Teacher - Course info"
+                   FontSize="22"/>
+        <StackPanel Grid.Row="1" Grid.Column="6"
+                    Grid.RowSpan="18" Orientation="Vertical">
+            <Button x:Name="clearButton" Content="Clear All" 
+                    Margin="5,30,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="ClearButton_Click"     
+                    />
+            <Button x:Name="assignButton" Content="Add" 
                     Margin="5,85,10,0" MinHeight="50"
                     BorderThickness="0"
                     FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AssignButton_Click"     
                     />
-            <Button x:Name="unassignButton" Content="Unassign" 
+            
+            <Button x:Name="unassignButton" Content="Delete" 
                     Margin="5,75,10,0" MinHeight="50"
                     BorderThickness="0"
                     FontSize="16" Background="#FF121212" Foreground="#FFE7E7E8" Click="DeassignButton_Click"     

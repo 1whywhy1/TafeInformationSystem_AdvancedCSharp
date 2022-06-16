@@ -51,6 +51,7 @@ namespace TafeInformationSystem
                 MainWindow mainWindow = MainWindow.getInstance();
                 mainWindow.UserType = _userType;
                 mainWindow.UserID = loginText.Text;
+                mainWindow.SetLandingPage();
                 mainWindow.Show();
                 Close();
             }

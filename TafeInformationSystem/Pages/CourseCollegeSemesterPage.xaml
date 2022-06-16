@@ -5,10 +5,178 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TafeInformationSystem.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="CourseCollegeSemesterPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Button x:Name="clearSemesterBtn" Content="Clear Filter"
+                Grid.Row="6" Grid.Column="1"
+                    Margin="0,0,10,0" MinHeight="25"
+                    BorderThickness="0"
+                    FontSize="14" Background="#FF252526" Foreground="#FFE7E7E8" Height="25" Grid.RowSpan="2" VerticalAlignment="Top" Click="clearSemesterBtn_Click"   
+                    />
+        <Button x:Name="clearCollegeBtn" Content="Clear Filter"
+                Grid.Row="6" Grid.Column="2"
+                    Margin="0,0,10,24" MinHeight="25"
+                    BorderThickness="0"
+                    FontSize="14" Background="#FF252526" Foreground="#FFE7E7E8" Grid.RowSpan="2" Height="25" VerticalAlignment="Bottom" Click="clearCollegeBtn_Click"    
+                    />
+        <Button x:Name="clearCourseBtn" Content="Clear Filter"
+                Grid.Row="6" Grid.Column="3"
+                    Margin="0,0,10,0" MinHeight="25"
+                    BorderThickness="0"
+                    FontSize="14" Background="#FF252526" Foreground="#FFE7E7E8" Click="clearCourseBtn_Click"    
+                    />
+        <TextBlock Grid.Row="2" Grid.Column="1"
+                    Text="Semesters"/>
+        <TextBlock Grid.Row="2" Grid.Column="2"
+                    Text="Colleges"/>
+        <TextBlock Grid.Row="2" Grid.Column="3"
+                    Text="Courses"/>
+        <ListView x:Name="semestersLV"
+                    Grid.Row="3" Grid.Column="1"
+                    Grid.RowSpan="3"
+                    MinWidth="100" MinHeight="150"
+                    Margin="0,5,10,10"
+                    ItemsSource="{Binding}"
+                    DataContext="{Binding Path=SemestersInfo,Mode =TwoWay}"
+                    SelectionMode="Single" SelectionChanged="semestersLV_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding SemesterID}" />
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding SemesterName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="collegesLV"
+                    Grid.Row="3" Grid.Column="2"
+                    Grid.RowSpan="3"
+                    MinWidth="200" MinHeight="150"
+                    Margin="0,5,10,10"
+                    ItemsSource="{Binding}"
+                    DataContext="{Binding Path=CollegesInfo,Mode =TwoWay}"
+                    SelectionMode="Single" SelectionChanged="collegesLV_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="60" DisplayMemberBinding="{Binding CollegeID}" />
+                    <GridViewColumn Header="Name" Width="130" DisplayMemberBinding="{Binding CollegeName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="coursesLV"
+                    Grid.Row="3" Grid.Column="3"
+                    Grid.RowSpan="3"
+                    MinWidth="200" MinHeight="150"
+                    Margin="0,5,10,10" 
+                    ItemsSource="{Binding}"
+                    DataContext="{Binding Path=CoursesInfo,Mode =TwoWay}"
+                    SelectionMode="Single" SelectionChanged="coursesLV_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="60" DisplayMemberBinding="{Binding CourseID}" />
+                    <GridViewColumn Header="Name" Width="175" DisplayMemberBinding="{Binding Name}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <TextBlock Grid.Row="7" Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   FontSize="18"
+                   Text="Semester - College - Course"/>
+        <ListView x:Name="courseCollegeSemesterLV"
+                Grid.Row="8" Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="5" 
+                ItemsSource="{Binding}"
+                DataContext="{Binding Path=CourseCollegeSemesterInfo,Mode =TwoWay}"                
+                MinWidth="300" MinHeight="250"
+                Margin="0,5,10,10"
+                ScrollViewer.CanContentScroll="True"
+                SelectionMode="Single">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="CCSID" Width="25" DisplayMemberBinding="{Binding CCSID}" />
+                    <GridViewColumn Header="SID" Width="30" DisplayMemberBinding="{Binding SemesterID}" />
+                    <GridViewColumn Header="Semester Name" Width="90" DisplayMemberBinding="{Binding SemesterName}" />
+                    <GridViewColumn Header="College ID" Width="65" DisplayMemberBinding="{Binding CollegeID}" />
+                    <GridViewColumn Header="College Name" Width="130" DisplayMemberBinding="{Binding CollegeName}" />
+                    <GridViewColumn Header="Course ID" Width="60" DisplayMemberBinding="{Binding CourseID}" />
+                    <GridViewColumn Header="CourseName" Width="175" DisplayMemberBinding="{Binding CourseName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock x:Name ="pageTxt" 
+                   Grid.Row="15" Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   Text="Course College Semester"
+                   FontSize="36"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="4"
+                    Grid.RowSpan="18" Orientation="Vertical">
+            <Button x:Name="addButton" Content="Add CCS Combination" 
+                    Margin="5,20,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AddButton_Click"     
+                    />
+            <Button x:Name="newButton" Content="New" 
+                    Margin="5,-50,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="NewButton_Click"     
+                    />
+            <Button x:Name="editButton" Content="Edit" 
+                    Margin="5,25,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="EditButton_Click"     
+                    />
+            <Button x:Name="cancelButton" Content="Cancel" 
+                    Margin="5,-50,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="CancelButton_Click"     
+                    />
+            <Button x:Name="deleteButton" Content="Delete"              
+                Margin="5,150,10,0" MinHeight="50"
+                BorderThickness="1" BorderBrush="#FF818185"
+                FontSize="16" Background="#FF121212" 
+                Foreground="#FFE7E7E8" Click="DeleteButton_Click"                     
+                />
+            <Button x:Name="menuButton" Content="Back"              
+                    Margin="5,95,10,0" MinHeight="50"
+                    BorderThickness="0"
+                    FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="BackButton_Click"    
+                    />
+        </StackPanel>
+
     </Grid>
 </Page>

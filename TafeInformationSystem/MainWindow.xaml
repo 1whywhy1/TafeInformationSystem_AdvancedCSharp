@@ -66,6 +66,11 @@
                 BorderThickness="0"
                 FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="SemestersButton_Click"  
                 />
+            <Button x:Name="ccsButton" Content="College Course Semester"   
+                Margin="0,5,10,10" MinHeight="50"
+                BorderThickness="0"
+                FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="ccsButton_Click"  
+                />
             <Button x:Name="enrolmentsButton" Content="Enrolments"   
                 Margin="0,5,10,10" MinHeight="50"
                 BorderThickness="0"

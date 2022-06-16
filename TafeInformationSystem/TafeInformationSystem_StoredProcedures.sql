@@ -301,9 +301,9 @@ CREATE PROCEDURE spInsert_CourseCollegeSemester
 	@SemesterID			INT
 AS
 BEGIN
-	INSERT CourseCollegeSemester
-	VALUES (@CollegeID, 
-			@CourseID,
+	INSERT CourseCollegeSemester OUTPUT INSERTED.CCSID
+	VALUES (@CourseID,
+			@CollegeID, 			
 			@SemesterID)
 END
 GO
@@ -315,7 +315,7 @@ CREATE PROCEDURE spDelete_CourseCollegeSemesterByIndex
 	@SemesterID			INT
 AS
 BEGIN
-	DELETE FROM CourseCollegeSemester
+	DELETE FROM CourseCollegeSemester OUTPUT DELETED.CCSID
 	WHERE CourseID = @CourseID
 	AND CollegeID = @CollegeID
 	AND SemesterID = @SemesterID
@@ -327,11 +327,42 @@ CREATE PROCEDURE spDelete_CourseCollegeSemesterByID
 	@CCSID			INT
 AS
 BEGIN
-	DELETE FROM CourseCollegeSemester
+	DELETE FROM CourseCollegeSemester OUTPUT DELETED.CCSID
 	WHERE CCSID = @CCSID
 END
 GO
 
+CREATE PROCEDURE spSelectAll_CourseCollegeSemesterWithNames
+AS
+BEGIN
+	SELECT	c.CourseID,
+			c.Name as CourseName,
+			col.CollegeID,
+			col.Name as CollegeName,
+			s.SemesterID,
+			s.SemesterName,
+			ccs.CCSID
+	FROM	Course as c,
+			College as col,
+			Semester as s,
+			CourseCollegeSemester as ccs
+	WHERE	c.CourseID = ccs.CourseID
+	AND		col.CollegeID = ccs.CollegeID
+	AND		s.SemesterID = ccs.SemesterID
+END
+GO
+
+CREATE PROCEDURE spSelectCCSIDbyIndex_courseCollegeSemester
+	@CourseID	INT,
+	@CollegeID	INT,
+	@SemesterID	INT
+AS
+	SELECT	CCSID
+	FROM	CourseCollegeSemester
+	WHERE	CourseID = @CourseID
+	AND		CollegeID = @CollegeID
+	AND		SemesterID = @SemesterID
+GO
 
 -------------------Course------------------
 -- Insert into Course
@@ -754,7 +785,7 @@ SET FirstName = @FirstName,
 	MobilePhone = @MobilePhone,
 	HomePhone = @HomePhone,
 	GenderID = @GenderID	
-WHERE @TeacherID = @TeacherID
+WHERE TeacherID = @TeacherID
 UPDATE TeacherAddress
 SET StreetAddress = @StreetAddress,
 	AptNumber = @AptNumber,
@@ -922,32 +953,87 @@ END
 GO
 
 -- Select from Enrolment by StudentID
-CREATE PROCEDURE spSelectAllByStudentID_Enrolment
-	@StudentID		INT
+--CREATE PROCEDURE spSelectAllByStudentID_Enrolment
+--	@StudentID		INT
+--AS
+--BEGIN
+--	SELECT  s.StudentID,
+--			s.FirstName,
+--			s.LastName,
+--			c.CourseID,
+--			c.[Name],
+--			sm.SemesterName
+--	FROM	Student as s,
+--			Course as c,
+--			Semester as sm,
+--			Enrolment as e
+--	WHERE e.StudentID = @StudentID
+--	AND e.StudentID = s.StudentID
+--	AND 
+--END
+--GO
+
+
+---------------TeacherCourse----------------
+CREATE PROCEDURE spInsert_TeacherCourse
+	@TeacherID		INT,
+	@CCSID			INT
 AS
 BEGIN
-	SELECT  s.StudentID,
-			s.FirstName,
-			s.LastName,
-			c.CourseID,
-			c.[Name],
-			sm.SemesterName
-	FROM	Student as s,
-			Course as c,
-			Semester as sm,
-			Enrolment as e
-	WHERE e.StudentID = @StudentID
-	AND e.StudentID = s.StudentID
-	AND 
+	INSERT INTO TeacherCourse
+	VALUES (@TeacherID, @CCSID)
+END
+GO
+
+CREATE PROCEDURE spDelete_TeacherCourse
+	@TeacherID		INT,
+	@CCSID			INT
+AS
+BEGIN
+	DELETE FROM TeacherCourse
+	WHERE TeacherID = @TeacherID
+	AND CCSID = @CCSID
 END
 GO
 
 
-
-
-
-
-
+CREATE PROCEDURE spSelectAllInfo_TeacherCourse
+AS
+BEGIN
+	WITH CCS AS
+	(
+	SELECT	c.CourseID,
+			c.Name as CourseName,
+			col.CollegeID,
+			col.Name as CollegeName,
+			s.SemesterID,
+			s.SemesterName,
+			ccs.CCSID
+	FROM	Course as c,
+			College as col,
+			Semester as s,
+			CourseCollegeSemester as ccs
+	WHERE	c.CourseID = ccs.CourseID
+	AND		col.CollegeID = ccs.CollegeID
+	AND		s.SemesterID = ccs.SemesterID
+	)
+	SELECT	tc.TeacherID,
+			t.FirstName,
+			t.LastName,
+			ccs.SemesterID,
+			ccs.SemesterName,
+			ccs.CollegeID,
+			ccs.CollegeName,
+			ccs.CourseID,
+			ccs.CourseName,
+			ccs.CCSID
+	FROM	Teacher as t
+	JOIN	TeacherCourse as tc
+	ON		t.TeacherID = tc.TeacherID
+	JOIN	CCS
+	ON		tc.CCSID = CCS.CCSID
+END
+GO
 
 --------------Triggers---------------------
 -- After delete from Student delete from StudentAddress by AddressID
@@ -1027,6 +1113,26 @@ GO
 -- On delete from Student delete from StudentLogin by StudentID
 
 --------------------Views--------------------------
+
+CREATE VIEW vwCCSWithNames AS
+(
+	SELECT	c.CourseID,
+			c.Name as CourseName,
+			col.CollegeID,
+			col.Name as CollegeName,
+			s.SemesterID,
+			s.SemesterName,
+			ccs.CCSID
+	FROM	Course as c,
+			College as col,
+			Semester as s,
+			CourseCollegeSemester as ccs
+	WHERE	c.CourseID = ccs.CourseID
+	AND		col.CollegeID = ccs.CollegeID
+	AND		s.SemesterID = ccs.SemesterID
+)
+
+
 --CREATE VIEW vwCoursePrice AS
 --(
 --	WITH	[Course Total Price] AS 

@@ -71,7 +71,8 @@
                 MinWidth="100" Margin="0,5,10,10"/>
         <TextBox x:Name="semesterNameTxt"
                 Grid.Row="6" Grid.Column="4"
-                MinWidth="200" Margin="0,5,10,10"/>
+                MinWidth="200" Margin="0,5,10,10"
+                IsEnabled="False"/>
         <TextBlock Grid.Row="7" Grid.Column="1"
                    Margin="0,15,0,20"
                    Grid.ColumnSpan="3" 

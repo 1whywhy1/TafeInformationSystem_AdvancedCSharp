@@ -223,7 +223,6 @@ namespace DLLDatabase
                 }
                 else
                 {
-                    ClsMessenger.ShowMessage("huj");
                     return null;
                 }
             }
@@ -300,7 +299,7 @@ namespace DLLDatabase
         {
             if (ex.Number == 2627)
             {
-                throw new ArgumentNullException("This course teacher already exists");
+                throw new ArgumentNullException("This record already exists");
 
             }
             else

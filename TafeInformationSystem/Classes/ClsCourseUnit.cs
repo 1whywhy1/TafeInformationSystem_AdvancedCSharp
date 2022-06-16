@@ -126,13 +126,16 @@ namespace TafeInformationSystem.Classes
 
         #endregion
 
+        #region RetrieveUnitsForCourseSQL
         public void RetrieveUnitsForCourse(string courseID)
         {
             UnitCourseInfo = new ObservableCollection<ClsUnit>();            
             PopulateFromSQl(UnitCourseInfo, $"SELECT UnitID, Name FROM Unit WHERE UnitID in (SELECT UnitID FROM UnitCourse WHERE CourseID = {courseID});");
             
-        }   
+        }
+        #endregion
 
+        #region Updage
         public int UpdateUnitCourse(string courseID)
         {
             string insertQuerie = "";
@@ -163,6 +166,7 @@ namespace TafeInformationSystem.Classes
 
             return 1;
         }
+        #endregion
 
         public void DiscardEdit()
         {

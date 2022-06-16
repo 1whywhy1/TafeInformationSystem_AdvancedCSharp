@@ -36,6 +36,8 @@ CREATE TABLE Teacher (
 );
 GO
 
+SELECT TeacherID, FirstName, LastName FROM Teacher;
+
 CREATE TABLE Student (
 	StudentID			INT IDENTITY,
 	FirstName			NVARCHAR(20) NOT NULL,

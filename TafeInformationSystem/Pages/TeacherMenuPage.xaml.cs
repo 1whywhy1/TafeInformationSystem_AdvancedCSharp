@@ -47,7 +47,7 @@ namespace TafeInformationSystem.Pages
 
         private void AssignCourseButton_Click(object sender, RoutedEventArgs e)
         {
-
+            _mainFrame.Navigate(new TeacherCoursePage(_mainFrame));
         }
     }
 }

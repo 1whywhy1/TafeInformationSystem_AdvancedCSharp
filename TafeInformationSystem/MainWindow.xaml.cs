@@ -32,12 +32,15 @@ namespace TafeInformationSystem
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         public MainWindow(UserType userType, string userID)
         {
             InitializeComponent();
-            _userType = userType;
+            UserType = userType;
+            UserID = userID;
+            _mainFrame.Navigate(new LandingPage(_mainFrame, UserID));
 
         }
 
@@ -51,11 +54,13 @@ namespace TafeInformationSystem
 
             return mainWindow_instance;
         }
+
         #endregion
 
         #region Properties
         public UserType UserType { get { return _userType; } set { _userType = value; } }
         public string UserID { get { return _userID; } set { _userID = value; } }
+
 
         #endregion
 
@@ -68,7 +73,7 @@ namespace TafeInformationSystem
         }
 
         private void PersonalPageButton_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             switch (_userType)
             {
                 case UserType.student:
@@ -120,7 +125,19 @@ namespace TafeInformationSystem
             _mainFrame.Navigate(new SemesterPage(_mainFrame));
         }
 
+        private void ccsButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.Navigate(new CourseCollegeSemesterPage(_mainFrame));
+        }
+
         #endregion
 
+        #region SetLandingPage
+        public void SetLandingPage()
+        {
+            _mainFrame.Navigate(new LandingPage(_mainFrame, UserID));
+        }
+
+        #endregion
     }
 }

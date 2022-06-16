@@ -77,3 +77,7 @@ C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSyst
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\TafeInformationSystem.csproj.CopyComplete
 C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\refint\TafeInformationSystem.dll
+C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\Pages\CourseCollegeSemesterPage.g.cs
+C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\Pages\CourseCollegeSemesterPage.baml
+C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\Pages\LandingPage.g.cs
+C:\Users\karya\Documents\GitRepos\Tafe\TafeInformationSystem\TafeInformationSystem_AdvancedCSharp\TafeInformationSystem\obj\Debug\net5.0-windows\Pages\LandingPage.baml

@@ -25,7 +25,7 @@ namespace TafeInformationSystem.Pages
         #region Fields
         private Frame _mainFrame;
         private ClsSemesterViewModel _semesterVM;
-        private Control[] controls = new Control[3];
+        private Control[] controls = new Control[2];
         private UIState _state = UIState.View;
 
         #endregion
@@ -62,6 +62,7 @@ namespace TafeInformationSystem.Pages
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
             SetUIState(UIState.Add);
+            ClearButton_Click(this, e);
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -104,9 +105,8 @@ namespace TafeInformationSystem.Pages
             _semesterVM = new ClsSemesterViewModel();
             DataContext = _semesterVM;
 
-            controls[0] = semesterNameTxt;
+            controls[0] = endDP;
             controls[1] = startDP;
-            controls[2] = endDP;
 
             SetUIState(UIState.View);
 

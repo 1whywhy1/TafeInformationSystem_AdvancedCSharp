@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Pages\CourseCollegeSemesterPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\CourseLocationPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +38,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\FindUnitsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\LandingPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\LocationPage.xaml.cs">
@@ -78,6 +84,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Pages\CourseCollegeSemesterPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\CourseLocationPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -106,6 +115,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\FindUnitsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\LandingPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\LocationPage.xaml">

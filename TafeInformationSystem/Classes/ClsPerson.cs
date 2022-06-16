@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using TafeInformationSystem.Enums;
 using TafeInformationSystem.Interfaces;
 using DLLDatabase;
+using System.ComponentModel;
 
 namespace TafeInformationSystem.Classes
 {
-    public abstract class ClsPerson : IInfoInteractable
+    public abstract class ClsPerson : IInfoInteractable, INotifyPropertyChanged
     {
         #region Fields
         private int _id;
@@ -23,6 +24,10 @@ namespace TafeInformationSystem.Classes
         private string _mphone;
         private int _gender;
 
+        #endregion
+
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Constructors
@@ -50,7 +55,7 @@ namespace TafeInformationSystem.Classes
         #endregion
 
         #region Properties
-        public string ID
+        public virtual string ID
         { 
             get { return _id.ToString(); } 
 
@@ -58,11 +63,29 @@ namespace TafeInformationSystem.Classes
             {
                 // Add validation here
                 _id = Convert.ToInt32(value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ID"));
             }
         }
 
-        public string FName { get { return _fName; } set { _fName = value; } }
-        public string LName { get { return _lName; } set { _lName = value; } }
+        public string FName 
+        { 
+            get { return _fName; } 
+            set 
+            { 
+                _fName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FirstName"));
+            } 
+        }
+
+        public string LName 
+        { 
+            get { return _lName; } 
+            set 
+            { 
+                _lName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LastName"));
+            } 
+        }
         public DateTime Dob { get { return _dob; } set { _dob = value;} }
 
         public ClsAddress Address { get { return _address; } set { _address = value;} }

@@ -38,9 +38,9 @@
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1" Grid.Column="1"
-                    Text="Location ID"/>
+                    Text="College ID"/>
         <TextBlock Grid.Row="1" Grid.Column="2"
-                    Text="Location Name"/>
+                    Text="College Name"/>
         <TextBox x:Name="idText"
                     Grid.Row="2" Grid.Column="1"
                     MinWidth="200" Margin="0,5,10,10"
@@ -110,7 +110,7 @@
 
         <StackPanel Grid.Row="1" Grid.Column="4"
                     Grid.RowSpan="18" Orientation="Vertical">
-            <Button x:Name="addButton" Content="Add Semester" 
+            <Button x:Name="addButton" Content="Add Course" 
                     Margin="5,20,10,0" MinHeight="50"
                     BorderThickness="0"
                     FontSize="16" Background="#FF252526" Foreground="#FFE7E7E8" Click="AddButton_Click"     
